@@ -22,9 +22,22 @@ impl BinaryTree {
             right: Box::new(BinaryTree::Null),
         }
     }
-}
 
-impl BinaryTree {
+    fn size(&self, tree: &BinaryTree) -> u64 {
+        match tree {
+            BinaryTree::Leaf {
+                ref left,
+                ref right,
+                ..
+            } => {
+                return 1 + self.size(left) + self.size(right);
+            }
+            BinaryTree::Null => {
+                return 0;
+            }
+        }
+    }
+
     fn insert(&mut self, new_data: f64) -> bool {
         match self {
             BinaryTree::Leaf {
@@ -61,6 +74,7 @@ fn main() {
     }
 
     println!("binary_search_tree is {:#?}", binary_search_tree);
+    println!("binary_search_tree has {} elements", binary_search_tree.size(&binary_search_tree));
 
 }
 
@@ -77,9 +91,16 @@ mod test {
         binary_search_tree.insert(77.32);
         binary_search_tree.insert(1.23);
         binary_search_tree.insert(455.23);
-        binary_search_tree.insert(6.43);
-        binary_search_tree.insert(3213.2);
-        binary_search_tree.insert(0.21231);
         println!("{:?}", binary_search_tree)
+    }
+
+    #[test]
+    fn size() {
+        let mut binary_search_tree = BinaryTree::new_tree();
+        binary_search_tree.insert(3.32);
+        binary_search_tree.insert(6.43);
+        binary_search_tree.insert(5.32);
+        binary_search_tree.insert(77.32);
+        assert_eq!(binary_search_tree.size(&binary_search_tree), 4);
     }
 }
