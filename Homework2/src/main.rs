@@ -38,6 +38,31 @@ impl BinaryTree {
         }
     }
 
+    fn depth(&self, tree: &BinaryTree) -> u64 {
+        let left_depth: u64;
+        let right_depth: u64;
+
+        match tree {
+            BinaryTree::Leaf {
+                ref left,
+                ref right,
+                ..
+            } => {
+                left_depth = self.depth(left);
+                right_depth = self.depth(right);
+
+                if left_depth > right_depth {
+                    return left_depth + 1;
+                } else {
+                    return right_depth + 1;
+                }
+            }
+            BinaryTree::Null => {
+                return 0;
+            }
+        }
+    }
+
     fn insert(&mut self, new_data: f64) -> bool {
         match self {
             BinaryTree::Leaf {
@@ -69,12 +94,13 @@ fn main() {
     let mut binary_search_tree = BinaryTree::new_tree();
     let mut rng = rand::thread_rng();
 
-    for _n in 1..10 {
+    for _n in 0..10 {
         binary_search_tree.insert(rng.gen_range(0.0..1000.0));
     }
 
     println!("binary_search_tree is {:#?}", binary_search_tree);
     println!("binary_search_tree has {} elements", binary_search_tree.size(&binary_search_tree));
+    println!("binary_search_tree has a depth of {}", binary_search_tree.depth(&binary_search_tree));
 
 }
 
@@ -85,8 +111,6 @@ mod test {
     #[test]
     fn create() {
         let mut binary_search_tree = BinaryTree::new_tree();
-        binary_search_tree.insert(3.32);
-        binary_search_tree.insert(6.43);
         binary_search_tree.insert(5.32);
         binary_search_tree.insert(77.32);
         binary_search_tree.insert(1.23);
@@ -102,5 +126,20 @@ mod test {
         binary_search_tree.insert(5.32);
         binary_search_tree.insert(77.32);
         assert_eq!(binary_search_tree.size(&binary_search_tree), 4);
+    }
+
+    #[test]
+    fn depth() {
+        let mut binary_search_tree = BinaryTree::new_tree();
+        binary_search_tree.insert(409.571);
+        binary_search_tree.insert(290.002);
+        binary_search_tree.insert(3.80219);
+        binary_search_tree.insert(772.576);
+        binary_search_tree.insert(526.063);
+        binary_search_tree.insert(508.058);
+        binary_search_tree.insert(742.160);
+        binary_search_tree.insert(722.376);
+        binary_search_tree.insert(749.221);
+        assert_eq!(binary_search_tree.depth(&binary_search_tree), 5);
     }
 }
