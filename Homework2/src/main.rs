@@ -15,7 +15,7 @@ impl BinaryTree {
         BinaryTree::Null
     }
 
-    fn new_leaf(data: f64) -> Self {
+    fn create(data: f64) -> Self {
         BinaryTree::Leaf {
             data,
             left: Box::new(BinaryTree::Null),
@@ -45,8 +45,8 @@ impl BinaryTree {
                 }
             },
             BinaryTree::Null => {
-                *self = BinaryTree::new_leaf(new_data);
-                return false;
+                *self = BinaryTree::create(new_data);
+                return true;
             }
         }
     }
