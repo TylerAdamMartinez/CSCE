@@ -1,3 +1,5 @@
+use rand::Rng;
+
 #[derive(Debug)]
 enum BinaryTree {
     Leaf {
@@ -48,6 +50,15 @@ impl BinaryTree {
 }
 
 fn main() {
+    let mut binary_search_tree = BinaryTree::new_tree();
+    let mut rng = rand::thread_rng();
+
+    for n in 1..10 {
+        binary_search_tree.add_leaf(rng.gen_range(0.0..1000.0));
+    }
+
+    println!("binary_search_tree is {:?}", binary_search_tree);
+
 }
 
 #[cfg(test)]
