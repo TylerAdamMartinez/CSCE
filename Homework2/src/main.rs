@@ -25,7 +25,7 @@ impl BinaryTree {
 }
 
 impl BinaryTree {
-    fn add_leaf(&mut self, new_data: f64) {
+    fn insert(&mut self, new_data: f64) -> bool {
         match self {
             BinaryTree::Leaf {
                 ref data,
@@ -33,17 +33,20 @@ impl BinaryTree {
                 ref mut right,
             } => match data {
                 i if i > &new_data => {
-                    left.add_leaf(new_data);
-                    println!("added {} to the left", new_data);
+                    left.insert(new_data);
+                    return true;
                 }
                 i if i < &new_data => {
-                    right.add_leaf(new_data);
-                    println!("added {} to the right", new_data);
+                    right.insert(new_data);
+                    return true;
                 }
-                _ => {}
+                _ => { 
+                    return false;
+                }
             },
             BinaryTree::Null => {
                 *self = BinaryTree::new_leaf(new_data);
+                return false;
             }
         }
     }
@@ -53,11 +56,11 @@ fn main() {
     let mut binary_search_tree = BinaryTree::new_tree();
     let mut rng = rand::thread_rng();
 
-    for n in 1..10 {
-        binary_search_tree.add_leaf(rng.gen_range(0.0..1000.0));
+    for _n in 1..10 {
+        binary_search_tree.insert(rng.gen_range(0.0..1000.0));
     }
 
-    println!("binary_search_tree is {:?}", binary_search_tree);
+    println!("binary_search_tree is {:#?}", binary_search_tree);
 
 }
 
@@ -68,15 +71,15 @@ mod test {
     #[test]
     fn create() {
         let mut binary_search_tree = BinaryTree::new_tree();
-        binary_search_tree.add_leaf(3.32);
-        binary_search_tree.add_leaf(6.43);
-        binary_search_tree.add_leaf(5.32);
-        binary_search_tree.add_leaf(77.32);
-        binary_search_tree.add_leaf(1.23);
-        binary_search_tree.add_leaf(455.23);
-        binary_search_tree.add_leaf(6.43);
-        binary_search_tree.add_leaf(3213.2);
-        binary_search_tree.add_leaf(0.21231);
+        binary_search_tree.insert(3.32);
+        binary_search_tree.insert(6.43);
+        binary_search_tree.insert(5.32);
+        binary_search_tree.insert(77.32);
+        binary_search_tree.insert(1.23);
+        binary_search_tree.insert(455.23);
+        binary_search_tree.insert(6.43);
+        binary_search_tree.insert(3213.2);
+        binary_search_tree.insert(0.21231);
         println!("{:?}", binary_search_tree)
     }
 }
