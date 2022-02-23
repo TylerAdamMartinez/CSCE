@@ -1,3 +1,4 @@
+#[derive(Debug)]
 enum BinaryTree {
     Leaf {
         data: f64,
@@ -47,14 +48,24 @@ impl BinaryTree {
 }
 
 fn main() {
-    let mut binary_search_tree = BinaryTree::new_tree();
-    binary_search_tree.add_leaf(3.32);
-    binary_search_tree.add_leaf(6.43);
-    binary_search_tree.add_leaf(5.32);
-    binary_search_tree.add_leaf(77.32);
-    binary_search_tree.add_leaf(1.23);
-    binary_search_tree.add_leaf(455.23);
-    binary_search_tree.add_leaf(6.43);
-    binary_search_tree.add_leaf(3213.2);
-    binary_search_tree.add_leaf(0.21231);
+}
+
+#[cfg(test)]
+mod test {
+    use super::*;
+
+    #[test]
+    fn create() {
+        let mut binary_search_tree = BinaryTree::new_tree();
+        binary_search_tree.add_leaf(3.32);
+        binary_search_tree.add_leaf(6.43);
+        binary_search_tree.add_leaf(5.32);
+        binary_search_tree.add_leaf(77.32);
+        binary_search_tree.add_leaf(1.23);
+        binary_search_tree.add_leaf(455.23);
+        binary_search_tree.add_leaf(6.43);
+        binary_search_tree.add_leaf(3213.2);
+        binary_search_tree.add_leaf(0.21231);
+        println!("{:?}", binary_search_tree)
+    }
 }
