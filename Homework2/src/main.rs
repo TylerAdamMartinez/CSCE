@@ -1,5 +1,11 @@
 use rand::Rng;
 use std::time::{Instant, Duration};
+use term_table::Table;
+use term_table::{
+    row::Row,
+    table_cell::{Alignment, TableCell},
+};
+use term_table::TableStyle;
 mod binary_tree;
 
 fn main() {
@@ -27,6 +33,10 @@ fn main() {
     println!("search: {:?}", time_counts_of_bst_100.search);
     println!("size: {:?}", time_counts_of_bst_100.size);
     println!("depth: {:?}", time_counts_of_bst_100.depth);
+
+    print_table("100 Elements Binary Tree");
+    print_table("1k Elements Binary Tree");
+    print_table("10k Elements Binary Tree");
 }
 
 fn populate_tree_rand(tree: &mut binary_tree::BinaryTree, elements_count: u64) {
@@ -91,3 +101,50 @@ fn calc_execution_times(tree: &mut binary_tree::BinaryTree) -> TimeCounts {
     }
 }
 
+struct BinaryTreeData {
+    stats: BinaryTreeStats,
+    times: TimeCounts,
+}
+
+enum TableEntryData {
+    fromSortedTree(BinaryTreeData),
+    fromUnsortedTree(BinaryTreeData),
+}
+
+fn print_table(title: &str) {
+    let mut table = Table::new();
+    table.max_column_width = 150;
+
+    table.style = TableStyle::extended();
+
+    table.add_row(Row::new(vec![
+            TableCell::new_with_alignment(title, 2, Alignment::Center)
+    ]));
+
+    table.add_row(Row::new(vec![
+            TableCell::new("Unsorted"),
+            TableCell::new_with_alignment("Sorted", 1, Alignment::Left)
+    ]));
+
+    table.add_row(Row::new(vec![
+            TableCell::new("Insert: "),
+            TableCell::new_with_alignment("Insert: ", 1, Alignment::Left)
+    ]));
+
+    table.add_row(Row::new(vec![
+            TableCell::new("Size: \nTime: "),
+            TableCell::new_with_alignment("Size: \nTime: ", 1, Alignment::Left)
+    ]));
+
+    table.add_row(Row::new(vec![
+            TableCell::new("Depth: \nTime: "),
+            TableCell::new_with_alignment("Depth: \nTime: ", 1, Alignment::Left)
+    ]));
+
+    table.add_row(Row::new(vec![
+            TableCell::new("Search: "),
+            TableCell::new_with_alignment("Search: ", 1, Alignment::Left)
+    ]));
+
+    println!("{}", table.render());
+}
