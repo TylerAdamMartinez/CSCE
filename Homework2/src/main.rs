@@ -84,6 +84,7 @@ fn main() {
     };
 
     print_table("Sorted Trees", sorted_bts_entry);
+
 }
 
 fn population_unsorted(tree: &mut binary_tree::BinaryTree, elements_count: u64) {
