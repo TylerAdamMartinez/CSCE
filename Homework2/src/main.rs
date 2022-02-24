@@ -17,9 +17,9 @@ fn main() {
     let one_thousand = 1000;
     let ten_thousand = 10000;
 
-    populate_tree_rand(&mut binary_search_tree_100, hundred);
-    populate_tree_rand(&mut binary_search_tree_1k, one_thousand);
-    populate_tree_rand(&mut binary_search_tree_10k, ten_thousand);
+    population_unsorted(&mut binary_search_tree_100, hundred);
+    population_unsorted(&mut binary_search_tree_1k, one_thousand);
+    population_unsorted(&mut binary_search_tree_10k, ten_thousand);
 
     let tree_stats_100 = get_tree_stats(&binary_search_tree_100);
     let tree_stats_1k = get_tree_stats(&binary_search_tree_1k);
@@ -50,12 +50,29 @@ fn main() {
     print_table("Unsorted Trees", unsorted_bts_entry);
 }
 
-fn populate_tree_rand(tree: &mut binary_tree::BinaryTree, elements_count: u64) {
+fn population_unsorted(tree: &mut binary_tree::BinaryTree, elements_count: u64) {
     let mut rng = rand::thread_rng();
 
-    for _n in 1..elements_count {
+    for _n in 0..elements_count {
         tree.insert(rng.gen_range(0.0..1000.0));
     }
+}
+
+fn population_sorted(tree: &mut binary_tree::BinaryTree, elements_count: u64) {
+    let mut rng = rand::thread_rng();
+    let mut number_vec: Vec<f64> = Vec::new();
+
+    for _n in 0..elements_count {
+        number_vec.push(rng.gen_range(0.0..1000.0));
+    }
+
+    // sorts vector of floats f64s from loweset to highest
+    number_vec.sort_by(|a, b| a.partial_cmp(b).unwrap());
+
+    for (_i, n) in number_vec.iter().enumerate() {
+        tree.insert(*n);
+    }
+
 }
 
 struct BinaryTreeStats {
