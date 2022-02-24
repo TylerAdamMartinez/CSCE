@@ -152,6 +152,12 @@ impl BinaryTree {
     }
 }
 
+impl BinaryTree {
+    pub fn print(&self, tree: &BinaryTree) {
+        println!("{:#?}", tree);
+    }
+}
+
 impl <'a> BinaryTree {
     /// Returns a reference to BinaryTree Node with the same value as inputed,
     /// or a reference to a BinaryTree::Null if the BinaryTree contain no Nodes with the same value
