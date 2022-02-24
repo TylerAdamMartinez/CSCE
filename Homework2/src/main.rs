@@ -1,16 +1,21 @@
 use rand::Rng;
+use std::time::Instant;
 mod binary_tree;
 
 fn main() {
     let mut binary_search_tree = binary_tree::BinaryTree::new();
 
-    populate_tree(&mut binary_search_tree, 100);
+    populate_tree(&mut binary_search_tree, 10000);
+
+    let start_timer = Instant::now();
     binary_search_tree.insert(1001.0);
+    let end_timer = start_timer.elapsed();
 
     print_tree_stats(&binary_search_tree);
     println!("Find 1001.0 in the tree\nStatus: {:?}", binary_search_tree.search(&binary_search_tree, 1001.0));
     println!("Find 1055.0 in the tree\nStatus: {:?}", binary_search_tree.search(&binary_search_tree, 1055.0));
 
+    println!("time duration: {}ms", end_timer.as_secs() * 1000);
 }
 
 fn populate_tree(tree: &mut binary_tree::BinaryTree, elements_count: u64) {
