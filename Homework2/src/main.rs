@@ -29,31 +29,25 @@ fn main() {
     let time_counts_of_bst_1k = calc_execution_times(&mut binary_search_tree_1k);
     let time_counts_of_bst_10k = calc_execution_times(&mut binary_search_tree_10k);
 
-    let unsorted_100_element_bts_entry = TableEntry::From100ElementsTree(
-        BinaryTreeData {
-            stats: tree_stats_100,
-            times: time_counts_of_bst_100,
-        }
-    );
+    let unsorted_bts_entry = TableEntry {
+        from_100_elements_tree: 
+            BinaryTreeData {
+                stats: tree_stats_100,
+                times: time_counts_of_bst_100,
+            },
+        from_1k_elements_tree:
+            BinaryTreeData {
+                stats: tree_stats_1k,
+                times: time_counts_of_bst_1k,
+            },
+        from_10k_elements_tree:
+            BinaryTreeData {
+                stats: tree_stats_10k,
+                times: time_counts_of_bst_10k,
+            },
+    };
 
-    let unsorted_1k_element_bts_entry = TableEntry::From1kElementsTree(
-        BinaryTreeData {
-            stats: tree_stats_1k,
-            times: time_counts_of_bst_1k,
-        }
-    );
-
-    let unsorted_10k_element_bts_entry = TableEntry::From10kElementsTree(
-        BinaryTreeData {
-            stats: tree_stats_10k,
-            times: time_counts_of_bst_10k,
-        }
-    );
-
-    print_table(
-        "Unsorted Trees", 
-        (unsorted_100_element_bts_entry, unsorted_1k_element_bts_entry, unsorted_10k_element_bts_entry)
-    );
+    print_table("Unsorted Trees", unsorted_bts_entry);
 }
 
 fn populate_tree_rand(tree: &mut binary_tree::BinaryTree, elements_count: u64) {
@@ -123,13 +117,13 @@ struct BinaryTreeData {
     times: TimeCounts,
 }
 
-enum TableEntry {
-    From100ElementsTree(BinaryTreeData),
-    From1kElementsTree(BinaryTreeData),
-    From10kElementsTree(BinaryTreeData),
+struct TableEntry {
+    from_100_elements_tree: BinaryTreeData,
+    from_1k_elements_tree: BinaryTreeData,
+    from_10k_elements_tree: BinaryTreeData,
 }
 
-fn print_table(title: &str, table_entries: (TableEntry, TableEntry, TableEntry)) {
+fn print_table(title: &str, table_entries: TableEntry) {
     let mut table = Table::new();
     table.max_column_width = 150;
 
@@ -145,28 +139,70 @@ fn print_table(title: &str, table_entries: (TableEntry, TableEntry, TableEntry))
             TableCell::new_with_alignment("10k Elements", 2, Alignment::Left)
     ]));
 
+    let insert_time_100 = table_entries.from_100_elements_tree.times.insert.as_secs_f64().to_string();
+    let insert_time_100_str = "Insert Time: ".to_owned() + &insert_time_100 + " s ";
+    let insert_time_1k = table_entries.from_1k_elements_tree.times.insert.as_secs_f64().to_string();
+    let insert_time_1k_str = "Insert Time: ".to_owned() + &insert_time_1k + " s ";
+    let insert_time_10k = table_entries.from_10k_elements_tree.times.insert.as_secs_f64().to_string();
+    let insert_time_10k_str = "Insert Time: ".to_owned() + &insert_time_10k + " s ";
     table.add_row(Row::new(vec![
-            TableCell::new("Insert Time: "),
-            TableCell::new_with_alignment("Insert Time: ", 1, Alignment::Left),
-            TableCell::new_with_alignment("Insert Time: ", 2, Alignment::Left)
+                TableCell::new(insert_time_100_str),
+            TableCell::new_with_alignment(insert_time_1k_str, 1, Alignment::Left),
+            TableCell::new_with_alignment(insert_time_10k_str, 2, Alignment::Left)
     ]));
 
-    table.add_row(Row::new(vec![
-            TableCell::new("Size Time: \nSize of Tree: "),
-            TableCell::new_with_alignment("Size Time: \nSize of Tree: ", 1, Alignment::Left),
-            TableCell::new_with_alignment("Size Time: \nSize of Tree: ", 2, Alignment::Left)
-    ]));
+    let size_time_100 = table_entries.from_100_elements_tree.times.size.as_secs_f64().to_string();
+    let size_time_100_str = "Size Time: ".to_owned() + &size_time_100 + " s ";
+    let size_data_100 = table_entries.from_100_elements_tree.stats.size.to_string();
+    let size_entry_100_str = size_time_100_str + "\nSize of Tree: " + &size_data_100;
+
+    let size_time_1k = table_entries.from_1k_elements_tree.times.size.as_secs_f64().to_string();
+    let size_data_1k = table_entries.from_1k_elements_tree.stats.size.to_string();
+    let size_time_1k_str = "Size Time: ".to_owned() + &size_time_1k + " s ";
+    let size_entry_1k_str = size_time_1k_str + "\nSize of Tree: " + &size_data_1k;
+
+    let size_time_10k = table_entries.from_10k_elements_tree.times.size.as_secs_f64().to_string();
+    let size_data_10k = table_entries.from_10k_elements_tree.stats.size.to_string();
+    let size_time_10k_str = "Size Time: ".to_owned() + &size_time_10k + " s ";
+    let size_entry_10k_str = size_time_10k_str + "\nSize of Tree: " + &size_data_10k;
 
     table.add_row(Row::new(vec![
-            TableCell::new("Depth Time: \nDepth of Tree: "),
-            TableCell::new_with_alignment("Depth Time: \nDepth of Tree: ", 1, Alignment::Left),
-            TableCell::new_with_alignment("Depth Time: \nDepth of Tree: ", 2, Alignment::Left)
+            TableCell::new(size_entry_100_str),
+            TableCell::new_with_alignment(size_entry_1k_str, 1, Alignment::Left),
+            TableCell::new_with_alignment(size_entry_10k_str, 2, Alignment::Left)
     ]));
 
+    let depth_time_100 = table_entries.from_100_elements_tree.times.depth.as_secs_f64().to_string();
+    let depth_time_100_str = "Depth Time: ".to_owned() + &depth_time_100 + " s ";
+    let depth_data_100 = table_entries.from_100_elements_tree.stats.depth.to_string();
+    let depth_entry_100_str = depth_time_100_str + "\nDepth of Tree: " + &depth_data_100;
+
+    let depth_time_1k = table_entries.from_1k_elements_tree.times.depth.as_secs_f64().to_string();
+    let depth_data_1k = table_entries.from_1k_elements_tree.stats.depth.to_string();
+    let depth_time_1k_str = "Depth Time: ".to_owned() + &depth_time_1k + " s ";
+    let depth_entry_1k_str = depth_time_1k_str + "\nDepth of Tree: " + &depth_data_1k;
+
+    let depth_time_10k = table_entries.from_10k_elements_tree.times.depth.as_secs_f64().to_string();
+    let depth_data_10k = table_entries.from_10k_elements_tree.stats.depth.to_string();
+    let depth_time_10k_str = "Depth Time: ".to_owned() + &depth_time_10k + " s ";
+    let depth_entry_10k_str = depth_time_10k_str + "\nDepth of Tree: " + &depth_data_10k;
+
     table.add_row(Row::new(vec![
-            TableCell::new("Search Time: "),
-            TableCell::new_with_alignment("Search Time: ", 1, Alignment::Left),
-            TableCell::new_with_alignment("Search Time: ", 2, Alignment::Left)
+            TableCell::new(depth_entry_100_str),
+            TableCell::new_with_alignment(depth_entry_1k_str, 1, Alignment::Left),
+            TableCell::new_with_alignment(depth_entry_10k_str, 2, Alignment::Left)
+    ]));
+
+    let search_time_100 = table_entries.from_100_elements_tree.times.search.as_secs_f64().to_string();
+    let search_time_100_str = "Search Time: ".to_owned() + &search_time_100 + " s ";
+    let search_time_1k = table_entries.from_1k_elements_tree.times.search.as_secs_f64().to_string();
+    let search_time_1k_str = "Search Time: ".to_owned() + &search_time_1k + " s ";
+    let search_time_10k = table_entries.from_10k_elements_tree.times.search.as_secs_f64().to_string();
+    let search_time_10k_str = "Search Time: ".to_owned() + &search_time_10k + " s ";
+    table.add_row(Row::new(vec![
+            TableCell::new(search_time_100_str),
+            TableCell::new_with_alignment(search_time_1k_str, 1, Alignment::Left),
+            TableCell::new_with_alignment(search_time_10k_str, 2, Alignment::Left)
     ]));
 
     println!("{}", table.render());
