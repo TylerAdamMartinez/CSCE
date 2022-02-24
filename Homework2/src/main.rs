@@ -1,11 +1,11 @@
 use rand::Rng;
 use std::time::{Instant, Duration};
-use term_table::Table;
 use term_table::{
+    Table,
+    TableStyle,
     row::Row,
     table_cell::{Alignment, TableCell},
 };
-use term_table::TableStyle;
 mod binary_tree;
 
 fn main() {
@@ -29,14 +29,31 @@ fn main() {
     let time_counts_of_bst_1k = calc_execution_times(&mut binary_search_tree_1k);
     let time_counts_of_bst_10k = calc_execution_times(&mut binary_search_tree_10k);
 
-    println!("insert: {:?}", time_counts_of_bst_100.insert);
-    println!("search: {:?}", time_counts_of_bst_100.search);
-    println!("size: {:?}", time_counts_of_bst_100.size);
-    println!("depth: {:?}", time_counts_of_bst_100.depth);
+    let unsorted_100_element_bts_entry = TableEntry::From100ElementsTree(
+        BinaryTreeData {
+            stats: tree_stats_100,
+            times: time_counts_of_bst_100,
+        }
+    );
 
-    print_table("100 Elements Binary Tree");
-    print_table("1k Elements Binary Tree");
-    print_table("10k Elements Binary Tree");
+    let unsorted_1k_element_bts_entry = TableEntry::From1kElementsTree(
+        BinaryTreeData {
+            stats: tree_stats_1k,
+            times: time_counts_of_bst_1k,
+        }
+    );
+
+    let unsorted_10k_element_bts_entry = TableEntry::From10kElementsTree(
+        BinaryTreeData {
+            stats: tree_stats_10k,
+            times: time_counts_of_bst_10k,
+        }
+    );
+
+    print_table(
+        "Unsorted Trees", 
+        (unsorted_100_element_bts_entry, unsorted_1k_element_bts_entry, unsorted_10k_element_bts_entry)
+    );
 }
 
 fn populate_tree_rand(tree: &mut binary_tree::BinaryTree, elements_count: u64) {
@@ -106,44 +123,50 @@ struct BinaryTreeData {
     times: TimeCounts,
 }
 
-enum TableEntryData {
-    fromSortedTree(BinaryTreeData),
-    fromUnsortedTree(BinaryTreeData),
+enum TableEntry {
+    From100ElementsTree(BinaryTreeData),
+    From1kElementsTree(BinaryTreeData),
+    From10kElementsTree(BinaryTreeData),
 }
 
-fn print_table(title: &str) {
+fn print_table(title: &str, table_entries: (TableEntry, TableEntry, TableEntry)) {
     let mut table = Table::new();
     table.max_column_width = 150;
 
     table.style = TableStyle::extended();
 
     table.add_row(Row::new(vec![
-            TableCell::new_with_alignment(title, 2, Alignment::Center)
+            TableCell::new_with_alignment(title, 4, Alignment::Center)
     ]));
 
     table.add_row(Row::new(vec![
-            TableCell::new("Unsorted"),
-            TableCell::new_with_alignment("Sorted", 1, Alignment::Left)
+            TableCell::new("100 Elements"),
+            TableCell::new_with_alignment("1k Elements", 1, Alignment::Left),
+            TableCell::new_with_alignment("10k Elements", 2, Alignment::Left)
     ]));
 
     table.add_row(Row::new(vec![
-            TableCell::new("Insert: "),
-            TableCell::new_with_alignment("Insert: ", 1, Alignment::Left)
+            TableCell::new("Insert Time: "),
+            TableCell::new_with_alignment("Insert Time: ", 1, Alignment::Left),
+            TableCell::new_with_alignment("Insert Time: ", 2, Alignment::Left)
     ]));
 
     table.add_row(Row::new(vec![
-            TableCell::new("Size: \nTime: "),
-            TableCell::new_with_alignment("Size: \nTime: ", 1, Alignment::Left)
+            TableCell::new("Size Time: \nSize of Tree: "),
+            TableCell::new_with_alignment("Size Time: \nSize of Tree: ", 1, Alignment::Left),
+            TableCell::new_with_alignment("Size Time: \nSize of Tree: ", 2, Alignment::Left)
     ]));
 
     table.add_row(Row::new(vec![
-            TableCell::new("Depth: \nTime: "),
-            TableCell::new_with_alignment("Depth: \nTime: ", 1, Alignment::Left)
+            TableCell::new("Depth Time: \nDepth of Tree: "),
+            TableCell::new_with_alignment("Depth Time: \nDepth of Tree: ", 1, Alignment::Left),
+            TableCell::new_with_alignment("Depth Time: \nDepth of Tree: ", 2, Alignment::Left)
     ]));
 
     table.add_row(Row::new(vec![
-            TableCell::new("Search: "),
-            TableCell::new_with_alignment("Search: ", 1, Alignment::Left)
+            TableCell::new("Search Time: "),
+            TableCell::new_with_alignment("Search Time: ", 1, Alignment::Left),
+            TableCell::new_with_alignment("Search Time: ", 2, Alignment::Left)
     ]));
 
     println!("{}", table.render());
