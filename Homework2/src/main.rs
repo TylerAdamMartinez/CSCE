@@ -1,6 +1,7 @@
 use rand::Rng;
 
 #[derive(Debug)]
+#[derive(PartialEq)]
 enum BinaryTree {
     Leaf {
         data: f64,
@@ -11,7 +12,7 @@ enum BinaryTree {
 }
 
 impl BinaryTree {
-    fn new_tree() -> Self {
+    fn new() -> Self {
         BinaryTree::Null
     }
 
@@ -90,17 +91,46 @@ impl BinaryTree {
     }
 }
 
+impl <'a> BinaryTree {
+    fn search(&self, tree: &'a BinaryTree, key: f64) -> &'a BinaryTree {
+        match tree {
+            BinaryTree::Leaf {
+                ref data,
+                ref left,
+                ref right,
+                ..
+            } => {
+                if data == &key {
+                    return tree;
+                } else if data > &key {
+                    return self.search(left, key);
+                } else {
+                    return self.search(right, key);
+                }
+            }
+            BinaryTree::Null => {
+                return &BinaryTree::Null;
+            }
+        }
+    }
+
+}
+
 fn main() {
-    let mut binary_search_tree = BinaryTree::new_tree();
+    let mut binary_search_tree = BinaryTree::new();
     let mut rng = rand::thread_rng();
 
     for _n in 0..10 {
         binary_search_tree.insert(rng.gen_range(0.0..1000.0));
     }
 
+    binary_search_tree.insert(1001.0);
+
     println!("binary_search_tree is {:#?}", binary_search_tree);
     println!("binary_search_tree has {} elements", binary_search_tree.size(&binary_search_tree));
     println!("binary_search_tree has a depth of {}", binary_search_tree.depth(&binary_search_tree));
+    println!("Find 1001.0 in the tree\nStatus: {:?}", binary_search_tree.search(&binary_search_tree, 1001.0));
+    println!("Find 1055.0 in the tree\nStatus: {:?}", binary_search_tree.search(&binary_search_tree, 1055.0));
 
 }
 
@@ -110,7 +140,7 @@ mod test {
 
     #[test]
     fn create() {
-        let mut binary_search_tree = BinaryTree::new_tree();
+        let mut binary_search_tree = BinaryTree::new();
         binary_search_tree.insert(5.32);
         binary_search_tree.insert(77.32);
         binary_search_tree.insert(1.23);
@@ -120,7 +150,7 @@ mod test {
 
     #[test]
     fn size() {
-        let mut binary_search_tree = BinaryTree::new_tree();
+        let mut binary_search_tree = BinaryTree::new();
         binary_search_tree.insert(3.32);
         binary_search_tree.insert(6.43);
         binary_search_tree.insert(5.32);
@@ -129,8 +159,25 @@ mod test {
     }
 
     #[test]
+    fn search() {
+        let mut binary_search_tree = BinaryTree::new();
+        binary_search_tree.insert(3.32);
+        binary_search_tree.insert(6.43);
+        binary_search_tree.insert(5.32);
+        binary_search_tree.insert(77.32);
+        binary_search_tree.insert(1.23);
+        assert_eq!(
+            *binary_search_tree.search(&binary_search_tree, 1.23), 
+            BinaryTree::Leaf {
+                data: 1.23,
+                left: Box::new(BinaryTree::Null),
+                right: Box::new(BinaryTree::Null),
+            });
+    }
+
+    #[test]
     fn depth() {
-        let mut binary_search_tree = BinaryTree::new_tree();
+        let mut binary_search_tree = BinaryTree::new();
         binary_search_tree.insert(409.571);
         binary_search_tree.insert(290.002);
         binary_search_tree.insert(3.80219);
