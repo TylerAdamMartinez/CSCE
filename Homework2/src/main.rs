@@ -9,13 +9,13 @@ use term_table::{
 mod binary_tree;
 
 fn main() {
-    let mut binary_search_tree_100 = binary_tree::BinaryTree::new();
-    let mut binary_search_tree_1k = binary_tree::BinaryTree::new();
-    let mut binary_search_tree_10k = binary_tree::BinaryTree::new();
-
     let hundred = 100;
     let one_thousand = 1000;
     let ten_thousand = 10000;
+
+    let mut binary_search_tree_100 = binary_tree::BinaryTree::new();
+    let mut binary_search_tree_1k = binary_tree::BinaryTree::new();
+    let mut binary_search_tree_10k = binary_tree::BinaryTree::new();
 
     population_unsorted(&mut binary_search_tree_100, hundred);
     population_unsorted(&mut binary_search_tree_1k, one_thousand);
@@ -48,6 +48,42 @@ fn main() {
     };
 
     print_table("Unsorted Trees", unsorted_bts_entry);
+
+    let mut binary_search_sorted_tree_100 = binary_tree::BinaryTree::new();
+    let mut binary_search_sorted_tree_1k = binary_tree::BinaryTree::new();
+    let mut binary_search_sorted_tree_10k = binary_tree::BinaryTree::new();
+
+    population_sorted(&mut binary_search_sorted_tree_100, hundred);
+    population_sorted(&mut binary_search_sorted_tree_1k, one_thousand);
+    population_sorted(&mut binary_search_sorted_tree_10k, ten_thousand);
+
+    let sorted_tree_stats_100 = get_tree_stats(&binary_search_sorted_tree_100);
+    let sorted_tree_stats_1k = get_tree_stats(&binary_search_sorted_tree_1k);
+    let sorted_tree_stats_10k = get_tree_stats(&binary_search_sorted_tree_10k);
+
+    let time_counts_of_sorted_bst_100 = calc_execution_times(&mut binary_search_sorted_tree_100);
+    let time_counts_of_sorted_bst_1k = calc_execution_times(&mut binary_search_sorted_tree_1k);
+    let time_counts_of_sorted_bst_10k = calc_execution_times(&mut binary_search_sorted_tree_10k);
+
+    let sorted_bts_entry = TableEntry {
+        from_100_elements_tree: 
+            BinaryTreeData {
+                stats: sorted_tree_stats_100,
+                times: time_counts_of_sorted_bst_100,
+            },
+        from_1k_elements_tree:
+            BinaryTreeData {
+                stats: sorted_tree_stats_1k,
+                times: time_counts_of_sorted_bst_1k,
+            },
+        from_10k_elements_tree:
+            BinaryTreeData {
+                stats: sorted_tree_stats_10k,
+                times: time_counts_of_sorted_bst_10k,
+            },
+    };
+
+    print_table("Sorted Trees", sorted_bts_entry);
 }
 
 fn population_unsorted(tree: &mut binary_tree::BinaryTree, elements_count: u64) {
