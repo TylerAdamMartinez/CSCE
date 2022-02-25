@@ -1,3 +1,9 @@
+use std::mem;
+use field_ref::{
+    GetField,
+    GetFieldMut,
+    opt_field_ref_of
+};
 #[derive(Debug)]
 #[derive(PartialEq)]
 /// BinaryTree represented here
@@ -205,7 +211,37 @@ impl <'a> BinaryTree {
             }
         }
     }
+    /*
+    pub fn remove(&self, tree: &'a BinaryTree, key: f64) {
+        let left_field = opt_field_ref_of!(crate::binary_tree::BinaryTree::Leaf{left});
+        let right_field = opt_field_ref_of!(crate::binary_tree::BinaryTree::Leaf{right});
+        let mut parent_node = self.search(tree, key);
+        let mut current_node = tree;
 
+        match current_node {
+            BinaryTree::Leaf { 
+                ref data,
+                ref left,
+                ref right,
+            } => {
+                if *left == Box::new(BinaryTree::Null) && *right == Box::new(BinaryTree::Null) {
+                    if current_node != tree {
+                        if *parent_node.try_get_field(left_field).unwrap() == Box::new(*current_node) {
+                            *parent_node.try_get_field_mut(left_field).unwrap() = Box::new(BinaryTree::Null);
+                        } else {
+                            *parent_node.try_get_field_mut(right_field).unwrap() = Box::new(BinaryTree::Null);
+                        }
+                    } else {
+                        tree = &BinaryTree::Null;
+                    }
+                    mem::drop(current_node);
+                }
+            }
+            BinaryTree::Null => {
+                return;
+            }
+        }
+    } */
 }
 
 #[cfg(test)]
