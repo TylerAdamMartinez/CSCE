@@ -147,7 +147,7 @@ fn calc_execution_times(tree: &mut binary_tree::BinaryTree) -> TimeCounts {
 
     // Caculations the time of the search() method
     let start_timer = Instant::now();
-    tree.search(&tree, new_element);
+    tree.search(new_element);
     let end_timer = Instant::now();
     let search_time = end_timer.duration_since(start_timer);
 

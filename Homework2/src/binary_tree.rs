@@ -144,11 +144,11 @@ impl BinaryTree {
     /// If returns true then insert operation was successfull
     /// If returns false then insert operation was unsuccessful
     ///
-    /// # Arguments
+    /// # Argument
     ///
     /// * `new_data` - A f64 value to be inserted into the BinaryTree
     ///
-    /// # Examples
+    /// # Example
     ///
     /// ```
     /// use binary_tree::BinaryTree;
@@ -206,16 +206,15 @@ impl <'a> BinaryTree {
     /// * `&'a BinaryTree` - The returned reference has the same Lifetime as the `tree` BinaryTree
     /// parameter
     ///
-    /// # Arguments
+    /// # Argument
     ///
-    /// * `tree` - A BinaryTree node
     /// * `key` - The searched for value
     ///
-    /// # Examples
+    /// # Example
     ///
     /// ```
     /// my_bst.insert(1.234);
-    /// let searched_for_node = my_bst.search(&my_bst, 1.234);
+    /// let searched_for_node = my_bst.search(1.234);
     /// match *searched_for_node {
     /// binary_tree::BinaryTree::Leaf {
     ///     ref data,
@@ -224,7 +223,29 @@ impl <'a> BinaryTree {
     /// }
     /// //TERMINAL OUTPUT: The value is 1.234
     /// ```
-    pub fn search(&self, tree: &'a BinaryTree, key: f64) -> &'a BinaryTree {
+    pub fn search(&self, key: f64) -> &BinaryTree {
+        match self {
+            BinaryTree::Leaf {
+                ref data,
+                ref left,
+                ref right,
+                ..
+            } => {
+                if data == &key {
+                    return self;
+                } else if data > &key {
+                    return self.search_subtree(left, key);
+                } else {
+                    return self.search_subtree(right, key);
+                }
+            }
+            BinaryTree::Null => {
+                return &BinaryTree::Null;
+            }
+        }
+    }
+
+    fn search_subtree(&self, tree: &'a BinaryTree, key: f64) -> &'a BinaryTree {
         match tree {
             BinaryTree::Leaf {
                 ref data,
@@ -235,9 +256,9 @@ impl <'a> BinaryTree {
                 if data == &key {
                     return tree;
                 } else if data > &key {
-                    return self.search(left, key);
+                    return self.search_subtree(left, key);
                 } else {
-                    return self.search(right, key);
+                    return self.search_subtree(right, key);
                 }
             }
             BinaryTree::Null => {
@@ -312,9 +333,8 @@ mod test {
         assert_eq!(binary_search_tree.size(), 4);
     }
 
- 
     #[test]
-    fn search() {
+    fn found_search() {
         let mut binary_search_tree = BinaryTree::new();
         binary_search_tree.insert(3.32);
         binary_search_tree.insert(6.43);
@@ -322,12 +342,25 @@ mod test {
         binary_search_tree.insert(77.32);
         binary_search_tree.insert(1.23);
         assert_eq!(
-            *binary_search_tree.search(&binary_search_tree, 1.23), 
+            *binary_search_tree.search(1.23), 
             BinaryTree::Leaf {
                 data: 1.23,
                 left: Box::new(BinaryTree::Null),
                 right: Box::new(BinaryTree::Null),
             });
+    }
+
+    #[test]
+    fn unfound_search() {
+        let mut binary_search_tree = BinaryTree::new();
+        binary_search_tree.insert(3.32);
+        binary_search_tree.insert(6.43);
+        binary_search_tree.insert(5.32);
+        binary_search_tree.insert(77.32);
+        binary_search_tree.insert(1.23);
+        assert_eq!(
+            *binary_search_tree.search(9.99), 
+            BinaryTree::Null);
     }
 
     #[test]
