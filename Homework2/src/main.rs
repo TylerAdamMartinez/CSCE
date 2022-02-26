@@ -119,7 +119,7 @@ struct BinaryTreeStats {
 fn get_tree_stats(tree: &binary_tree::BinaryTree) -> BinaryTreeStats {
     BinaryTreeStats {
         size: tree.size(),
-        depth: tree.depth(&tree),
+        depth: tree.depth(),
     }
 }
 
@@ -153,7 +153,7 @@ fn calc_execution_times(tree: &mut binary_tree::BinaryTree) -> TimeCounts {
 
     // Caculations the time of the depth() method
     let start_timer = Instant::now();
-    tree.depth(&tree);
+    tree.depth();
     let end_timer = Instant::now();
     let depth_time = end_timer.duration_since(start_timer);
 

@@ -39,12 +39,15 @@ impl BinaryTree {
         }
     }
 
-    /// Returns the number of the nodes below the given node as a u64
+    /// Returns the number of the nodes in binary search tree as a u64
     ///
-    /// # Examples
-    ///
+    /// # Example
     /// ```
+    /// use binary_tree::BinaryTree;
+    /// let my_bst = BinaryTree::new();
     /// let number_of_nodes = my_bst.size();
+    /// println!("Number of nodes in tree: {}", number_of_nodes);
+    /// //TERMINAL OUTPUT: Number of nodes in tree: 0
     /// ```
     pub fn size(&self) -> u64 {
         match self {
@@ -76,21 +79,43 @@ impl BinaryTree {
         }
     }
 
-    /// Returns the height of the nodes below the given node as a u64
+    /// Returns the height of binary search tree as a u64
     ///
-    /// # Arguments
-    ///
-    /// * `tree` - A BinaryTree node
-    ///
-    /// # Examples
+    /// # Example
     ///
     /// ```
-    /// // If you want to get the total height of tree 
-    /// let depth_of_bst = my_bst.depth(&my_bst);
-    /// // If you want to get the height of a subtree of parent tree
-    /// let depth_of_nodes_in_subtree = my_bst.depth(&sub_tree_bst_node);
+    /// use binary_tree::BinaryTree;
+    /// let my_bst = BinaryTree::new();
+    /// let depth_of_bst = my_bst.depth();
+    /// println!("Height of binary search tree: {}", depth_of_bst);
+    /// //TERMINAL OUTPUT: Height of binary search tree: 0
     /// ```
-    pub fn depth(&self, tree: &BinaryTree) -> u64 {
+    pub fn depth(&self) -> u64 {
+        let left_depth: u64;
+        let right_depth: u64;
+
+        match self {
+            BinaryTree::Leaf {
+                ref left,
+                ref right,
+                ..
+            } => {
+                left_depth = self.depth_of_subtree(left);
+                right_depth = self.depth_of_subtree(right);
+
+                if left_depth > right_depth {
+                    return left_depth + 1;
+                } else {
+                    return right_depth + 1;
+                }
+            }
+            BinaryTree::Null => {
+                return 0;
+            }
+        }
+    }
+
+    fn depth_of_subtree(&self, tree: &BinaryTree) -> u64 {
         let left_depth: u64;
         let right_depth: u64;
 
@@ -100,8 +125,8 @@ impl BinaryTree {
                 ref right,
                 ..
             } => {
-                left_depth = self.depth(left);
-                right_depth = self.depth(right);
+                left_depth = self.depth_of_subtree(left);
+                right_depth = self.depth_of_subtree(right);
 
                 if left_depth > right_depth {
                     return left_depth + 1;
