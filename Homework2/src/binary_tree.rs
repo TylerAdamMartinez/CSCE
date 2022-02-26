@@ -41,26 +41,34 @@ impl BinaryTree {
 
     /// Returns the number of the nodes below the given node as a u64
     ///
-    /// # Arguments
-    ///
-    /// * `tree` - A BinaryTree node
-    ///
     /// # Examples
     ///
     /// ```
-    /// // If you want to get the number of all nodes in tree 
-    /// let number_of_nodes_in_bst = my_bst.size(&my_bst);
-    /// // If you want to get the number of nodes in a subtree of parent tree
-    /// let number_of_nodes_in_subtree = my_bst.size(&sub_tree_bst_node);
+    /// let number_of_nodes = my_bst.size();
     /// ```
-    pub fn size(&self, tree: &BinaryTree) -> u64 {
+    pub fn size(&self) -> u64 {
+        match self {
+            BinaryTree::Leaf {
+                ref left,
+                ref right,
+                ..
+            } => {
+                return 1 + self.size_of_subtree(left) + self.size_of_subtree(right);
+            }
+            BinaryTree::Null => {
+                return 0;
+            }
+        }
+    }
+
+    fn size_of_subtree(&self, tree: &BinaryTree) -> u64 {
         match tree {
             BinaryTree::Leaf {
                 ref left,
                 ref right,
                 ..
             } => {
-                return 1 + self.size(left) + self.size(right);
+                return 1 + self.size_of_subtree(left) + self.size_of_subtree(right);
             }
             BinaryTree::Null => {
                 return 0;
