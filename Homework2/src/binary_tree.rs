@@ -192,8 +192,9 @@ impl BinaryTree {
 }
 
 impl BinaryTree {
-    pub fn print(&self, tree: &BinaryTree) {
-        println!("{:#?}", tree);
+    #[allow(dead_code)]
+    pub fn print(&self) {
+        println!("{:#?}", self);
     }
 }
 
@@ -282,7 +283,7 @@ mod test {
     use super::*;
 
     #[test]
-    fn plant() {
+    fn new() {
         let mut binary_search_tree = BinaryTree::new();
         binary_search_tree.insert(5.32);
         binary_search_tree.insert(77.32);
@@ -292,15 +293,26 @@ mod test {
     }
 
     #[test]
+    fn print() {
+        let mut binary_search_tree = BinaryTree::new();
+        binary_search_tree.insert(3.32);
+        binary_search_tree.insert(6.43);
+        binary_search_tree.insert(5.32);
+        binary_search_tree.insert(77.32);
+        binary_search_tree.print()
+    }
+
+    #[test]
     fn size() {
         let mut binary_search_tree = BinaryTree::new();
         binary_search_tree.insert(3.32);
         binary_search_tree.insert(6.43);
         binary_search_tree.insert(5.32);
         binary_search_tree.insert(77.32);
-        assert_eq!(binary_search_tree.size(&binary_search_tree), 4);
+        assert_eq!(binary_search_tree.size(), 4);
     }
 
+ 
     #[test]
     fn search() {
         let mut binary_search_tree = BinaryTree::new();
@@ -330,6 +342,6 @@ mod test {
         binary_search_tree.insert(742.160);
         binary_search_tree.insert(722.376);
         binary_search_tree.insert(749.221);
-        assert_eq!(binary_search_tree.depth(&binary_search_tree), 5);
+        assert_eq!(binary_search_tree.depth(), 5);
     }
 }
