@@ -13,7 +13,7 @@ use crate::benchmarks::TimeCounts;
 fn main() {
     let unsorted_averages_table_entry = run_unsorted_test(5);
     print_table("Unsorted Binary Tree Tests Average", unsorted_averages_table_entry);
-
+    
     let sorted_averages_table_entry = run_sorted_test(5);
     print_table("Sorted Binary Tree Tests Average", sorted_averages_table_entry);
 
@@ -89,10 +89,17 @@ fn calc_execution_times(tree: &mut binary_tree::BinaryTree) -> benchmarks::TimeC
     let end_timer = Instant::now();
     let depth_time = end_timer.duration_since(start_timer);
 
+    // Caculations the time of the remove() method
+    let start_timer = Instant::now();
+    tree.remove(new_element);
+    let end_timer = Instant::now();
+    let remove_time = end_timer.duration_since(start_timer);
+
     TimeCounts {
         size: size_time,
         insert: insert_time,
         search: search_time,
+        remove: remove_time,
         depth: depth_time,
     }
 }
@@ -188,6 +195,18 @@ fn print_table(title: &str, table_entries: TableEntry) {
             TableCell::new(search_time_100_str),
             TableCell::new_with_alignment(search_time_1k_str, 1, Alignment::Left),
             TableCell::new_with_alignment(search_time_10k_str, 2, Alignment::Left)
+    ]));
+
+    let remove_time_100 = table_entries.from_100_elements_tree.times.remove.as_secs_f64().to_string();
+    let remove_time_100_str = "Remove Time: ".to_owned() + &remove_time_100 + "s";
+    let remove_time_1k = table_entries.from_1k_elements_tree.times.remove.as_secs_f64().to_string();
+    let remove_time_1k_str = "Remove Time: ".to_owned() + &remove_time_1k + "s";
+    let remove_time_10k = table_entries.from_10k_elements_tree.times.remove.as_secs_f64().to_string();
+    let remove_time_10k_str = "Remove Time: ".to_owned() + &remove_time_10k + "s";
+    table.add_row(Row::new(vec![
+            TableCell::new(remove_time_100_str),
+            TableCell::new_with_alignment(remove_time_1k_str, 1, Alignment::Left),
+            TableCell::new_with_alignment(remove_time_10k_str, 2, Alignment::Left)
     ]));
 
     println!("{}", table.render());

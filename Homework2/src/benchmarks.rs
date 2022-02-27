@@ -6,6 +6,7 @@ pub struct TimeCounts {
     pub size: Duration,
     pub depth: Duration,
     pub search: Duration,
+    pub remove: Duration,
 }
 
 impl Copy for TimeCounts {}
@@ -20,6 +21,7 @@ pub fn calc_average_time_counts(time_counts_vec: &mut Vec<TimeCounts>) -> TimeCo
     let mut size_average = Duration::new(0, 0);
     let mut depth_average = Duration::new(0, 0);
     let mut search_average = Duration::new(0, 0);
+    let mut remove_average = Duration::new(0, 0);
 
     for time_count in time_counts_vec.iter() {
         insert_average = time_count.insert;
@@ -41,10 +43,16 @@ pub fn calc_average_time_counts(time_counts_vec: &mut Vec<TimeCounts>) -> TimeCo
     }
     search_average = search_average / time_counts_vec.len().try_into().unwrap();
 
+    for time_count in time_counts_vec.iter() {
+        remove_average = time_count.remove;
+    }
+    remove_average = remove_average / time_counts_vec.len().try_into().unwrap();
+
     TimeCounts {
         insert: insert_average,
         size: size_average,
         depth: depth_average,
         search: search_average,
+        remove: remove_average,
     }
 }
