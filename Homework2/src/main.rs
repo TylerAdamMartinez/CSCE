@@ -1,89 +1,18 @@
 use rand::Rng;
-use std::time::{Instant, Duration};
+use std::time::Instant;
 use term_table::{
     Table,
     TableStyle,
     row::Row,
     table_cell::{Alignment, TableCell},
 };
-mod binary_tree;
+pub mod binary_tree;
+pub mod benchmarks;
+use crate::benchmarks::TimeCounts;
 
 fn main() {
-    let hundred = 100;
-    let one_thousand = 1000;
-    let ten_thousand = 10000;
-
-    let mut binary_search_tree_100 = binary_tree::BinaryTree::new();
-    let mut binary_search_tree_1k = binary_tree::BinaryTree::new();
-    let mut binary_search_tree_10k = binary_tree::BinaryTree::new();
-
-    population_unsorted(&mut binary_search_tree_100, hundred);
-    population_unsorted(&mut binary_search_tree_1k, one_thousand);
-    population_unsorted(&mut binary_search_tree_10k, ten_thousand);
-
-    let tree_stats_100 = get_tree_stats(&binary_search_tree_100);
-    let tree_stats_1k = get_tree_stats(&binary_search_tree_1k);
-    let tree_stats_10k = get_tree_stats(&binary_search_tree_10k);
-
-    let time_counts_of_bst_100 = calc_execution_times(&mut binary_search_tree_100);
-    let time_counts_of_bst_1k = calc_execution_times(&mut binary_search_tree_1k);
-    let time_counts_of_bst_10k = calc_execution_times(&mut binary_search_tree_10k);
-
-    let unsorted_bts_entry = TableEntry {
-        from_100_elements_tree: 
-            BinaryTreeData {
-                stats: tree_stats_100,
-                times: time_counts_of_bst_100,
-            },
-        from_1k_elements_tree:
-            BinaryTreeData {
-                stats: tree_stats_1k,
-                times: time_counts_of_bst_1k,
-            },
-        from_10k_elements_tree:
-            BinaryTreeData {
-                stats: tree_stats_10k,
-                times: time_counts_of_bst_10k,
-            },
-    };
-
-    print_table("Unsorted Trees", unsorted_bts_entry);
-
-    let mut binary_search_sorted_tree_100 = binary_tree::BinaryTree::new();
-    let mut binary_search_sorted_tree_1k = binary_tree::BinaryTree::new();
-    let mut binary_search_sorted_tree_10k = binary_tree::BinaryTree::new();
-
-    population_sorted(&mut binary_search_sorted_tree_100, hundred);
-    population_sorted(&mut binary_search_sorted_tree_1k, one_thousand);
-    population_sorted(&mut binary_search_sorted_tree_10k, ten_thousand);
-
-    let sorted_tree_stats_100 = get_tree_stats(&binary_search_sorted_tree_100);
-    let sorted_tree_stats_1k = get_tree_stats(&binary_search_sorted_tree_1k);
-    let sorted_tree_stats_10k = get_tree_stats(&binary_search_sorted_tree_10k);
-
-    let time_counts_of_sorted_bst_100 = calc_execution_times(&mut binary_search_sorted_tree_100);
-    let time_counts_of_sorted_bst_1k = calc_execution_times(&mut binary_search_sorted_tree_1k);
-    let time_counts_of_sorted_bst_10k = calc_execution_times(&mut binary_search_sorted_tree_10k);
-
-    let sorted_bts_entry = TableEntry {
-        from_100_elements_tree: 
-            BinaryTreeData {
-                stats: sorted_tree_stats_100,
-                times: time_counts_of_sorted_bst_100,
-            },
-        from_1k_elements_tree:
-            BinaryTreeData {
-                stats: sorted_tree_stats_1k,
-                times: time_counts_of_sorted_bst_1k,
-            },
-        from_10k_elements_tree:
-            BinaryTreeData {
-                stats: sorted_tree_stats_10k,
-                times: time_counts_of_sorted_bst_10k,
-            },
-    };
-
-    print_table("Sorted Trees", sorted_bts_entry);
+    run_unsorted_test(5);
+    run_sorted_test(5);
 }
 
 fn population_unsorted(tree: &mut binary_tree::BinaryTree, elements_count: u64) {
@@ -123,14 +52,7 @@ fn get_tree_stats(tree: &binary_tree::BinaryTree) -> BinaryTreeStats {
     }
 }
 
-struct TimeCounts {
-    insert: Duration,
-    size: Duration,
-    depth: Duration,
-    search: Duration,
-}
-
-fn calc_execution_times(tree: &mut binary_tree::BinaryTree) -> TimeCounts {
+fn calc_execution_times(tree: &mut binary_tree::BinaryTree) -> benchmarks::TimeCounts {
     // Caculations the time of the size() method
     let start_timer = Instant::now();
     let tree_size = tree.size();
@@ -259,4 +181,84 @@ fn print_table(title: &str, table_entries: TableEntry) {
     ]));
 
     println!("{}", table.render());
+}
+
+fn run_unsorted_test(run_times: u8) {
+    for _x in 0..run_times {
+        let mut binary_search_tree_100 = binary_tree::BinaryTree::new();
+        let mut binary_search_tree_1k = binary_tree::BinaryTree::new();
+        let mut binary_search_tree_10k = binary_tree::BinaryTree::new();
+
+        population_unsorted(&mut binary_search_tree_100, 100);
+        population_unsorted(&mut binary_search_tree_1k, 1000);
+        population_unsorted(&mut binary_search_tree_10k, 10000);
+
+        let tree_stats_100 = get_tree_stats(&binary_search_tree_100);
+        let tree_stats_1k = get_tree_stats(&binary_search_tree_1k);
+        let tree_stats_10k = get_tree_stats(&binary_search_tree_10k);
+
+        let time_counts_of_bst_100 = calc_execution_times(&mut binary_search_tree_100);
+        let time_counts_of_bst_1k = calc_execution_times(&mut binary_search_tree_1k);
+        let time_counts_of_bst_10k = calc_execution_times(&mut binary_search_tree_10k);
+
+        let unsorted_bts_entry = TableEntry {
+            from_100_elements_tree: 
+                BinaryTreeData {
+                    stats: tree_stats_100,
+                    times: time_counts_of_bst_100,
+                },
+            from_1k_elements_tree:
+                BinaryTreeData {
+                    stats: tree_stats_1k,
+                    times: time_counts_of_bst_1k,
+                },
+            from_10k_elements_tree:
+                BinaryTreeData {
+                    stats: tree_stats_10k,
+                    times: time_counts_of_bst_10k,
+                },
+        };
+
+        print_table("Unsorted Trees", unsorted_bts_entry);
+    }
+}
+
+fn run_sorted_test(run_times: u8) {
+    for _x in 0..run_times {
+        let mut binary_search_sorted_tree_100 = binary_tree::BinaryTree::new();
+        let mut binary_search_sorted_tree_1k = binary_tree::BinaryTree::new();
+        let mut binary_search_sorted_tree_10k = binary_tree::BinaryTree::new();
+
+        population_sorted(&mut binary_search_sorted_tree_100, 100);
+        population_sorted(&mut binary_search_sorted_tree_1k, 1000);
+        population_sorted(&mut binary_search_sorted_tree_10k, 10000);
+
+        let sorted_tree_stats_100 = get_tree_stats(&binary_search_sorted_tree_100);
+        let sorted_tree_stats_1k = get_tree_stats(&binary_search_sorted_tree_1k);
+        let sorted_tree_stats_10k = get_tree_stats(&binary_search_sorted_tree_10k);
+
+        let time_counts_of_sorted_bst_100 = calc_execution_times(&mut binary_search_sorted_tree_100);
+        let time_counts_of_sorted_bst_1k = calc_execution_times(&mut binary_search_sorted_tree_1k);
+        let time_counts_of_sorted_bst_10k = calc_execution_times(&mut binary_search_sorted_tree_10k);
+
+        let sorted_bts_entry = TableEntry {
+            from_100_elements_tree: 
+                BinaryTreeData {
+                    stats: sorted_tree_stats_100,
+                    times: time_counts_of_sorted_bst_100,
+                },
+            from_1k_elements_tree:
+                BinaryTreeData {
+                    stats: sorted_tree_stats_1k,
+                    times: time_counts_of_sorted_bst_1k,
+                },
+            from_10k_elements_tree:
+                BinaryTreeData {
+                    stats: sorted_tree_stats_10k,
+                    times: time_counts_of_sorted_bst_10k,
+                },
+        };
+
+        print_table("Sorted Trees", sorted_bts_entry);
+    }
 }
