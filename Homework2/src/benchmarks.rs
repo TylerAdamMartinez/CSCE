@@ -35,29 +35,34 @@ impl<'a> Sum<&'a Self> for TimeCounts {
         })
     }
 }
-
+/*
+impl Index<usize> for TimeCounts {
+    fn index(&self, index: usize) {
+        match index {
+            0 => &self.insert,
+            1 => &self.size,
+            2 => &self.depth,
+            3 => &self.search,
+            4 => &self.remove,
+            n => panic!("Invalid TimeCounts index: {}", n)
+        };
+    }
+}
+*/
 fn calc_time_counts_sum(time_counts_vec: &Vec<TimeCounts>) -> TimeCounts {
     Iterator::sum(time_counts_vec.iter())
 }
 
 pub fn calc_average_time_counts(time_counts_vec: &Vec<TimeCounts>) -> TimeCounts {
-    let time_counts_sum = calc_time_counts_sum(&time_counts_vec); 
+    let mut time_counts_sums = calc_time_counts_sum(&time_counts_vec);
 
-    let insert_average = time_counts_sum.insert / time_counts_vec.len().try_into().unwrap();
-    let size_average = time_counts_sum.size / time_counts_vec.len().try_into().unwrap();
-    let depth_average = time_counts_sum.depth / time_counts_vec.len().try_into().unwrap();
-    let search_average = time_counts_sum.search / time_counts_vec.len().try_into().unwrap();
-    let remove_average = time_counts_sum.remove / time_counts_vec.len().try_into().unwrap();
+    time_counts_sums.insert = time_counts_sums.insert / time_counts_vec.len().try_into().unwrap();
+    time_counts_sums.size = time_counts_sums.size / time_counts_vec.len().try_into().unwrap();
+    time_counts_sums.depth = time_counts_sums.depth / time_counts_vec.len().try_into().unwrap();
+    time_counts_sums.search = time_counts_sums.search / time_counts_vec.len().try_into().unwrap();
+    time_counts_sums.remove = time_counts_sums.remove / time_counts_vec.len().try_into().unwrap();
 
-    // remove_average = remove_average / time_counts_vec.len().try_into().unwrap();
-
-    TimeCounts {
-        insert: insert_average,
-        size: size_average,
-        depth: depth_average,
-        search: search_average,
-        remove: remove_average,
-    }
+    time_counts_sums
 }
 
 #[cfg(test)]
