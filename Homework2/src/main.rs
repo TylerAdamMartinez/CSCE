@@ -11,8 +11,12 @@ pub mod benchmarks;
 use crate::benchmarks::TimeCounts;
 
 fn main() {
-    run_unsorted_test(5);
-    run_sorted_test(5);
+    let unsorted_averages_table_entry = run_unsorted_test(5);
+    print_table("Unsorted Binary Tree Tests Average", unsorted_averages_table_entry);
+
+    let sorted_averages_table_entry = run_sorted_test(5);
+    print_table("Sorted Binary Tree Tests Average", sorted_averages_table_entry);
+
 }
 
 fn population_unsorted(tree: &mut binary_tree::BinaryTree, elements_count: u64) {
@@ -45,6 +49,12 @@ struct BinaryTreeStats {
     depth: u64,
 }
 
+impl Copy for BinaryTreeStats {}
+impl Clone for BinaryTreeStats {
+    fn clone(&self) -> Self {
+        *self
+    }
+}
 fn get_tree_stats(tree: &binary_tree::BinaryTree) -> BinaryTreeStats {
     BinaryTreeStats {
         size: tree.size(),
@@ -183,7 +193,11 @@ fn print_table(title: &str, table_entries: TableEntry) {
     println!("{}", table.render());
 }
 
-fn run_unsorted_test(run_times: u8) {
+fn run_unsorted_test(run_times: u8) -> TableEntry {
+    let mut unsorted_time_counts_100_vec = Vec::<benchmarks::TimeCounts>::new();
+    let mut unsorted_time_counts_1k_vec = Vec::<benchmarks::TimeCounts>::new();
+    let mut unsorted_time_counts_10k_vec = Vec::<benchmarks::TimeCounts>::new();
+
     for _x in 0..run_times {
         let mut binary_search_tree_100 = binary_tree::BinaryTree::new();
         let mut binary_search_tree_1k = binary_tree::BinaryTree::new();
@@ -198,8 +212,11 @@ fn run_unsorted_test(run_times: u8) {
         let tree_stats_10k = get_tree_stats(&binary_search_tree_10k);
 
         let time_counts_of_bst_100 = calc_execution_times(&mut binary_search_tree_100);
+        unsorted_time_counts_100_vec.push(time_counts_of_bst_100.clone());
         let time_counts_of_bst_1k = calc_execution_times(&mut binary_search_tree_1k);
+        unsorted_time_counts_1k_vec.push(time_counts_of_bst_1k.clone());
         let time_counts_of_bst_10k = calc_execution_times(&mut binary_search_tree_10k);
+        unsorted_time_counts_10k_vec.push(time_counts_of_bst_10k.clone());
 
         let unsorted_bts_entry = TableEntry {
             from_100_elements_tree: 
@@ -219,11 +236,42 @@ fn run_unsorted_test(run_times: u8) {
                 },
         };
 
-        print_table("Unsorted Trees", unsorted_bts_entry);
+        print_table("Unsorted Tree Test", unsorted_bts_entry);
+    }
+
+    let time_counts_100_average = benchmarks::calc_average_time_counts(&mut unsorted_time_counts_100_vec);
+    let time_counts_1k_average = benchmarks::calc_average_time_counts(&mut unsorted_time_counts_1k_vec);
+    let time_counts_10k_average = benchmarks::calc_average_time_counts(&mut unsorted_time_counts_10k_vec);
+
+    let dummy_stats = BinaryTreeStats {
+        size: 0,
+        depth: 0,
+    };
+
+    TableEntry {
+        from_100_elements_tree: 
+            BinaryTreeData {
+                stats: dummy_stats,
+                times: time_counts_100_average,
+            },
+        from_1k_elements_tree:
+            BinaryTreeData {
+                stats: dummy_stats,
+                times: time_counts_1k_average,
+            },
+        from_10k_elements_tree:
+            BinaryTreeData {
+                stats: dummy_stats,
+                times: time_counts_10k_average,
+            },
     }
 }
 
-fn run_sorted_test(run_times: u8) {
+fn run_sorted_test(run_times: u8) -> TableEntry {
+    let mut sorted_time_counts_100_vec = Vec::<benchmarks::TimeCounts>::new();
+    let mut sorted_time_counts_1k_vec = Vec::<benchmarks::TimeCounts>::new();
+    let mut sorted_time_counts_10k_vec = Vec::<benchmarks::TimeCounts>::new();
+
     for _x in 0..run_times {
         let mut binary_search_sorted_tree_100 = binary_tree::BinaryTree::new();
         let mut binary_search_sorted_tree_1k = binary_tree::BinaryTree::new();
@@ -238,8 +286,11 @@ fn run_sorted_test(run_times: u8) {
         let sorted_tree_stats_10k = get_tree_stats(&binary_search_sorted_tree_10k);
 
         let time_counts_of_sorted_bst_100 = calc_execution_times(&mut binary_search_sorted_tree_100);
+        sorted_time_counts_100_vec.push(time_counts_of_sorted_bst_100.clone());
         let time_counts_of_sorted_bst_1k = calc_execution_times(&mut binary_search_sorted_tree_1k);
+        sorted_time_counts_1k_vec.push(time_counts_of_sorted_bst_1k.clone());
         let time_counts_of_sorted_bst_10k = calc_execution_times(&mut binary_search_sorted_tree_10k);
+        sorted_time_counts_10k_vec.push(time_counts_of_sorted_bst_10k.clone());
 
         let sorted_bts_entry = TableEntry {
             from_100_elements_tree: 
@@ -259,6 +310,33 @@ fn run_sorted_test(run_times: u8) {
                 },
         };
 
-        print_table("Sorted Trees", sorted_bts_entry);
+        print_table("Sorted Tree Test", sorted_bts_entry);
+    }
+
+    let time_counts_100_average = benchmarks::calc_average_time_counts(&mut sorted_time_counts_100_vec);
+    let time_counts_1k_average = benchmarks::calc_average_time_counts(&mut sorted_time_counts_1k_vec);
+    let time_counts_10k_average = benchmarks::calc_average_time_counts(&mut sorted_time_counts_10k_vec);
+
+    let dummy_stats = BinaryTreeStats {
+        size: 0,
+        depth: 0,
+    };
+
+    TableEntry {
+        from_100_elements_tree: 
+            BinaryTreeData {
+                stats: dummy_stats,
+                times: time_counts_100_average,
+            },
+        from_1k_elements_tree:
+            BinaryTreeData {
+                stats: dummy_stats,
+                times: time_counts_1k_average,
+            },
+        from_10k_elements_tree:
+            BinaryTreeData {
+                stats: dummy_stats,
+                times: time_counts_10k_average,
+            },
     }
 }

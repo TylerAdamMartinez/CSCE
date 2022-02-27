@@ -1,5 +1,6 @@
 use std::time::Duration;
 
+#[derive(Debug)]
 pub struct TimeCounts {
     pub insert: Duration,
     pub size: Duration,
@@ -7,6 +8,12 @@ pub struct TimeCounts {
     pub search: Duration,
 }
 
+impl Copy for TimeCounts {}
+impl Clone for TimeCounts {
+    fn clone(&self) -> Self {
+        *self
+    }
+}
 
 pub fn calc_average_time_counts(time_counts_vec: &mut Vec<TimeCounts>) -> TimeCounts {
     let mut insert_average = Duration::new(0, 0);
