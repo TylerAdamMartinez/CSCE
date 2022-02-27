@@ -1,12 +1,8 @@
-/*use std::mem;
-use field_ref::{
-    GetField,
-    GetFieldMut,
-    opt_field_ref_of
-};
-use std::cmp::Ordering;*/
+use std::mem;
+
 #[derive(Debug)]
 #[derive(PartialEq)]
+#[derive(Clone)]
 /// BinaryTree represented here
 /// data: floating point value
 /// left & right: points to the next BinaryTree Node
@@ -269,58 +265,45 @@ impl <'a> BinaryTree {
             }
         }
     }
-    /*
-    pub fn remove(&self, tree: &'a BinaryTree, key: f64) {
-        let left_field = opt_field_ref_of!(crate::binary_tree::BinaryTree::Leaf{left});
-        let right_field = opt_field_ref_of!(crate::binary_tree::BinaryTree::Leaf{right});
-        let mut parent_node = self.search(tree, key);
-        let mut current_node = tree;
+}
 
-        match current_node {
-            BinaryTree::Leaf { 
-                ref data,
-                ref left,
-                ref right,
-            } => {
-                if *left == Box::new(BinaryTree::Null) && *right == Box::new(BinaryTree::Null) {
-                    if current_node != tree {
-                        if *parent_node.try_get_field(left_field).unwrap() == Box::new(*current_node) {
-                            *parent_node.try_get_field_mut(left_field).unwrap() = Box::new(BinaryTree::Null);
-                        } else {
-                            *parent_node.try_get_field_mut(right_field).unwrap() = Box::new(BinaryTree::Null);
+impl BinaryTree {
+    #[allow(dead_code)]
+    pub fn remove(&mut self, key: f64) {
+        loop {
+            match *self {
+                BinaryTree::Leaf {
+                    ref data,
+                    ref mut left,
+                    ref mut right
+                } => {
+                    if data == &key {
+                        mem::drop(self);
+                        break;
+                    } else if data > &key {
+                        match **left {
+                            BinaryTree::Leaf {
+                                ref left,
+                                .. 
+                            } => *self = *left.clone(),
+                            BinaryTree::Null => break,
+                        }
+                    } else if data < &key {
+                        match **right {
+                            BinaryTree::Leaf {
+                                ref right,
+                                .. 
+                            } => *self  = *right.clone(),
+                            BinaryTree::Null => break,
                         }
                     } else {
-                        tree = &BinaryTree::Null;
+                        break;
                     }
-                    mem::drop(current_node);
-                }
-            }
-            BinaryTree::Null => {
-                return;
+                },
+                BinaryTree::Null => break,
             }
         }
-    } */
-    /* pub fn remove(&mut self, key: f64) {
-        let mut current = self;
-    
-        loop {
-            let current_ = &mut*current;
-            if let Some(ref mut node) = current_.0 {
-                match node.data.cmp(key) {
-                    Ordering::Less => current = &mut current.0.as_mut().unwrap().righ,
-                    Ordering::Greater => current = &mut current.0.as_mut().unwrap().left,
-                    Ordering::Equal => match (node.left.0.as_mut(), node.right.0.as_mut()) {
-                        (None, None) => current_.0 = None,
-                        (Some(_), None) => current_.0 = node.left.0.take(),
-                        (None, Some(_)) => current_.0 = node.right.0.take(),
-                        (Some(_), Some(_)) => {
-                            current_.0.as_mut().unwrap().data = node.right.extract_min().unwrap();
-                        }
-                    }
-                }
-            } else { break }
-        }
-    } */
+    }
 }
 
 #[cfg(test)]
@@ -400,5 +383,35 @@ mod test {
         binary_search_tree.insert(722.376);
         binary_search_tree.insert(749.221);
         assert_eq!(binary_search_tree.depth(), 5);
+    }
+
+    #[test]
+    fn found_remove_first() {
+        let mut binary_search_tree = BinaryTree::new();
+        binary_search_tree.insert(508.058);
+        binary_search_tree.insert(742.160);
+        binary_search_tree.insert(722.376);
+        binary_search_tree.insert(749.221);
+        binary_search_tree.remove(508.058)
+    }
+
+    #[test]
+    fn found_remove_last() {
+        let mut binary_search_tree = BinaryTree::new();
+        binary_search_tree.insert(508.058);
+        binary_search_tree.insert(742.160);
+        binary_search_tree.insert(722.376);
+        binary_search_tree.insert(749.221);
+        binary_search_tree.remove(749.221)
+    }
+
+    #[test]
+    fn unfound_remove() {
+        let mut binary_search_tree = BinaryTree::new();
+        binary_search_tree.insert(508.058);
+        binary_search_tree.insert(742.160);
+        binary_search_tree.insert(722.376);
+        binary_search_tree.insert(749.221);
+        binary_search_tree.remove(999.999)
     }
 }
