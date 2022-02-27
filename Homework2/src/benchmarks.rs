@@ -35,20 +35,7 @@ impl<'a> Sum<&'a Self> for TimeCounts {
         })
     }
 }
-/*
-impl Index<usize> for TimeCounts {
-    fn index(&self, index: usize) {
-        match index {
-            0 => &self.insert,
-            1 => &self.size,
-            2 => &self.depth,
-            3 => &self.search,
-            4 => &self.remove,
-            n => panic!("Invalid TimeCounts index: {}", n)
-        };
-    }
-}
-*/
+
 fn calc_time_counts_sum(time_counts_vec: &Vec<TimeCounts>) -> TimeCounts {
     Iterator::sum(time_counts_vec.iter())
 }

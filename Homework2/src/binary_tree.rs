@@ -268,7 +268,6 @@ impl <'a> BinaryTree {
 }
 
 impl BinaryTree {
-    #[allow(dead_code)]
     pub fn remove(&mut self, key: f64) {
         loop {
             match *self {
