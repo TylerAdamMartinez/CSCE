@@ -268,6 +268,20 @@ impl <'a> BinaryTree {
 }
 
 impl BinaryTree {
+    /// Returns Null
+    ///
+    /// # Argument
+    ///
+    /// * `key` - The value to be deleted
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// use binary_tree::BinaryTree;
+    /// let my_bst = binary_tree::BinaryTree::new();
+    /// my_bst.insert(1.234);
+    /// my_bst.remove(1.234);
+    /// ```
     pub fn remove(&mut self, key: f64) {
         loop {
             match *self {
