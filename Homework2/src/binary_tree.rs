@@ -3,7 +3,8 @@ use field_ref::{
     GetField,
     GetFieldMut,
     opt_field_ref_of
-};*/
+};
+use std::cmp::Ordering;*/
 #[derive(Debug)]
 #[derive(PartialEq)]
 /// BinaryTree represented here
@@ -213,6 +214,8 @@ impl <'a> BinaryTree {
     /// # Example
     ///
     /// ```
+    /// use binary_tree::BinaryTree;
+    /// let my_bst = binary_tree::BinaryTree::new();
     /// my_bst.insert(1.234);
     /// let searched_for_node = my_bst.search(1.234);
     /// match *searched_for_node {
@@ -295,6 +298,27 @@ impl <'a> BinaryTree {
             BinaryTree::Null => {
                 return;
             }
+        }
+    } */
+    /* pub fn remove(&mut self, key: f64) {
+        let mut current = self;
+    
+        loop {
+            let current_ = &mut*current;
+            if let Some(ref mut node) = current_.0 {
+                match node.data.cmp(key) {
+                    Ordering::Less => current = &mut current.0.as_mut().unwrap().righ,
+                    Ordering::Greater => current = &mut current.0.as_mut().unwrap().left,
+                    Ordering::Equal => match (node.left.0.as_mut(), node.right.0.as_mut()) {
+                        (None, None) => current_.0 = None,
+                        (Some(_), None) => current_.0 = node.left.0.take(),
+                        (None, Some(_)) => current_.0 = node.right.0.take(),
+                        (Some(_), Some(_)) => {
+                            current_.0.as_mut().unwrap().data = node.right.extract_min().unwrap();
+                        }
+                    }
+                }
+            } else { break }
         }
     } */
 }
