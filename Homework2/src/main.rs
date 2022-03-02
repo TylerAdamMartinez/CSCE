@@ -22,7 +22,7 @@ fn main() {
 fn population_unsorted(tree: &mut binary_tree::BinaryTree, elements_count: u64) {
     let mut rng = rand::thread_rng();
 
-    for _n in 0..elements_count {
+    for _ in 0..elements_count {
         tree.insert(rng.gen_range(0.0..1000.0));
     }
 }
@@ -31,14 +31,14 @@ fn population_sorted(tree: &mut binary_tree::BinaryTree, elements_count: u64) {
     let mut rng = rand::thread_rng();
     let mut number_vec: Vec<f64> = Vec::new();
 
-    for _n in 0..elements_count {
+    for _ in 0..elements_count {
         number_vec.push(rng.gen_range(0.0..1000.0));
     }
 
     // sorts vector of floats f64s from loweset to highest
     number_vec.sort_by(|a, b| a.partial_cmp(b).unwrap());
 
-    for (_i, n) in number_vec.iter().enumerate() {
+    for (_, n) in number_vec.iter().enumerate() {
         tree.insert(*n);
     }
 
@@ -217,7 +217,7 @@ fn run_unsorted_test(run_times: u8) -> TableEntry {
     let mut unsorted_time_counts_1k_vec = Vec::<benchmarks::TimeCounts>::new();
     let mut unsorted_time_counts_10k_vec = Vec::<benchmarks::TimeCounts>::new();
 
-    for _x in 0..run_times {
+    for _ in 0..run_times {
         let mut binary_search_tree_100 = binary_tree::BinaryTree::new();
         let mut binary_search_tree_1k = binary_tree::BinaryTree::new();
         let mut binary_search_tree_10k = binary_tree::BinaryTree::new();
@@ -291,7 +291,7 @@ fn run_sorted_test(run_times: u8) -> TableEntry {
     let mut sorted_time_counts_1k_vec = Vec::<benchmarks::TimeCounts>::new();
     let mut sorted_time_counts_10k_vec = Vec::<benchmarks::TimeCounts>::new();
 
-    for _x in 0..run_times {
+    for _ in 0..run_times {
         let mut binary_search_sorted_tree_100 = binary_tree::BinaryTree::new();
         let mut binary_search_sorted_tree_1k = binary_tree::BinaryTree::new();
         let mut binary_search_sorted_tree_10k = binary_tree::BinaryTree::new();
