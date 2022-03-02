@@ -400,31 +400,51 @@ mod test {
 
     #[test]
     fn found_remove_first() {
-        let mut binary_search_tree = BinaryTree::new();
-        binary_search_tree.insert(508.058);
-        binary_search_tree.insert(742.160);
-        binary_search_tree.insert(722.376);
-        binary_search_tree.insert(749.221);
-        binary_search_tree.remove(508.058)
+        let mut binary_serach_tree_rm_opt = BinaryTree::new();
+        binary_serach_tree_rm_opt.insert(508.058);
+        binary_serach_tree_rm_opt.insert(742.160);
+        binary_serach_tree_rm_opt.insert(722.376);
+        binary_serach_tree_rm_opt.insert(749.221);
+        binary_serach_tree_rm_opt.remove(508.058);
+        
+        let mut binary_serach_tree_crtl = BinaryTree::new();
+        binary_serach_tree_crtl.insert(742.160);
+        binary_serach_tree_crtl.insert(722.376);
+        binary_serach_tree_crtl.insert(749.221);
+
+        assert_eq!(binary_serach_tree_crtl, binary_serach_tree_rm_opt);
     }
 
     #[test]
     fn found_remove_last() {
-        let mut binary_search_tree = BinaryTree::new();
-        binary_search_tree.insert(508.058);
-        binary_search_tree.insert(742.160);
-        binary_search_tree.insert(722.376);
-        binary_search_tree.insert(749.221);
-        binary_search_tree.remove(749.221)
+        let mut binary_serach_tree_rm_opt = BinaryTree::new();
+        binary_serach_tree_rm_opt.insert(508.058);
+        binary_serach_tree_rm_opt.insert(742.160);
+        binary_serach_tree_rm_opt.insert(722.376);
+        binary_serach_tree_rm_opt.insert(749.221);
+        binary_serach_tree_rm_opt.remove(749.221);
+        
+        let mut binary_serach_tree_crtl = BinaryTree::new();
+        binary_serach_tree_crtl.insert(508.058);
+        binary_serach_tree_crtl.insert(742.160);
+        binary_serach_tree_crtl.insert(722.376);
+
+        assert_eq!(binary_serach_tree_crtl, binary_serach_tree_rm_opt);
     }
 
     #[test]
     fn unfound_remove() {
-        let mut binary_search_tree = BinaryTree::new();
-        binary_search_tree.insert(508.058);
-        binary_search_tree.insert(742.160);
-        binary_search_tree.insert(722.376);
-        binary_search_tree.insert(749.221);
-        binary_search_tree.remove(999.999)
+        let mut binary_serach_tree_rm_opt = BinaryTree::new();
+        binary_serach_tree_rm_opt.insert(508.058);
+        binary_serach_tree_rm_opt.insert(742.160);
+        binary_serach_tree_rm_opt.insert(722.376);
+        binary_serach_tree_rm_opt.remove(999.999);
+        
+        let mut binary_serach_tree_crtl = BinaryTree::new();
+        binary_serach_tree_crtl.insert(508.058);
+        binary_serach_tree_crtl.insert(742.160);
+        binary_serach_tree_crtl.insert(722.376);
+
+        assert_eq!(binary_serach_tree_crtl, binary_serach_tree_rm_opt);
     }
 }
