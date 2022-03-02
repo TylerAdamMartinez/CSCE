@@ -433,6 +433,24 @@ mod test {
     }
 
     #[test]
+    fn found_remove_middle() {
+        let mut binary_serach_tree_rm_opt = BinaryTree::new();
+        binary_serach_tree_rm_opt.insert(508.058);
+        binary_serach_tree_rm_opt.insert(742.160);
+        binary_serach_tree_rm_opt.insert(722.376);
+        binary_serach_tree_rm_opt.insert(749.221);
+        binary_serach_tree_rm_opt.remove(722.376);
+        
+        let mut binary_serach_tree_crtl = BinaryTree::new();
+        binary_serach_tree_crtl.insert(508.058);
+        binary_serach_tree_crtl.insert(742.160);
+        binary_serach_tree_crtl.insert(749.221);
+
+        assert_eq!(binary_serach_tree_crtl, binary_serach_tree_rm_opt);
+    }
+
+
+    #[test]
     fn unfound_remove() {
         let mut binary_serach_tree_rm_opt = BinaryTree::new();
         binary_serach_tree_rm_opt.insert(508.058);
