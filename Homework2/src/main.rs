@@ -239,13 +239,10 @@ fn run_unsorted_test(run_times: u8) -> TableEntry {
 
             let time_counts_of_bst_100 = calc_execution_times(&mut binary_search_tree_100);
             tx_100.send(time_counts_of_bst_100).unwrap();
-            //unsorted_time_counts_100_vec.push(time_counts_of_bst_100.clone());
             let time_counts_of_bst_1k = calc_execution_times(&mut binary_search_tree_1k);
             tx_1k.send(time_counts_of_bst_1k).unwrap();
-            //unsorted_time_counts_1k_vec.push(time_counts_of_bst_1k.clone());
             let time_counts_of_bst_10k = calc_execution_times(&mut binary_search_tree_10k);
             tx_10k.send(time_counts_of_bst_10k).unwrap();
-            //unsorted_time_counts_10k_vec.push(time_counts_of_bst_10k.clone());
 
             let unsorted_bts_entry = TableEntry {
                 from_100_elements_tree: 
@@ -309,49 +306,65 @@ fn run_unsorted_test(run_times: u8) -> TableEntry {
 }
 
 fn run_sorted_test(run_times: u8) -> TableEntry {
+    let (tx_100, rx_100) = mpsc::channel();
+    let (tx_1k, rx_1k) = mpsc::channel();
+    let (tx_10k, rx_10k) = mpsc::channel();
+
+    for _ in 0..run_times {
+        let tx_100 = tx_100.clone();
+        let tx_1k = tx_1k.clone();
+        let tx_10k = tx_10k.clone();
+
+        thread::spawn(move || {
+            let mut binary_search_sorted_tree_100 = binary_tree::BinaryTree::new();
+            let mut binary_search_sorted_tree_1k = binary_tree::BinaryTree::new();
+            let mut binary_search_sorted_tree_10k = binary_tree::BinaryTree::new();
+
+            population_sorted(&mut binary_search_sorted_tree_100, 100);
+            population_sorted(&mut binary_search_sorted_tree_1k, 1000);
+            population_sorted(&mut binary_search_sorted_tree_10k, 10000);
+
+            let sorted_tree_stats_100 = get_tree_stats(&binary_search_sorted_tree_100);
+            let sorted_tree_stats_1k = get_tree_stats(&binary_search_sorted_tree_1k);
+            let sorted_tree_stats_10k = get_tree_stats(&binary_search_sorted_tree_10k);
+
+            let time_counts_of_sorted_bst_100 = calc_execution_times(&mut binary_search_sorted_tree_100);
+            tx_100.send(time_counts_of_sorted_bst_100).unwrap();
+            let time_counts_of_sorted_bst_1k = calc_execution_times(&mut binary_search_sorted_tree_1k);
+            tx_1k.send(time_counts_of_sorted_bst_1k).unwrap();
+            let time_counts_of_sorted_bst_10k = calc_execution_times(&mut binary_search_sorted_tree_10k);
+            tx_10k.send(time_counts_of_sorted_bst_10k).unwrap();
+
+            let sorted_bts_entry = TableEntry {
+                from_100_elements_tree: 
+                    BinaryTreeData {
+                        stats: sorted_tree_stats_100,
+                        times: time_counts_of_sorted_bst_100,
+                    },
+                from_1k_elements_tree:
+                    BinaryTreeData {
+                        stats: sorted_tree_stats_1k,
+                        times: time_counts_of_sorted_bst_1k,
+                    },
+                from_10k_elements_tree:
+                    BinaryTreeData {
+                        stats: sorted_tree_stats_10k,
+                        times: time_counts_of_sorted_bst_10k,
+                    },
+            };
+
+            print_table("Sorted Tree Test", sorted_bts_entry);
+        });
+    }
+
     let mut sorted_time_counts_100_vec = Vec::<benchmarks::TimeCounts>::new();
     let mut sorted_time_counts_1k_vec = Vec::<benchmarks::TimeCounts>::new();
     let mut sorted_time_counts_10k_vec = Vec::<benchmarks::TimeCounts>::new();
 
     for _ in 0..run_times {
-        let mut binary_search_sorted_tree_100 = binary_tree::BinaryTree::new();
-        let mut binary_search_sorted_tree_1k = binary_tree::BinaryTree::new();
-        let mut binary_search_sorted_tree_10k = binary_tree::BinaryTree::new();
-
-        population_sorted(&mut binary_search_sorted_tree_100, 100);
-        population_sorted(&mut binary_search_sorted_tree_1k, 1000);
-        population_sorted(&mut binary_search_sorted_tree_10k, 10000);
-
-        let sorted_tree_stats_100 = get_tree_stats(&binary_search_sorted_tree_100);
-        let sorted_tree_stats_1k = get_tree_stats(&binary_search_sorted_tree_1k);
-        let sorted_tree_stats_10k = get_tree_stats(&binary_search_sorted_tree_10k);
-
-        let time_counts_of_sorted_bst_100 = calc_execution_times(&mut binary_search_sorted_tree_100);
-        sorted_time_counts_100_vec.push(time_counts_of_sorted_bst_100.clone());
-        let time_counts_of_sorted_bst_1k = calc_execution_times(&mut binary_search_sorted_tree_1k);
-        sorted_time_counts_1k_vec.push(time_counts_of_sorted_bst_1k.clone());
-        let time_counts_of_sorted_bst_10k = calc_execution_times(&mut binary_search_sorted_tree_10k);
-        sorted_time_counts_10k_vec.push(time_counts_of_sorted_bst_10k.clone());
-
-        let sorted_bts_entry = TableEntry {
-            from_100_elements_tree: 
-                BinaryTreeData {
-                    stats: sorted_tree_stats_100,
-                    times: time_counts_of_sorted_bst_100,
-                },
-            from_1k_elements_tree:
-                BinaryTreeData {
-                    stats: sorted_tree_stats_1k,
-                    times: time_counts_of_sorted_bst_1k,
-                },
-            from_10k_elements_tree:
-                BinaryTreeData {
-                    stats: sorted_tree_stats_10k,
-                    times: time_counts_of_sorted_bst_10k,
-                },
-        };
-
-        print_table("Sorted Tree Test", sorted_bts_entry);
+        sorted_time_counts_100_vec.push(rx_100.recv().unwrap());
+        sorted_time_counts_1k_vec.push(rx_1k.recv().unwrap());
+        sorted_time_counts_10k_vec.push(rx_10k.recv().unwrap());
     }
 
     let time_counts_100_average = benchmarks::calc_average_time_counts(&mut sorted_time_counts_100_vec);
