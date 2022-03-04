@@ -11,6 +11,18 @@ pub struct TimeCounts {
     pub remove: Duration,
 }
 
+impl TimeCounts {
+    fn new() -> Self {
+        Self {
+            insert: Duration::ZERO,
+            size: Duration::ZERO,
+            depth: Duration::ZERO,
+            search: Duration::ZERO,
+            remove: Duration::ZERO,
+        }
+    }
+}
+
 impl Copy for TimeCounts {}
 impl Clone for TimeCounts {
     fn clone(&self) -> Self {
@@ -50,6 +62,41 @@ pub fn calc_average_time_counts(time_counts_vec: &Vec<TimeCounts>) -> TimeCounts
     time_counts_sums.remove = time_counts_sums.remove / time_counts_vec.len().try_into().unwrap();
 
     time_counts_sums
+}
+
+pub fn calc_worst_time_counts(time_counts_vec: &Vec<TimeCounts>) -> TimeCounts {
+    let mut time_counts_worst_case = TimeCounts::new();
+    let mut max_insert = Duration::ZERO;
+    let mut max_size = Duration::ZERO;
+    let mut max_depth = Duration::ZERO;
+    let mut max_search = Duration::ZERO;
+    let mut max_remove = Duration::ZERO;
+    
+    for current_max in time_counts_vec.iter() {
+        if current_max.insert > max_insert {
+            max_insert = current_max.insert;
+        }
+        if current_max.size > max_size {
+            max_size = current_max.size;
+        }
+        if current_max.depth > max_depth {
+            max_depth = current_max.depth;
+        }
+        if current_max.search > max_search {
+            max_search = current_max.search;
+        }
+        if current_max.remove > max_remove {
+            max_remove = current_max.remove;
+        }
+    }
+
+    time_counts_worst_case.insert = max_insert;
+    time_counts_worst_case.size = max_size;
+    time_counts_worst_case.depth = max_depth;
+    time_counts_worst_case.search = max_search;
+    time_counts_worst_case.remove = max_remove;
+
+    time_counts_worst_case
 }
 
 #[cfg(test)]

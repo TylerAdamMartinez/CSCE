@@ -13,11 +13,13 @@ pub mod benchmarks;
 use crate::benchmarks::TimeCounts;
 
 fn main() {
-    let unsorted_averages_table_entry = run_unsorted_test(5);
-    print_table("Unsorted Binary Tree Tests Average", unsorted_averages_table_entry);
+    let (unsorted_averages_table_entry, unsorted_worst_table_entry) = run_unsorted_test(10);
+    print_table("Unsorted Binary Tree Tests Average Case", unsorted_averages_table_entry);
+    print_table("Unsorted Binary Tree Tests Worst Case", unsorted_worst_table_entry);
     
-    let sorted_averages_table_entry = run_sorted_test(5);
-    print_table("Sorted Binary Tree Tests Average", sorted_averages_table_entry);
+    let (sorted_averages_table_entry, sorted_worst_table_entry) = run_sorted_test(10);
+    print_table("Sorted Binary Tree Tests Average Case", sorted_averages_table_entry);
+    print_table("Sorted Binary Tree Tests Worst Case", sorted_worst_table_entry);
 
 }
 
@@ -214,7 +216,7 @@ fn print_table(title: &str, table_entries: TableEntry) {
     println!("{}", table.render());
 }
 
-fn run_unsorted_test(run_times: u8) -> TableEntry {
+fn run_unsorted_test(run_times: u8) -> (TableEntry, TableEntry) {
     let (tx_100, rx_100) = mpsc::channel();
     let (tx_1k, rx_1k) = mpsc::channel();
     let (tx_10k, rx_10k) = mpsc::channel();
@@ -277,16 +279,21 @@ fn run_unsorted_test(run_times: u8) -> TableEntry {
         unsorted_time_counts_10k_vec.push(rx_10k.recv().unwrap());
     }
 
-    let time_counts_100_average = benchmarks::calc_average_time_counts(&mut unsorted_time_counts_100_vec);
-    let time_counts_1k_average = benchmarks::calc_average_time_counts(&mut unsorted_time_counts_1k_vec);
-    let time_counts_10k_average = benchmarks::calc_average_time_counts(&mut unsorted_time_counts_10k_vec);
+    let time_counts_100_average = benchmarks::calc_average_time_counts(&unsorted_time_counts_100_vec);
+    let time_counts_1k_average = benchmarks::calc_average_time_counts(&unsorted_time_counts_1k_vec);
+    let time_counts_10k_average = benchmarks::calc_average_time_counts(&unsorted_time_counts_10k_vec);
+
+    let time_counts_100_worst = benchmarks::calc_worst_time_counts(&unsorted_time_counts_100_vec);
+    let time_counts_1k_worst = benchmarks::calc_worst_time_counts(&unsorted_time_counts_1k_vec);
+    let time_counts_10k_worst = benchmarks::calc_worst_time_counts(&unsorted_time_counts_10k_vec);
+
 
     let dummy_stats = BinaryTreeStats {
         size: 0,
         depth: 0,
     };
 
-    TableEntry {
+    (TableEntry {
         from_100_elements_tree: 
             BinaryTreeData {
                 stats: dummy_stats,
@@ -302,10 +309,26 @@ fn run_unsorted_test(run_times: u8) -> TableEntry {
                 stats: dummy_stats,
                 times: time_counts_10k_average,
             },
-    }
+    }, TableEntry {
+        from_100_elements_tree: 
+            BinaryTreeData {
+                stats: dummy_stats,
+                times: time_counts_100_worst,
+            },
+        from_1k_elements_tree:
+            BinaryTreeData {
+                stats: dummy_stats,
+                times: time_counts_1k_worst,
+            },
+        from_10k_elements_tree:
+            BinaryTreeData {
+                stats: dummy_stats,
+                times: time_counts_10k_worst,
+            },
+    })
 }
 
-fn run_sorted_test(run_times: u8) -> TableEntry {
+fn run_sorted_test(run_times: u8) -> (TableEntry, TableEntry) {
     let (tx_100, rx_100) = mpsc::channel();
     let (tx_1k, rx_1k) = mpsc::channel();
     let (tx_10k, rx_10k) = mpsc::channel();
@@ -367,16 +390,21 @@ fn run_sorted_test(run_times: u8) -> TableEntry {
         sorted_time_counts_10k_vec.push(rx_10k.recv().unwrap());
     }
 
-    let time_counts_100_average = benchmarks::calc_average_time_counts(&mut sorted_time_counts_100_vec);
-    let time_counts_1k_average = benchmarks::calc_average_time_counts(&mut sorted_time_counts_1k_vec);
-    let time_counts_10k_average = benchmarks::calc_average_time_counts(&mut sorted_time_counts_10k_vec);
+    let time_counts_100_average = benchmarks::calc_average_time_counts(&sorted_time_counts_100_vec);
+    let time_counts_1k_average = benchmarks::calc_average_time_counts(&sorted_time_counts_1k_vec);
+    let time_counts_10k_average = benchmarks::calc_average_time_counts(&sorted_time_counts_10k_vec);
+
+    let time_counts_100_worst = benchmarks::calc_worst_time_counts(&sorted_time_counts_100_vec);
+    let time_counts_1k_worst = benchmarks::calc_worst_time_counts(&sorted_time_counts_1k_vec);
+    let time_counts_10k_worst = benchmarks::calc_worst_time_counts(&sorted_time_counts_10k_vec);
+
 
     let dummy_stats = BinaryTreeStats {
         size: 0,
         depth: 0,
     };
 
-    TableEntry {
+    ( TableEntry {
         from_100_elements_tree: 
             BinaryTreeData {
                 stats: dummy_stats,
@@ -392,5 +420,21 @@ fn run_sorted_test(run_times: u8) -> TableEntry {
                 stats: dummy_stats,
                 times: time_counts_10k_average,
             },
-    }
+    }, TableEntry {
+        from_100_elements_tree: 
+            BinaryTreeData {
+                stats: dummy_stats,
+                times: time_counts_100_worst,
+            },
+        from_1k_elements_tree:
+            BinaryTreeData {
+                stats: dummy_stats,
+                times: time_counts_1k_worst,
+            },
+        from_10k_elements_tree:
+            BinaryTreeData {
+                stats: dummy_stats,
+                times: time_counts_10k_worst,
+            },
+    })
 }
