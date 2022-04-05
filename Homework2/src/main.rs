@@ -1,3 +1,10 @@
+//! # Homework 2: Binary Search Tree
+//!
+//! ## Task:
+//! > Build a binary search tree and test the time of each function
+
+
+
 use rand::Rng;
 use std::time::Instant;
 use std::thread;
@@ -9,8 +16,12 @@ use term_table::{
     table_cell::{Alignment, TableCell},
 };
 pub mod binary_tree;
-pub mod benchmarks;
-use crate::benchmarks::TimeCounts;
+mod benchmarks;
+use benchmarks::{
+    TimeCounts,
+    calc_average_time_counts,
+    calc_worst_time_counts,
+};
 
 fn main() {
     let (unsorted_averages_table_entry, unsorted_worst_table_entry) = run_unsorted_test(10);
