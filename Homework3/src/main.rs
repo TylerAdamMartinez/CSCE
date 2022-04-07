@@ -1,4 +1,4 @@
-use Homework3::Dictionary;
+use homework3::Dictionary;
 
 fn main() {
     let ten_thousand = 10000;
@@ -8,16 +8,16 @@ fn main() {
     open_hashed_dictionary.insert(String::from("Micheal"), String::from("Jackson"));
     println!(
         "key: Janet, and value: {}",
-        open_hashed_dictionary.find_item(String::from("Janet"))
+        open_hashed_dictionary.find_item(&String::from("Janet"))
     );
     println!(
         "key: Micheal, and value: {}",
-        open_hashed_dictionary.find_item(String::from("Micheal"))
+        open_hashed_dictionary.find_item(&String::from("Micheal"))
     );
 
-    open_hashed_dictionary.remove(String::from("Micheal"));
+    open_hashed_dictionary.remove(&String::from("Micheal"));
     println!(
         "key: Micheal, and value: {:#?}",
-        open_hashed_dictionary.find_item(String::from("Micheal"))
+        open_hashed_dictionary.find_item(&String::from("Micheal"))
     );
 }

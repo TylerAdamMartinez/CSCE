@@ -1,9 +1,15 @@
 use std::collections::hash_map::DefaultHasher;
 use std::hash::{Hash, Hasher};
 
+#[derive(Clone)]
+struct KeyValuePair {
+    key: String,
+    value: String,
+}
+
 pub struct Dictionary {
     keys_list: Vec<String>,
-    table: Vec<Option<String>>,
+    table: Vec<Option<KeyValuePair>>,
     open_hasing: bool,
     number_of_elements: u64,
 }
@@ -12,7 +18,7 @@ impl Dictionary {
     pub fn new() -> DictionaryBuilder {
         DictionaryBuilder {
             keys_list: Vec::<String>::new(),
-            table: Vec::<Option<String>>::new(),
+            table: Vec::<Option<KeyValuePair>>::new(),
             open_hasing: None,
         }
     }
@@ -20,7 +26,7 @@ impl Dictionary {
 
 pub struct DictionaryBuilder {
     keys_list: Vec<String>,
-    table: Vec<Option<String>>,
+    table: Vec<Option<KeyValuePair>>,
     open_hasing: Option<bool>,
 }
 
@@ -66,16 +72,16 @@ impl Dictionary {
     pub fn insert(&mut self, key: String, value: String) -> bool {
         self.keys_list.push(key.clone());
         let index: usize = self.calculate_index(calculate_hash(&key));
-        self.table[index] = Some(value);
+        self.table[index] = Some(KeyValuePair { key, value });
         true
     }
 
-    pub fn find_item(&self, key: String) -> String {
+    pub fn find_item(&self, key: &String) -> String {
         let index: usize = self.calculate_index(calculate_hash(&key));
-        self.table[index].clone().unwrap()
+        self.table[index].clone().unwrap().value
     }
 
-    pub fn remove(&mut self, key: String) -> bool {
+    pub fn remove(&mut self, key: &String) -> bool {
         let index: usize = self.calculate_index(calculate_hash(&key));
         self.table[index] = None;
         true
