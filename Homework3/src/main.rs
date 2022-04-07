@@ -7,14 +7,17 @@ fn main() {
     open_hashed_dictionary.insert(String::from("Janet"), String::from("Jackson"));
     open_hashed_dictionary.insert(String::from("Micheal"), String::from("Jackson"));
 
-    /*
     println!(
         "key: Janet, and value: {}",
-        open_hashed_dictionary.find_item(&String::from("Janet"))
+        open_hashed_dictionary
+            .find_item(&String::from("Janet"))
+            .unwrap()
     );
     println!(
         "key: Micheal, and value: {}",
-        open_hashed_dictionary.find_item(&String::from("Micheal"))
+        open_hashed_dictionary
+            .find_item(&String::from("Micheal"))
+            .unwrap()
     );
 
     open_hashed_dictionary.remove(&String::from("Micheal"));
@@ -22,5 +25,4 @@ fn main() {
         "key: Micheal, and value: {:#?}",
         open_hashed_dictionary.find_item(&String::from("Micheal"))
     );
-    */
 }

@@ -1,3 +1,4 @@
+#![feature(linked_list_remove)]
 use std::collections::{hash_map::DefaultHasher, LinkedList};
 use std::hash::{Hash, Hasher};
 
@@ -159,12 +160,49 @@ impl Dictionary {
         None
     }
 
-    /*
     pub fn remove(&mut self, key: &String) -> bool {
         let index: usize = self.calculate_index(calculate_hash(&key));
-        self.table[index] = None;
+        match self.hashing_type {
+            DictionaryHashingType::Open => {
+                let mut i: usize = 0;
+                for pair in self.table[index].iter() {
+                    if &pair.key == key {
+                        self.table[index].remove(i);
+                        return true;
+                    }
+                    i += 1;
+                }
+            }
+            DictionaryHashingType::Closed => match self.table[index].back() {
+                None => return false,
+                Some(pair) => {
+                    let mut i: usize = 1;
+                    loop {
+                        if (index + i) >= (self.number_of_elements as usize - 1) {
+                            return false;
+                        } else {
+                            if &pair.key == key {
+                                self.table[index + i].remove(i);
+                                return true;
+                            }
+                        }
+
+                        match self.table[index + i].back() {
+                            Some(pair) => {
+                                if &pair.key == key {
+                                    self.table[index + i].remove(i);
+                                    return true;
+                                }
+                            }
+                            None => return false,
+                        }
+                        i += 1;
+                    }
+                }
+            },
+        }
         false
-    } */
+    }
 }
 
 #[cfg(test)]
@@ -191,6 +229,11 @@ mod dictionary_tests {
         assert_eq!(index1, 65);
         assert_eq!(index2, 11);
     }
+}
+
+#[cfg(test)]
+mod dictionary_open_hashing_tests {
+    use super::*;
 
     #[test]
     fn insert() {
@@ -218,5 +261,74 @@ mod dictionary_tests {
         let find_item_outcome = new_dictionary.find_item(&String::from("Uzumaki"));
 
         assert_eq!(find_item_outcome, None);
+    }
+
+    #[test]
+    fn remove_item_found() {
+        let mut new_dictionary: Dictionary = Dictionary::new().build(5);
+        new_dictionary.insert(String::from("Uchiha"), String::from("Itachi"));
+        let remove_item_outcome = new_dictionary.remove(&String::from("Uchiha"));
+
+        assert_eq!(remove_item_outcome, true);
+    }
+
+    #[test]
+    fn remove_item_not_found() {
+        let mut new_dictionary: Dictionary = Dictionary::new().build(5);
+        new_dictionary.insert(String::from("Uchiha"), String::from("Itachi"));
+        let remove_item_outcome = new_dictionary.remove(&String::from("Uzumaki"));
+
+        assert_eq!(remove_item_outcome, false);
+    }
+}
+
+#[cfg(test)]
+mod dictionary_closed_hashing_tests {
+    use super::*;
+
+    #[test]
+    fn insert() {
+        let mut new_dictionary: Dictionary = Dictionary::new().closed_hashing().build(5);
+        let new_key_outcome = new_dictionary.insert(String::from("Uchiha"), String::from("Itachi"));
+        let old_key_outcome = new_dictionary.insert(String::from("Uchiha"), String::from("Sasuke"));
+
+        assert_eq!(new_key_outcome, true);
+        assert_eq!(old_key_outcome, false);
+    }
+
+    #[test]
+    fn find_item_found() {
+        let mut new_dictionary: Dictionary = Dictionary::new().closed_hashing().build(5);
+        new_dictionary.insert(String::from("Uchiha"), String::from("Itachi"));
+        let find_item_outcome = new_dictionary.find_item(&String::from("Uchiha")).unwrap();
+
+        assert_eq!(find_item_outcome, String::from("Itachi"));
+    }
+
+    #[test]
+    fn find_item_not_found() {
+        let mut new_dictionary: Dictionary = Dictionary::new().closed_hashing().build(5);
+        new_dictionary.insert(String::from("Uchiha"), String::from("Itachi"));
+        let find_item_outcome = new_dictionary.find_item(&String::from("Uzumaki"));
+
+        assert_eq!(find_item_outcome, None);
+    }
+
+    #[test]
+    fn remove_item_found() {
+        let mut new_dictionary: Dictionary = Dictionary::new().closed_hashing().build(5);
+        new_dictionary.insert(String::from("Uchiha"), String::from("Itachi"));
+        let remove_item_outcome = new_dictionary.remove(&String::from("Uchiha"));
+
+        assert_eq!(remove_item_outcome, true);
+    }
+
+    #[test]
+    fn remove_item_not_found() {
+        let mut new_dictionary: Dictionary = Dictionary::new().closed_hashing().build(5);
+        new_dictionary.insert(String::from("Uchiha"), String::from("Itachi"));
+        let remove_item_outcome = new_dictionary.remove(&String::from("Uzumaki"));
+
+        assert_eq!(remove_item_outcome, false);
     }
 }
