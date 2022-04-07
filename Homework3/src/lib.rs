@@ -1,4 +1,4 @@
-use std::collections::hash_map::DefaultHasher;
+use std::collections::{hash_map::DefaultHasher, LinkedList};
 use std::hash::{Hash, Hasher};
 
 #[derive(Clone)]
@@ -7,10 +7,22 @@ struct KeyValuePair {
     value: String,
 }
 
+#[derive(Clone)]
+enum DictionaryHashingType {
+    Open,
+    Closed,
+}
+
+impl Default for DictionaryHashingType {
+    fn default() -> Self {
+        DictionaryHashingType::Open
+    }
+}
+
 pub struct Dictionary {
     keys_list: Vec<String>,
-    table: Vec<Option<KeyValuePair>>,
-    open_hasing: bool,
+    table: Vec<LinkedList<KeyValuePair>>,
+    hashing_type: DictionaryHashingType,
     number_of_elements: u64,
 }
 
@@ -18,40 +30,41 @@ impl Dictionary {
     pub fn new() -> DictionaryBuilder {
         DictionaryBuilder {
             keys_list: Vec::<String>::new(),
-            table: Vec::<Option<KeyValuePair>>::new(),
-            open_hasing: None,
+            table: Vec::<LinkedList<KeyValuePair>>::new(),
+            hashing_type: None,
         }
     }
 }
 
 pub struct DictionaryBuilder {
     keys_list: Vec<String>,
-    table: Vec<Option<KeyValuePair>>,
-    open_hasing: Option<bool>,
+    table: Vec<LinkedList<KeyValuePair>>,
+    hashing_type: Option<DictionaryHashingType>,
 }
 
 impl DictionaryBuilder {
-    pub fn open_hasing(&mut self) -> &mut Self {
-        self.open_hasing = Some(true);
+    pub fn open_hashing(&mut self) -> &mut Self {
+        self.hashing_type = Some(DictionaryHashingType::Open);
         self
     }
 
-    pub fn closed_hasing(&mut self) -> &mut Self {
-        self.open_hasing = Some(false);
+    pub fn closed_hashing(&mut self) -> &mut Self {
+        self.hashing_type = Some(DictionaryHashingType::Closed);
         self
     }
 
     pub fn build(&mut self, number_of_elements: u64) -> Dictionary {
         // create an array of size number_of_elements in memory for the hash table
         for _ in 0..number_of_elements {
-            self.table.push(None);
+            self.table.push(LinkedList::<KeyValuePair>::new());
         }
 
         Dictionary {
             keys_list: self.keys_list.clone(),
             table: self.table.clone(),
-            // default will yeild false therefore it will be closed hashing if not specified
-            open_hasing: self.open_hasing.unwrap_or_default(),
+            // If self.hashing_type is still the None varient by time the build function is called,
+            // then hashing_type will default to DictionaryHashingType::Open
+            hashing_type: self.hashing_type.clone().unwrap_or_default(),
             number_of_elements,
         }
     }
@@ -70,22 +83,88 @@ impl Dictionary {
     }
 
     pub fn insert(&mut self, key: String, value: String) -> bool {
+        // If key is already taken then insert() function returns false
+        // else adds key into keys_list and inserts the KeyValuePair in the Dictionary
+        for key_item in self.keys_list.iter() {
+            if &key == key_item {
+                return false;
+            }
+        }
         self.keys_list.push(key.clone());
+
         let index: usize = self.calculate_index(calculate_hash(&key));
-        self.table[index] = Some(KeyValuePair { key, value });
+        match self.hashing_type {
+            DictionaryHashingType::Open => {
+                self.table[index].push_back(KeyValuePair { key, value });
+            }
+            DictionaryHashingType::Closed => match self.table[index].back() {
+                None => self.table[index].push_back(KeyValuePair { key, value }),
+                Some(..) => {
+                    let mut i: usize = 1;
+                    loop {
+                        if (index + i) >= (self.number_of_elements as usize - 1) {
+                            return false;
+                        }
+
+                        match self.table[index + i].back() {
+                            Some(..) => i += 1,
+                            None => {
+                                self.table[index + i].push_back(KeyValuePair { key, value });
+                                break;
+                            }
+                        }
+                    }
+                }
+            },
+        }
         true
     }
 
-    pub fn find_item(&self, key: &String) -> String {
+    pub fn find_item(&self, key: &String) -> Option<String> {
         let index: usize = self.calculate_index(calculate_hash(&key));
-        self.table[index].clone().unwrap().value
+        match self.hashing_type {
+            DictionaryHashingType::Open => {
+                for pair in self.table[index].iter() {
+                    if &pair.key == key {
+                        return Some(pair.value.clone());
+                    }
+                }
+            }
+            DictionaryHashingType::Closed => match self.table[index].back() {
+                None => return None,
+                Some(pair) => {
+                    let mut i: usize = 1;
+                    loop {
+                        if (index + i) >= (self.number_of_elements as usize - 1) {
+                            return None;
+                        } else {
+                            if &pair.key == key {
+                                return Some(pair.value.clone());
+                            }
+                        }
+
+                        match self.table[index + i].back() {
+                            Some(pair) => {
+                                if &pair.key == key {
+                                    return Some(pair.value.clone());
+                                }
+                            }
+                            None => return None,
+                        }
+                        i += 1;
+                    }
+                }
+            },
+        }
+        None
     }
 
+    /*
     pub fn remove(&mut self, key: &String) -> bool {
         let index: usize = self.calculate_index(calculate_hash(&key));
         self.table[index] = None;
-        true
-    }
+        false
+    } */
 }
 
 #[cfg(test)]
@@ -111,5 +190,33 @@ mod dictionary_tests {
         assert!(index1 != index2);
         assert_eq!(index1, 65);
         assert_eq!(index2, 11);
+    }
+
+    #[test]
+    fn insert() {
+        let mut new_dictionary: Dictionary = Dictionary::new().build(5);
+        let new_key_outcome = new_dictionary.insert(String::from("Uchiha"), String::from("Itachi"));
+        let old_key_outcome = new_dictionary.insert(String::from("Uchiha"), String::from("Sasuke"));
+
+        assert_eq!(new_key_outcome, true);
+        assert_eq!(old_key_outcome, false);
+    }
+
+    #[test]
+    fn find_item_found() {
+        let mut new_dictionary: Dictionary = Dictionary::new().build(5);
+        new_dictionary.insert(String::from("Uchiha"), String::from("Itachi"));
+        let find_item_outcome = new_dictionary.find_item(&String::from("Uchiha")).unwrap();
+
+        assert_eq!(find_item_outcome, String::from("Itachi"));
+    }
+
+    #[test]
+    fn find_item_not_found() {
+        let mut new_dictionary: Dictionary = Dictionary::new().build(5);
+        new_dictionary.insert(String::from("Uchiha"), String::from("Itachi"));
+        let find_item_outcome = new_dictionary.find_item(&String::from("Uzumaki"));
+
+        assert_eq!(find_item_outcome, None);
     }
 }
