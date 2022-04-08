@@ -24,11 +24,16 @@ fn main() {
     // since you cannot insert the same key twice the value for Hinata is still Uzumaki
     open_hashed_dictionary.insert(String::from("Hinata"), String::from("Hyūga"));
     println!(
-        "Since Hinata last name has already been entered as {}, we cannot change to her last name back to her maiden name of Hyūga",
+        "Since Hinata last name has already been entered as {}, we cannot just re-insert to change her last name back to her maiden name of Hyūga",
         open_hashed_dictionary
             .find_item(&String::from("Hinata"))
             .unwrap()
     );
+
+    open_hashed_dictionary.remove(&String::from("Hinata"));
+    open_hashed_dictionary.insert(String::from("Hinata"), String::from("Hyūga"));
+    println!("However, if Hinata is removed then added back this time with her maiden name then you'll see Hinata as {} in the Dictionary",
+        open_hashed_dictionary.find_item(&String::from("Hinata")).unwrap());
 
     open_hashed_dictionary.remove(&String::from("Boruto"));
     // after remove Boruto the value will yield None
@@ -59,11 +64,16 @@ fn main() {
     // since you cannot insert the same key twice the value for Itachi is still Akatsuki
     closed_hashed_dictionary.insert(String::from("Itachi"), String::from("Akatsuki"));
     println!(
-        "Since Itachi last name has already been entered as {}, we cannot change to his last name Akatsuki",
+        "Since Itachi last name has already been entered as {}, we cannot just re-insert to change to his last name Akatsuki",
         closed_hashed_dictionary
             .find_item(&String::from("Itachi"))
             .unwrap()
     );
+
+    closed_hashed_dictionary.remove(&String::from("Itachi"));
+    closed_hashed_dictionary.insert(String::from("Itachi"), String::from("Akatsuki"));
+    println!("However, if Itachi is removed then added back this time with his new clan name then you'll see Itachi as {} in the Dictionary",
+        closed_hashed_dictionary.find_item(&String::from("Itachi")).unwrap());
 
     closed_hashed_dictionary.remove(&String::from("Fugaku"));
     // after remove Boruto the value will yield None
