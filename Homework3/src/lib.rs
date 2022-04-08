@@ -159,6 +159,7 @@ impl Dictionary {
                 for pair in self.table[index].iter() {
                     if &pair.key == key {
                         self.table[index].remove(i);
+                        self.remove_key_from_key_list(&key);
                         return true;
                     }
                     i += 1;
@@ -174,6 +175,7 @@ impl Dictionary {
                         } else {
                             if &pair.key == key {
                                 self.table[index + i].remove(i);
+                                self.remove_key_from_key_list(&key);
                                 return true;
                             }
                         }
@@ -181,6 +183,18 @@ impl Dictionary {
                     }
                 }
             },
+        }
+        false
+    }
+
+    fn remove_key_from_key_list(&mut self, key: &String) -> bool {
+        let mut i: usize = 0;
+        for key_item in self.keys_list.iter() {
+            if key_item == key {
+                self.keys_list.remove(i);
+                return true;
+            }
+            i += 1;
         }
         false
     }
@@ -224,6 +238,19 @@ mod dictionary_open_hashing_tests {
 
         assert_eq!(new_key_outcome, true);
         assert_eq!(old_key_outcome, false);
+    }
+
+    #[test]
+    fn replace() {
+        let mut new_dictionary: Dictionary = Dictionary::new().build(5);
+        new_dictionary.insert(String::from("Uchiha"), String::from("Itachi"));
+        new_dictionary.remove(&String::from("Uchiha"));
+        new_dictionary.insert(String::from("Uchiha"), String::from("Sasuke"));
+
+        assert_eq!(
+            new_dictionary.find_item(&String::from("Uchiha")).unwrap(),
+            String::from("Sasuke")
+        );
     }
 
     #[test]
@@ -275,6 +302,19 @@ mod dictionary_closed_hashing_tests {
 
         assert_eq!(new_key_outcome, true);
         assert_eq!(old_key_outcome, false);
+    }
+
+    #[test]
+    fn replace() {
+        let mut new_dictionary: Dictionary = Dictionary::new().closed_hashing().build(5);
+        new_dictionary.insert(String::from("Uchiha"), String::from("Itachi"));
+        new_dictionary.remove(&String::from("Uchiha"));
+        new_dictionary.insert(String::from("Uchiha"), String::from("Sasuke"));
+
+        assert_eq!(
+            new_dictionary.find_item(&String::from("Uchiha")).unwrap(),
+            String::from("Sasuke")
+        );
     }
 
     #[test]
