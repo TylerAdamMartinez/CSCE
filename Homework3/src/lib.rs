@@ -134,7 +134,7 @@ impl Dictionary {
             DictionaryHashingType::Closed => match self.table[index].back() {
                 None => return None,
                 Some(pair) => {
-                    let mut i: usize = 1;
+                    let mut i: usize = 0;
                     loop {
                         if (index + i) >= (self.number_of_elements as usize - 1) {
                             return None;
@@ -142,15 +142,6 @@ impl Dictionary {
                             if &pair.key == key {
                                 return Some(pair.value.clone());
                             }
-                        }
-
-                        match self.table[index + i].back() {
-                            Some(pair) => {
-                                if &pair.key == key {
-                                    return Some(pair.value.clone());
-                                }
-                            }
-                            None => return None,
                         }
                         i += 1;
                     }
@@ -176,7 +167,7 @@ impl Dictionary {
             DictionaryHashingType::Closed => match self.table[index].back() {
                 None => return false,
                 Some(pair) => {
-                    let mut i: usize = 1;
+                    let mut i: usize = 0;
                     loop {
                         if (index + i) >= (self.number_of_elements as usize - 1) {
                             return false;
@@ -185,16 +176,6 @@ impl Dictionary {
                                 self.table[index + i].remove(i);
                                 return true;
                             }
-                        }
-
-                        match self.table[index + i].back() {
-                            Some(pair) => {
-                                if &pair.key == key {
-                                    self.table[index + i].remove(i);
-                                    return true;
-                                }
-                            }
-                            None => return false,
                         }
                         i += 1;
                     }
