@@ -10,7 +10,7 @@ clean:
 
 tests:
 	@echo "======running tests======"
-	g++ -Wall test.cpp lib.cpp
+	g++ -Wall tests.cpp lib.cpp
 	./a.out
 
 run:

@@ -5,12 +5,19 @@
 // testing purposes
 #include <cassert>
 #define assertm(exp, msg) assert(((void)msg, exp))
-#
 
+void myFirstTest();
 
 int main() {
   using namespace std;
   cout << "homework 4 unit tests" << endl;
+
+  myFirstTest();
+  return 0;
+}
+
+void myFirstTest() {
+  using namespace std;
 
   vector<int> myvec;
   myvec.push_back(45);
@@ -18,5 +25,5 @@ int main() {
   mysecondvec.push_back(45);
   assertm(myvec == mysecondvec, "failed here..");
   cout << "test was successful" << endl;
-  return 0;
 }
+
