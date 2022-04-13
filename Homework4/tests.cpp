@@ -1,12 +1,12 @@
 #include <iostream>
 #include <vector>
-// custom header file for sorting funcs
+// custom header files for sorting & unit tests funcs
 #include "lib.h"
+#include "tests.h"
 // testing purposes
 #include <cassert>
 #define assertm(exp, msg) assert(((void)msg, exp))
 
-void myFirstTest();
 
 int main() {
   using namespace std;
@@ -27,3 +27,10 @@ void myFirstTest() {
   cout << "test was successful" << endl;
 }
 
+void InsertionSortTest() {}
+void SelectionSortTest() {}
+void HeapSortTest() {}
+void MergeSortTest() {}
+void QuickSortTest() {}
+void RadixSortTest() {}
+void BucketSortTest() {}
