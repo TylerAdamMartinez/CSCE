@@ -3,8 +3,8 @@
 
 void InsertionSort(std::vector<int> &);
 void SelectionSort(std::vector<int> &);
-void HeapSort(std::vector<int> &, int, int);
-void Heap(std::vector<int> &, int);
+void HeapSort(std::vector<int> &, int);
+void Heap(std::vector<int> &, int, int);
 void MergeSort(std::vector<int> &, int, int);
 void Merge(std::vector<int> &, int, int, int);
 void QuickSort(std::vector<int> &);

@@ -22,10 +22,38 @@ void InsertionSort(std::vector<int> & array) {
 
 void SelectionSort(std::vector<int> &) { std::cout << "SelectionSort" << std::endl; }
 
-void HeapSort(std::vector<int> & array, int heapSize, int index) {
+void HeapSort(std::vector<int> & array, int heapSize) {
+  for (int i = heapSize / 2 - 1; i >=0; i--) {
+    Heap(array, heapSize, i);
+  }
+
+  int temp;
+  for (int i = heapSize - 1; i > 0; i--) {
+    temp = array.at(0);
+    array.at(0) = array.at(i);
+    array.at(i) = temp;
+
+    Heap(array, i, 0);
+  }
 }
 
-void Heap(std::vector<int> & array, int heapSize) {
+void Heap(std::vector<int> & array, int heapSize, int index) {
+  int largest_num = index;
+  int left = 2 * index + 1;
+  int right = 2 * index + 2;
+
+  if (left < heapSize && array.at(left) > array.at(largest_num)) {
+    largest_num = left;
+  }
+  if (right < heapSize && array.at(right) > array.at(largest_num)) {
+    largest_num = right;
+  }
+  int temp;
+  if (largest_num != index) {
+    temp = array.at(index);
+    array.at(index) = array.at(largest_num);
+    array.at(largest_num) = temp;
+  }
 }
 
 void MergeSort(std::vector<int> & array, int begin, int end) {
