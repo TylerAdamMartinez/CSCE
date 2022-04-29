@@ -28,7 +28,19 @@ void InsertionSort(std::vector<int> & array) {
 
 void SelectionSort(std::vector<int> &) { std::cout << "SelectionSort" << std::endl; }
 void HeapSort(std::vector<int> &) { std::cout << "HeapSort" << std::endl; }
-void MergeSort(std::vector<int> &) { std::cout << "MergeSort" << std::endl; }
+
+void MergeSort(std::vector<int> & array, int begin, int end) {
+  if (begin >= end) { return; }
+
+  int middle = begin + (end - begin) / 2;
+  MergeSort(array, begin, middle);
+  MergeSort(array, middle + 1, end);
+  Merge(array, begin, middle, end);
+}
+
+void Merge(std::vector<int> & array, int begin, int middle, int end) {
+}
+
 void QuickSort(std::vector<int> &) { std::cout << "QuickSort" << std::endl; }
 void RadixSort(std::vector<int> &) { std::cout << "RadixSort" << std::endl; }
 void BucketSort(std::vector<int> &) { std::cout << "BucketSort" << std::endl; }
