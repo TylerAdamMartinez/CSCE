@@ -39,6 +39,44 @@ void MergeSort(std::vector<int> & array, int begin, int end) {
 }
 
 void Merge(std::vector<int> & array, int begin, int middle, int end) {
+  int left = middle - begin + 1;
+  int right = end - middle;
+  std::vector<int> leftArray(left);
+  std::vector<int> rightArray(right);
+
+  for (int i = 0; i < left; i++) {
+    leftArray[i] = array[left + i];
+  }
+  for (int i = 0; i < right; i++) {
+    rightArray[i] = array[middle + 1 + i];
+  }
+
+  int leftArrayIndex = 0, rightArrayIndex = 0;
+  int mergedArrayIndex = begin;
+
+  while (leftArrayIndex < left && rightArrayIndex < right) {
+    if(leftArray[leftArrayIndex] <= rightArray[rightArrayIndex]) {
+      array[mergedArrayIndex] = leftArray[leftArrayIndex];
+      leftArrayIndex += 1;
+    } else {
+      array[mergedArrayIndex] = rightArray[rightArrayIndex];
+      rightArrayIndex += 1;
+    }
+    mergedArrayIndex += 1;
+  }
+
+  while (leftArrayIndex < left) {
+    array[mergedArrayIndex] = leftArray[leftArrayIndex];
+    leftArrayIndex += 1;
+    mergedArrayIndex += 1;
+  }
+
+  while (rightArrayIndex < right) {
+    array[mergedArrayIndex] = rightArray[rightArrayIndex];
+    rightArrayIndex += 1;
+    mergedArrayIndex += 1;
+  }
+
 }
 
 void QuickSort(std::vector<int> &) { std::cout << "QuickSort" << std::endl; }

@@ -99,7 +99,7 @@ void MergeSortTest() {
   array.push_back(165);
   array.push_back(876);
 
-  MergeSort(array, 0, array.size());
+  MergeSort(array, 0, array.size() - 1);
   assertm(control_array == array, "MergeSortTest [failed]");
   cout << "MergeSortTest [passed]" << endl;
 

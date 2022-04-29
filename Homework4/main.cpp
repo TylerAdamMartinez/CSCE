@@ -23,7 +23,7 @@ int main() {
     cout << i << endl;
   }
 
-  MergeSort(array, 0, array.size());
+  MergeSort(array, 0, array.size() - 1);
   std::cout << "array after MergeSort" << std::endl;
   for( auto i: array) {
     cout << i << endl;
