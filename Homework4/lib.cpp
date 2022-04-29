@@ -4,12 +4,6 @@
 // custom header file for sorting funcs
 #include "lib.h"
 
-void vec_swap(std::vector<int> & array, int a, int b) {
-  int temp = array.at(a);
-  array.at(a) = array.at(b);
-  array.at(b) = temp;
-}
-
 void InsertionSort(std::vector<int> & array) {
   int current_pos, key, prev_pos;
 
@@ -45,36 +39,36 @@ void Merge(std::vector<int> & array, int begin, int middle, int end) {
   std::vector<int> rightArray(right);
 
   for (int i = 0; i < left; i++) {
-    leftArray[i] = array[left + i];
+    leftArray.at(i) = array.at(left + i);
   }
   for (int i = 0; i < right; i++) {
-    rightArray[i] = array[middle + 1 + i];
+    rightArray.at(i) = array.at(middle + 1 + i);
   }
 
   int leftArrayIndex = 0, rightArrayIndex = 0;
   int mergedArrayIndex = begin;
 
   while (leftArrayIndex < left && rightArrayIndex < right) {
-    if(leftArray[leftArrayIndex] <= rightArray[rightArrayIndex]) {
-      array[mergedArrayIndex] = leftArray[leftArrayIndex];
-      leftArrayIndex += 1;
+    if(leftArray.at(leftArrayIndex) <= rightArray.at(rightArrayIndex)) {
+      array.at(mergedArrayIndex) = leftArray.at(leftArrayIndex);
+      leftArrayIndex++;
     } else {
-      array[mergedArrayIndex] = rightArray[rightArrayIndex];
-      rightArrayIndex += 1;
+      array.at(mergedArrayIndex) = rightArray.at(rightArrayIndex);
+      rightArrayIndex++;
     }
-    mergedArrayIndex += 1;
+    mergedArrayIndex++;
   }
 
   while (leftArrayIndex < left) {
-    array[mergedArrayIndex] = leftArray[leftArrayIndex];
-    leftArrayIndex += 1;
-    mergedArrayIndex += 1;
+    array.at(mergedArrayIndex) = leftArray.at(leftArrayIndex);
+    leftArrayIndex++;
+    mergedArrayIndex++;
   }
 
   while (rightArrayIndex < right) {
-    array[mergedArrayIndex] = rightArray[rightArrayIndex];
-    rightArrayIndex += 1;
-    mergedArrayIndex += 1;
+    array.at(mergedArrayIndex) = rightArray.at(rightArrayIndex);
+    rightArrayIndex++;
+    mergedArrayIndex++;
   }
 
 }
