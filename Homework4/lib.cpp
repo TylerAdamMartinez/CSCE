@@ -21,7 +21,12 @@ void InsertionSort(std::vector<int> & array) {
 }
 
 void SelectionSort(std::vector<int> &) { std::cout << "SelectionSort" << std::endl; }
-void HeapSort(std::vector<int> &) { std::cout << "HeapSort" << std::endl; }
+
+void HeapSort(std::vector<int> & array, int heapSize, int index) {
+}
+
+void Heap(std::vector<int> & array, int heapSize) {
+}
 
 void MergeSort(std::vector<int> & array, int begin, int end) {
   if (begin >= end) { return; }
