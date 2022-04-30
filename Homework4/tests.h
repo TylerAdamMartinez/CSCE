@@ -1,4 +1,6 @@
-void myFirstTest();
+void rand_populate_vector(std::vector<int> &, int);
+std::vector<int> sorted_vector(std::vector<int>);
+void assert_eq(std::vector<int> & array0, std::vector<int> & array1, std::string testName);
 void InsertionSortTest();
 void SelectionSortTest();
 void HeapSortTest();

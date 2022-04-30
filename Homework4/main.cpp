@@ -22,8 +22,8 @@ int main() {
   cout << "orginal array" << endl;
   print(array);
 
-  SelectionSort(array);
-  std::cout << "array after SelectionSort" << std::endl;
+  QuickSort(array, 0, array.size() - 1);
+  std::cout << "array after QuickSort" << std::endl;
   print(array);
   return 0;
 }

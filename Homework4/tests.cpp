@@ -1,5 +1,7 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
+#include <time.h>
 // custom header files for sorting & unit tests funcs
 #include "lib.h"
 #include "tests.h"
@@ -7,129 +9,95 @@
 #include <cassert>
 #define assertm(exp, msg) assert(((void)msg, exp))
 
-
 int main() {
-  using namespace std;
-  cout << "homework 4 unit tests" << endl;
+  std::cout << "homework 4 unit tests" << std::endl;
 
   InsertionSortTest();
-  HeapSortTest();
   SelectionSortTest();
+  QuickSortTest();
   MergeSortTest();
+  HeapSortTest();
+  RadixSortTest();
+  BucketSortTest();
   return 0;
 }
 
+void rand_populate_vector(std::vector<int> & array, int size) {
+  srand(time(NULL));
+  for (int i = 0; i < size; i++) {
+    array.push_back(rand() % 100 + 1);
+  }
+}
+
+std::vector<int> sorted_vector(std::vector<int> array) {
+  std::sort(array.begin(), array.end());
+  return array;
+}
+
+void assert_eq(std::vector<int> & array0, std::vector<int> & array1, std::string testName) {
+  if(array0 == array1) { 
+    std::cout << testName << " [passed]" << std::endl;
+  }
+  else {
+    std::cout << testName <<  " [failed]" << std::endl;
+
+    std::cout << "Array0" << std::endl;
+    for(std::vector<int>::iterator it = array0.begin(); it != array0.end(); it++) {
+      std::cout << *it << ", ";
+    }
+    std::cout << std::endl;
+
+    std::cout << "Array1" << std::endl;
+    for(std::vector<int>::iterator it = array1.begin(); it != array1.end(); it++) {
+      std::cout << *it << ", ";
+    }
+    std::cout << std::endl;
+  }
+}
+
 void InsertionSortTest() {
-  using namespace std;
-
-  vector<int> control_array;
-  control_array.push_back(2);
-  control_array.push_back(4);
-  control_array.push_back(53);
-  control_array.push_back(65);
-  control_array.push_back(165);
-  control_array.push_back(238);
-  control_array.push_back(432);
-  control_array.push_back(876);
-
-  vector<int> array;
-  array.push_back(4);
-  array.push_back(432);
-  array.push_back(53);
-  array.push_back(238);
-  array.push_back(2);
-  array.push_back(65);
-  array.push_back(165);
-  array.push_back(876);
+  std::vector<int> array;
+  rand_populate_vector(array, 15);
+  std::vector<int> control_array = sorted_vector(array);
 
   InsertionSort(array);
-  assertm(control_array == array, "InsertionSortTest [failed]");
-  cout << "InsertionSortTest [passed]" << endl;
-
+  assert_eq(control_array, array, "InsertionSortTest");
 }
 
 void SelectionSortTest() {
-  using namespace std;
-
-  vector<int> control_array;
-  control_array.push_back(2);
-  control_array.push_back(4);
-  control_array.push_back(53);
-  control_array.push_back(65);
-  control_array.push_back(165);
-  control_array.push_back(238);
-  control_array.push_back(432);
-  control_array.push_back(876);
-
-  vector<int> array;
-  array.push_back(4);
-  array.push_back(432);
-  array.push_back(53);
-  array.push_back(238);
-  array.push_back(2);
-  array.push_back(65);
-  array.push_back(165);
-  array.push_back(876);
+  std::vector<int> array;
+  rand_populate_vector(array, 10);
+  std::vector<int> control_array = sorted_vector(array);
 
   SelectionSort(array);
-  assertm(control_array == array, "SelectionSortTest [failed]");
-  cout << "SelectionSortTest [passed]" << endl;
+  assert_eq(control_array, array, "SelectionSortTest");
 
 }
 void HeapSortTest() {
-  using namespace std;
-
-  vector<int> control_array;
-  control_array.push_back(2);
-  control_array.push_back(4);
-  control_array.push_back(53);
-  control_array.push_back(65);
-  control_array.push_back(165);
-  control_array.push_back(238);
-  control_array.push_back(876);
-
-  vector<int> array;
-  array.push_back(4);
-  array.push_back(53);
-  array.push_back(238);
-  array.push_back(2);
-  array.push_back(65);
-  array.push_back(165);
-  array.push_back(876);
+  std::vector<int> array;
+  rand_populate_vector(array, 5);
+  std::vector<int> control_array = sorted_vector(array);
 
   HeapSort(array, array.size());
-  assertm(control_array == array, "HeapSortTest [failed]");
-  cout << "HeapSortTest [passed]" << endl;
+  assert_eq(control_array, array, "HeapSortTest");
 }
 
 void MergeSortTest() {
-  using namespace std;
-
-  vector<int> control_array;
-  control_array.push_back(2);
-  control_array.push_back(4);
-  control_array.push_back(53);
-  control_array.push_back(65);
-  control_array.push_back(165);
-  control_array.push_back(238);
-  control_array.push_back(432);
-  control_array.push_back(876);
-
-  vector<int> array;
-  array.push_back(4);
-  array.push_back(432);
-  array.push_back(53);
-  array.push_back(238);
-  array.push_back(2);
-  array.push_back(65);
-  array.push_back(165);
-  array.push_back(876);
+  std::vector<int> array;
+  rand_populate_vector(array, 8);
+  std::vector<int> control_array = sorted_vector(array);
 
   MergeSort(array, 0, array.size() - 1);
-  assertm(control_array == array, "MergeSortTest [failed]");
-  cout << "MergeSortTest [passed]" << endl;
+  assert_eq(control_array, array, "MergeSortTest");
 }
 
-void QuickSortTest() {}
+void QuickSortTest() {
+  std::vector<int> array;
+  rand_populate_vector(array, 8);
+  std::vector<int> control_array = sorted_vector(array);
+
+  QuickSort(array, 0, array.size() - 1);
+  assert_eq(control_array, array, "QuickSortTest");
+}
 void RadixSortTest() {}
 void BucketSortTest() {}

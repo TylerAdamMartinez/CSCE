@@ -119,6 +119,33 @@ void Merge(std::vector<int> & array, int begin, int middle, int end) {
 
 }
 
-void QuickSort(std::vector<int> &) { std::cout << "QuickSort" << std::endl; }
+void QuickSort(std::vector<int> & array, int low, int high) {
+  if (high > low) {
+    int partition_index = QuickSortPartition(array, low, high);
+    QuickSort(array, low, partition_index - 1);
+    QuickSort(array, partition_index + 1, high);
+  }
+}
+
+int QuickSortPartition(std::vector<int> & array, int low, int high) {
+  int pivot = array.at(high);
+  int index = low - 1;
+  int temp;
+
+  for (int i = low; i < high; i++) {
+    if (array.at(i) < pivot) {
+      index++;
+      temp = array.at(index);
+      array.at(index) = array.at(i);
+      array.at(i) = temp;
+    }
+  }
+
+  temp = array.at(index + 1);
+  array.at(index + 1) = array.at(high);
+  array.at(high) = temp;
+  return index + 1;
+}
+
 void RadixSort(std::vector<int> &) { std::cout << "RadixSort" << std::endl; }
 void BucketSort(std::vector<int> &) { std::cout << "BucketSort" << std::endl; }
