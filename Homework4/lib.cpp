@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 // custom header file for sorting funcs
 #include "lib.h"
@@ -183,4 +184,22 @@ void RadixSortCount(std::vector<int> & array, int index) {
   }
 }
 
-void BucketSort(std::vector<int> &) { std::cout << "BucketSort" << std::endl; }
+void BucketSort(std::vector<int> & array) {
+  std::vector<int> Bucket[array.size()];
+
+  for(int i = 0; i < array.size(); i++) {
+    int Bucket_Index = array.at(i) % array.size();
+    Bucket[Bucket_Index].push_back(array.at(i));
+  }
+
+  for (int i = 0; i < array.size(); i++) {
+    std::sort(Bucket[i].begin(), Bucket[i].end());
+  }
+
+  int index = 0;
+  for (int i = 0; i < array.size(); i++) {
+    for (int j = 0; j < Bucket[i].size(); j++) {
+      array.at(index++) = Bucket[i].at(j);
+    }
+  }
+}

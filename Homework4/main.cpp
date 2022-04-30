@@ -25,7 +25,7 @@ int main() {
   cout << "orginal array" << endl;
   print(array);
 
-  RadixSort(array);
+  BucketSort(array);
   std::cout << "array after RadixSort" << std::endl;
   print(array);
   return 0;
