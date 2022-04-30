@@ -7,4 +7,5 @@ void Merge(std::vector<int> &, int, int, int);
 void QuickSort(std::vector<int> &, int, int);
 int QuickSortPartition(std::vector<int> &, int, int);
 void RadixSort(std::vector<int> &);
+void RadixSortCount(std::vector<int> &, int);
 void BucketSort(std::vector<int> &);

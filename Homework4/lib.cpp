@@ -147,5 +147,36 @@ int QuickSortPartition(std::vector<int> & array, int low, int high) {
   return index + 1;
 }
 
-void RadixSort(std::vector<int> &) { std::cout << "RadixSort" << std::endl; }
+void RadixSort(std::vector<int> & array) {
+  int max = array.at(0);
+  const int d = 1000;
+
+  for (int i = 1; i < array.size(); i++) {
+    if (array.at(i) > max) { max = array.at(i); }
+  }
+
+  for (int i = 1; max / i > 0; i *= d) {
+    RadixSortCount(array, i);
+  }
+}
+
+void RadixSortCount(std::vector<int> & array, int index) {
+  const int d = 1000;
+  std::vector <int> Output(array.size());
+  std::vector <int> Count(d);
+
+  for (int i = 0; i < array.size(); i++) {
+    Count.at((array.at(i) / index) % d)++;
+  }
+
+  for (int i = 1; i < 10; i++) {
+    Output.at(Count.at((array.at(i) / index) % d) - 1) = array.at(i);
+    Count.at((array.at(i) / index) % d)--;
+  }
+
+  for (int i = 0; i < array.size(); i++) {
+    array.at(i) = Output.at(i);
+  }
+}
+
 void BucketSort(std::vector<int> &) { std::cout << "BucketSort" << std::endl; }

@@ -18,19 +18,22 @@ int main() {
   array.push_back(65);
   array.push_back(165);
   array.push_back(876);
+  array.push_back(976);
+  array.push_back(376);
+  array.push_back(476);
 
   cout << "orginal array" << endl;
   print(array);
 
-  QuickSort(array, 0, array.size() - 1);
-  std::cout << "array after QuickSort" << std::endl;
+  RadixSort(array);
+  std::cout << "array after RadixSort" << std::endl;
   print(array);
   return 0;
 }
 
 void print(std::vector<int> & array) {
   for(int i = 0; i < array.size(); i++ ) {
-    std::cout << array.at(i) << std::endl;
+    std::cout << i << ": " << array.at(i) << std::endl;
   }
 }
 
