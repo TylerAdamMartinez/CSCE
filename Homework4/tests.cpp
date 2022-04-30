@@ -28,7 +28,7 @@ int main() {
 
 void rand_populate_vector(std::vector<int> & array) {
   srand(time(NULL));
-  for (int i = 0; i < 100; i++) {
+  for (int i = 0; i < 10; i++) {
     array.push_back(rand() % hundread_thousand + 1);
   }
 }
@@ -45,13 +45,13 @@ void assert_eq(std::vector<int> & array0, std::vector<int> & array1, std::string
   else {
     std::cout << testName <<  " [failed]" << std::endl;
 
-    std::cout << "Array0" << std::endl;
+    std::cout << "control_array" << std::endl;
     for(std::vector<int>::iterator it = array0.begin(); it != array0.end(); it++) {
       std::cout << *it << ", ";
     }
     std::cout << std::endl;
 
-    std::cout << "Array1" << std::endl;
+    std::cout << "after " << testName << " array" << std::endl;
     for(std::vector<int>::iterator it = array1.begin(); it != array1.end(); it++) {
       std::cout << *it << ", ";
     }
@@ -87,4 +87,7 @@ void RadixSortTest(std::vector<int> control_array, std::vector<int> array) {
   RadixSort(array);
   assert_eq(control_array, array, "RadixSortTest");
 }
-void BucketSortTest(std::vector<int> control_array, std::vector<int> array) {}
+void BucketSortTest(std::vector<int> control_array, std::vector<int> array) {
+  BucketSort(array);
+  assert_eq(control_array, array, "BucketSortTest");
+}
