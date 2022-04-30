@@ -83,5 +83,8 @@ void QuickSortTest(std::vector<int> control_array, std::vector<int> array) {
   QuickSort(array, 0, array.size() - 1);
   assert_eq(control_array, array, "QuickSortTest");
 }
-void RadixSortTest(std::vector<int> control_array, std::vector<int> array) {}
+void RadixSortTest(std::vector<int> control_array, std::vector<int> array) {
+  RadixSort(array);
+  assert_eq(control_array, array, "RadixSortTest");
+}
 void BucketSortTest(std::vector<int> control_array, std::vector<int> array) {}
