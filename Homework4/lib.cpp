@@ -20,7 +20,19 @@ void InsertionSort(std::vector<int> & array) {
   }
 }
 
-void SelectionSort(std::vector<int> &) { std::cout << "SelectionSort" << std::endl; }
+void SelectionSort(std::vector<int> & array) {
+  int min_index, temp;
+
+  for (int i = 0; i < array.size() - 1; i++) {
+    min_index = i;
+    for (int j = i + 1; j < array.size(); j++) {
+      if (array.at(j) < array.at(min_index)) { min_index = j; }
+    }
+    temp = array.at(min_index);
+    array.at(min_index) = array.at(i);
+    array.at(i) = temp;
+  }
+}
 
 void HeapSort(std::vector<int> & array, int heapSize) {
   for (int i = heapSize / 2 - 1; i >=0; i--) {
@@ -68,17 +80,18 @@ void MergeSort(std::vector<int> & array, int begin, int end) {
 void Merge(std::vector<int> & array, int begin, int middle, int end) {
   int left = middle - begin + 1;
   int right = end - middle;
-  std::vector<int> leftArray(left);
-  std::vector<int> rightArray(right);
+  std::vector<int> leftArray;
+  std::vector<int> rightArray;
 
   for (int i = 0; i < left; i++) {
-    leftArray.at(i) = array.at(left + i);
+    leftArray.push_back(array.at(left + i));
   }
   for (int i = 0; i < right; i++) {
-    rightArray.at(i) = array.at(middle + 1 + i);
+    rightArray.push_back(array.at(middle + 1 + i));
   }
 
-  int leftArrayIndex = 0, rightArrayIndex = 0;
+  int leftArrayIndex = 0;
+  int rightArrayIndex = 0;
   int mergedArrayIndex = begin;
 
   while (leftArrayIndex < left && rightArrayIndex < right) {

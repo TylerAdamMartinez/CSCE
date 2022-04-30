@@ -14,6 +14,7 @@ int main() {
 
   InsertionSortTest();
   HeapSortTest();
+  SelectionSortTest();
   MergeSortTest();
   return 0;
 }
@@ -85,12 +86,10 @@ void HeapSortTest() {
   control_array.push_back(65);
   control_array.push_back(165);
   control_array.push_back(238);
-  control_array.push_back(432);
   control_array.push_back(876);
 
   vector<int> array;
   array.push_back(4);
-  array.push_back(432);
   array.push_back(53);
   array.push_back(238);
   array.push_back(2);
@@ -98,7 +97,7 @@ void HeapSortTest() {
   array.push_back(165);
   array.push_back(876);
 
-  HeapSort(array, array.size() - 1);
+  HeapSort(array, array.size());
   assertm(control_array == array, "HeapSortTest [failed]");
   cout << "HeapSortTest [passed]" << endl;
 }
