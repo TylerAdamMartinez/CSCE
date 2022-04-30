@@ -152,7 +152,7 @@ void RadixSort(std::vector<int> & array) {
   const int d = 1000;
 
   for (int i = 1; i < array.size(); i++) {
-    if (array.at(i) > max) { max = array.at(i); }
+    if (max < array.at(i)) { max = array.at(i); }
   }
 
   for (int i = 1; max / i > 0; i *= d) {
@@ -169,7 +169,11 @@ void RadixSortCount(std::vector<int> & array, int index) {
     Count.at((array.at(i) / index) % d)++;
   }
 
-  for (int i = 1; i < 10; i++) {
+  for (int i = 1; i < d; i++) {
+    Count.at(i) += Count.at(i - 1);
+  }
+
+  for (int i = array.size() - 1; i >= 0; i--) {
     Output.at(Count.at((array.at(i) / index) % d) - 1) = array.at(i);
     Count.at((array.at(i) / index) % d)--;
   }
