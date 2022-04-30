@@ -5,27 +5,31 @@
 // custom header files for sorting & unit tests funcs
 #include "lib.h"
 #include "tests.h"
-// testing purposes
-#include <cassert>
-#define assertm(exp, msg) assert(((void)msg, exp))
+// define consts
+#define hundread_thousand 100000
+#define one_million 1000000
 
 int main() {
   std::cout << "homework 4 unit tests" << std::endl;
 
-  InsertionSortTest();
-  SelectionSortTest();
-  QuickSortTest();
-  MergeSortTest();
-  HeapSortTest();
-  RadixSortTest();
-  BucketSortTest();
+  std::vector<int> array;
+  rand_populate_vector(array);
+  std::vector<int> control_array = sorted_vector(array);
+
+  InsertionSortTest(control_array, array);
+  SelectionSortTest(control_array, array);
+  QuickSortTest(control_array, array);
+  MergeSortTest(control_array, array);
+  HeapSortTest(control_array, array);
+  RadixSortTest(control_array, array);
+  BucketSortTest(control_array, array);
   return 0;
 }
 
-void rand_populate_vector(std::vector<int> & array, int size) {
+void rand_populate_vector(std::vector<int> & array) {
   srand(time(NULL));
-  for (int i = 0; i < size; i++) {
-    array.push_back(rand() % 100 + 1);
+  for (int i = 0; i < 100; i++) {
+    array.push_back(rand() % hundread_thousand + 1);
   }
 }
 
@@ -55,49 +59,29 @@ void assert_eq(std::vector<int> & array0, std::vector<int> & array1, std::string
   }
 }
 
-void InsertionSortTest() {
-  std::vector<int> array;
-  rand_populate_vector(array, 15);
-  std::vector<int> control_array = sorted_vector(array);
-
+void InsertionSortTest(std::vector<int> control_array, std::vector<int> array) {
   InsertionSort(array);
   assert_eq(control_array, array, "InsertionSortTest");
 }
 
-void SelectionSortTest() {
-  std::vector<int> array;
-  rand_populate_vector(array, 10);
-  std::vector<int> control_array = sorted_vector(array);
-
+void SelectionSortTest(std::vector<int> control_array, std::vector<int> array) {
   SelectionSort(array);
   assert_eq(control_array, array, "SelectionSortTest");
 
 }
-void HeapSortTest() {
-  std::vector<int> array;
-  rand_populate_vector(array, 5);
-  std::vector<int> control_array = sorted_vector(array);
-
+void HeapSortTest(std::vector<int> control_array, std::vector<int> array) {
   HeapSort(array, array.size());
   assert_eq(control_array, array, "HeapSortTest");
 }
 
-void MergeSortTest() {
-  std::vector<int> array;
-  rand_populate_vector(array, 8);
-  std::vector<int> control_array = sorted_vector(array);
-
+void MergeSortTest(std::vector<int> control_array, std::vector<int> array) {
   MergeSort(array, 0, array.size() - 1);
   assert_eq(control_array, array, "MergeSortTest");
 }
 
-void QuickSortTest() {
-  std::vector<int> array;
-  rand_populate_vector(array, 8);
-  std::vector<int> control_array = sorted_vector(array);
-
+void QuickSortTest(std::vector<int> control_array, std::vector<int> array) {
   QuickSort(array, 0, array.size() - 1);
   assert_eq(control_array, array, "QuickSortTest");
 }
-void RadixSortTest() {}
-void BucketSortTest() {}
+void RadixSortTest(std::vector<int> control_array, std::vector<int> array) {}
+void BucketSortTest(std::vector<int> control_array, std::vector<int> array) {}

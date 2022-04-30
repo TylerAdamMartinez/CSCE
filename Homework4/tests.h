@@ -1,10 +1,10 @@
-void rand_populate_vector(std::vector<int> &, int);
+void rand_populate_vector(std::vector<int> &);
 std::vector<int> sorted_vector(std::vector<int>);
 void assert_eq(std::vector<int> & array0, std::vector<int> & array1, std::string testName);
-void InsertionSortTest();
-void SelectionSortTest();
-void HeapSortTest();
-void MergeSortTest();
-void QuickSortTest();
-void RadixSortTest();
-void BucketSortTest();
+void InsertionSortTest(std::vector<int>, std::vector<int>);
+void SelectionSortTest(std::vector<int>, std::vector<int>);
+void HeapSortTest(std::vector<int>, std::vector<int>);
+void MergeSortTest(std::vector<int>, std::vector<int>);
+void QuickSortTest(std::vector<int>, std::vector<int>);
+void RadixSortTest(std::vector<int>, std::vector<int>);
+void BucketSortTest(std::vector<int>, std::vector<int>);
