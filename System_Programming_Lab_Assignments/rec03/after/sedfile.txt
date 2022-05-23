@@ -1,0 +1,25 @@
+total 104
+Rrw------- 1 tam0301 tam0301 1909 Feb  9 09:44 bad-habits-by-ed-sheeran.txt
+Rrw------- 1 tam0301 tam0301 1262 Feb  9 09:42 blinding-lights-by-the-weeknd.txt
+Rrw------- 1 tam0301 tam0301 5090 Feb  9 10:18 BodySignals.m
+Rrw------- 1 tam0301 tam0301 2576 Feb  9 10:17 BodySignals.py
+this is a new line
+Rrw------- 1 tam0301 tam0301 2101 Feb  9 09:22 butter-by-bts.txt
+Rrw------- 1 tam0301 tam0301 7044 Feb  9 10:14 dashboard.py
+Rrw------- 1 tam0301 tam0301  981 Feb  9 10:19 DCMotor.ino
+Rrw------- 1 tam0301 tam0301 1951 Feb  9 09:50 deja-vu-.initial-d.-by-Tsuko-G.txt
+Rrw------- 1 tam0301 tam0301 2221 Feb  9 10:05 get_photos.rs
+Rrw------- 1 tam0301 tam0301 4954 Feb  9 10:16 graphing.py
+Rrw------- 1 tam0301 tam0301  727 Feb  9 10:07 header.ejs
+Rrw------- 1 tam0301 tam0301 4469 Feb  9 10:06 index.ejs
+Rrw------- 1 tam0301 tam0301  243 Feb  9 09:59 index.html
+Rrw------- 1 tam0301 tam0301  992 Feb  9 10:15 Market_Data.py
+Rrw------- 1 tam0301 tam0301 5815 Feb  9 10:16 plotting.py
+Rrw------- 1 tam0301 tam0301 3864 Feb  9 10:03 README.md
+Rrw------- 1 tam0301 tam0301  683 Feb  9 10:10 rec01.rs
+Rrw------- 1 tam0301 tam0301 1207 Feb  9 10:12 rec02.rs
+Rrw------- 1 tam0301 tam0301    0 Feb  9 11:58 rec03
+Rrw------- 1 tam0301 tam0301    0 Feb  9 11:58 sedfile.txt
+Rrw------- 1 tam0301 tam0301 1389 Feb  9 10:19 ServoMotor.ino
+Rrw------- 1 tam0301 tam0301 1688 Feb  9 10:20 StepperMotor.ino
+Rrw------- 1 tam0301 tam0301 2741 Feb  9 09:46 up-by-cardi-b.txt

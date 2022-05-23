@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <%- include ("../partials/header.ejs") %>
+    <script src="/js/datetime.js" defer></script>
+
+    <script type="module" src="/js/Github_Request.js"></script>
+    <script type="module" src="/js/Github_Repos.js"></script>
+
+    <script type="module" src="/js/OpenWeather_API_Key.js"></script>
+    <script type="module" src="/js/OpenWeather.js"></script>
+</head>
+<body>
+    <%- include ("../partials/topBar.ejs") %> 
+    <div class="container">
+        <section id="mainSection">
+            <h1>Tyler&nbsp;Adam&nbsp;Martinez</h1>  
+            <hr>
+        </section>
+        <section id="openWeather">
+            <div class="openWeatherImg">
+                <img id="openWeatherImage" src="/weather_icons/01d.svg" alt="image of clear sky" role="img" width="500" height="500">
+            </div>
+            <div class="openWeatherTimeAndLocation">
+                <h2><time></time></h2>
+                <h2 id="clock" onload="showTime()"></h2>
+                <h4>Keller, TX</h4>           
+            </div>
+            <div class="openWeatherDescription">
+                <strong><h2 id="openWeatherCurrentTemperature">temp</h2></strong>
+                <h4 id="openWeatherMinMaxTemperature">min & max</h4>
+                <p id="openWeatherCurrentDescription">description</p>                
+            </div>
+        </section>
+        <section id="About-Me">
+            <div class="About-MeInfo">
+                <h2 id="About-MeTitle">About Me</h2>
+                <div id="github">
+                    <div id="githubImg">
+                        <div id="hi-there">
+                            <p>Hey there!</p>
+                            <img src="/assets/images/WAVING_HAND_TRANSPARENT_(COMPRESSED)(OPTIMIZED)gif.gif" alt="waving hand gif" width="64px" height="64px">                    
+                        </div>
+                        <img id="githubAvatar" src="/assets/images/github_avatar.jpeg" alt="tyleradammartinez github avatar" width="230" height="230" srcset="">
+                    </div>
+                    <div id="githubInfo">
+                        <p>I am a Junior at the University of North Texas majoring in Computer Science. I am focusing on my studies while building robots with <a href="https://www.untrobotics.com/">UNT Robotics</a>, organizing <a href="https://unthackathon.com/">HackUNT</a>, and teaching programming to High School Students for <a href="https://www.codestreamstudios.com/">CodeStream Studios</a>. As you can see I write software for work and my schoolwork. You can click the link to view <a href="/assets/files/Resume.pdf">my resume.</a></p>
+                        <p>Github: <a href="https://github.com/TylerAdamMartinez">tyleradammartinez</a></p>
+                        <p>Company: <a href="https://www.codestreamstudios.com/">CodeStream Studios, LLC</a></p>
+                        <p>LinkedIn: <a href="https://www.linkedin.com/in/tyleradammartinez/">tyleradammartinez</a></p>
+                        <p>Email: <a href="mailto:tyleradammartinez@outlook.com">tyleradammartinez@outlook.com</a></p>
+                    </div>
+                </div>
+            </div>
+            <ul id="General-Experience">
+                <li class="h4">General Experience</li>
+                <li>👨🏻‍🏫 Coding Instructor <br>(3 months)</li>
+                <li>👨🏻‍💼 HackUNT Officer <br>(3 months)</li>
+                <li>👨🏻‍💻 NTDaily Webmaster <br>(2 years)</li>
+                <li>🙋🏻‍♂️ Robotics Tutor <br>(1 year 10 months)</li>
+                <li>💰 UNT Robotics Treasurer <br>(2 years)</li>
+                <li>🤖 UNT Robotics Competition Robotics <br>(4 years)</li>
+            </ul>
+            <ul id="General-Knowledge">
+                <li class="h4">General Knowledge</li>
+                <li>ssh</li>
+                <li>git</li>
+                <li>sftp/ftp</li>
+                <li>matlab</li>
+                <li>labView</li>
+            </ul>
+            <ul id="Programming-Knowledge">
+                <li class="h4">Programming Knowledge</li>
+                <li>html 5</li>
+                <li>css 3</li>
+                <li>javascript</li>
+                <li>react.js</li>
+                <li>php</li>
+                <li>c</li>
+                <li>c++</li>
+                <li>python</li>
+            </ul>
+        </section>
+    </div>
+    <%- include ("../partials/footer.ejs") %>
+</body>
+</html>

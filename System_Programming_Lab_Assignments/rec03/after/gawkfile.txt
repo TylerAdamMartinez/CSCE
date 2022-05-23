@@ -1,0 +1,185 @@
+UID        PID  PPID  C STIME TTY          TIME CMD
+root         1     0  0 Jan12 ?        00:00:29 /sbin/init splash
+root         2     0  0 Jan12 ?        00:00:00 [kthreadd]
+root         4     2  0 Jan12 ?        00:00:00 [kworker/0:0H]
+root         6     2  0 Jan12 ?        00:00:00 [mm_percpu_wq]
+root         7     2  0 Jan12 ?        00:00:01 [ksoftirqd/0]
+root         8     2  0 Jan12 ?        00:03:05 [rcu_sched]
+root         9     2  0 Jan12 ?        00:00:00 [rcu_bh]
+root        10     2  0 Jan12 ?        00:00:00 [migration/0]
+root        11     2  0 Jan12 ?        00:00:03 [watchdog/0]
+root        12     2  0 Jan12 ?        00:00:00 [cpuhp/0]
+root        13     2  0 Jan12 ?        00:00:00 [cpuhp/1]
+root        14     2  0 Jan12 ?        00:00:03 [watchdog/1]
+root        15     2  0 Jan12 ?        00:00:00 [migration/1]
+root        16     2  0 Jan12 ?        00:00:30 [ksoftirqd/1]
+root        18     2  0 Jan12 ?        00:00:00 [kworker/1:0H]
+root        19     2  0 Jan12 ?        00:00:00 [cpuhp/2]
+root        20     2  0 Jan12 ?        00:00:03 [watchdog/2]
+root        21     2  0 Jan12 ?        00:00:00 [migration/2]
+root        22     2  0 Jan12 ?        00:00:00 [ksoftirqd/2]
+root        24     2  0 Jan12 ?        00:00:00 [kworker/2:0H]
+root        25     2  0 Jan12 ?        00:00:00 [kdevtmpfs]
+root        26     2  0 Jan12 ?        00:00:00 [netns]
+root        27     2  0 Jan12 ?        00:00:00 [rcu_tasks_kthre]
+root        28     2  0 Jan12 ?        00:00:00 [kauditd]
+root        32     2  0 Jan12 ?        00:00:02 [khungtaskd]
+root        33     2  0 Jan12 ?        00:00:00 [oom_reaper]
+root        34     2  0 Jan12 ?        00:00:00 [writeback]
+root        35     2  0 Jan12 ?        00:00:00 [kcompactd0]
+root        36     2  0 Jan12 ?        00:00:00 [ksmd]
+root        37     2  0 Jan12 ?        00:00:00 [khugepaged]
+root        38     2  0 Jan12 ?        00:00:00 [crypto]
+root        39     2  0 Jan12 ?        00:00:00 [kintegrityd]
+root        40     2  0 Jan12 ?        00:00:00 [kblockd]
+root        41     2  0 Jan12 ?        00:00:00 [ata_sff]
+root        42     2  0 Jan12 ?        00:00:00 [md]
+root        43     2  0 Jan12 ?        00:00:00 [edac-poller]
+root        44     2  0 Jan12 ?        00:00:00 [devfreq_wq]
+root        45     2  0 Jan12 ?        00:00:00 [watchdogd]
+root        48     2  0 Jan12 ?        00:00:00 [kswapd0]
+root        49     2  0 Jan12 ?        00:00:00 [kworker/u7:0]
+root        50     2  0 Jan12 ?        00:00:00 [ecryptfs-kthrea]
+root        92     2  0 Jan12 ?        00:00:00 [kthrotld]
+root        93     2  0 Jan12 ?        00:00:00 [acpi_thermal_pm]
+root        95     2  0 Jan12 ?        00:00:00 [scsi_eh_0]
+root        96     2  0 Jan12 ?        00:00:00 [scsi_tmf_0]
+root        97     2  0 Jan12 ?        00:00:00 [scsi_eh_1]
+root        98     2  0 Jan12 ?        00:00:00 [scsi_tmf_1]
+root       102     2  0 Jan12 ?        00:00:00 [ipv6_addrconf]
+root       111     2  0 Jan12 ?        00:00:00 [kstrp]
+root       128     2  0 Jan12 ?        00:00:00 [charger_manager]
+root       186     2  0 Jan12 ?        00:00:00 [mpt_poll_0]
+root       187     2  0 Jan12 ?        00:00:00 [mpt/0]
+root       190     2  0 Jan12 ?        00:00:17 [kworker/1:1H]
+root       191     2  0 Jan12 ?        00:00:00 [scsi_eh_2]
+root       192     2  0 Jan12 ?        00:00:00 [scsi_tmf_2]
+root       193     2  0 Jan12 ?        00:00:00 [ttm_swap]
+root       194     2  0 Jan12 ?        00:00:00 [irq/16-vmwgfx]
+root       196     2  0 Jan12 ?        00:00:10 [kworker/0:1H]
+root       266     2  0 Jan12 ?        00:00:24 [jbd2/sda1-8]
+root       267     2  0 Jan12 ?        00:00:00 [ext4-rsv-conver]
+root       303     2  0 Jan12 ?        00:00:02 [kworker/2:1H]
+root       314     1  0 Jan12 ?        00:06:53 /lib/systemd/systemd-journald
+root       322     2  0 Jan12 ?        00:00:00 [rpciod]
+root       323     2  0 Jan12 ?        00:00:00 [xprtiod]
+root       335     1  0 Jan12 ?        00:00:03 /lib/systemd/systemd-udevd
+root       351     1  0 Jan12 ?        00:00:00 vmware-vmblock-fuse /run/vmblock-fuse -o rw,subtype=vmware-vmblock,default_permissions,allow_other,dev,suid
+root       515     1  0 Jan12 ?        00:00:03 /sbin/rpcbind -f -w
+systemd+   516     1  0 Jan12 ?        00:00:22 /lib/systemd/systemd-resolved
+systemd+   517     1  0 Jan12 ?        00:00:03 /lib/systemd/systemd-timesyncd
+root       661     1  0 Jan12 ?        00:00:00 /usr/bin/VGAuthService
+root       667     1  0 Jan12 ?        00:24:40 /usr/bin/vmtoolsd
+root       681     1  0 Jan12 ?        00:01:09 /usr/lib/accountsservice/accounts-daemon
+root       684     1  0 Jan12 ?        00:00:08 /usr/lib/udisks2/udisksd
+root       691     1  0 Jan12 ?        00:00:04 /lib/systemd/systemd-logind
+daemon     694     1  0 Jan12 ?        00:00:00 /usr/sbin/atd -f
+root       697     1  0 Jan12 ?        00:00:00 /usr/sbin/ModemManager --filter-policy=strict
+root       736     1  0 Jan12 ?        00:00:00 /usr/sbin/acpid
+root       751     1  0 Jan12 ?        00:01:08 /usr/sbin/irqbalance --foreground
+message+   755     1  0 Jan12 ?        00:00:23 /usr/bin/dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+root       771     1  0 Jan12 ?        00:00:07 /sbin/wpa_supplicant -u -s -O /run/wpa_supplicant
+root       772     1  0 Jan12 ?        00:00:01 /usr/sbin/NetworkManager --no-daemon
+root       773     1  0 Jan12 ?        00:00:00 /usr/bin/python3 /usr/bin/networkd-dispatcher --run-startup-triggers
+syslog     774     1  0 Jan12 ?        00:00:58 /usr/sbin/rsyslogd -n
+root       776     1  0 Jan12 ?        00:00:04 /usr/sbin/cron -f
+root       970     1  6 Feb06 ?        05:05:17 python /usr/sbin/denyhosts --daemon --purge --config=/etc/denyhosts.conf
+root       992     1  0 Jan12 ?        00:00:00 /usr/bin/python3 /usr/share/unattended-upgrades/unattended-upgrade-shutdown --wait-for-signal
+root      1031     1  0 Jan12 tty1     00:00:00 /sbin/agetty -o -p -- \u --noclear tty1 linux
+avahi     1033     1  0 Jan12 ?        00:00:28 avahi-daemon: running [cse05.local]
+avahi     1034  1033  0 Jan12 ?        00:00:00 avahi-daemon: chroot helper
+whoopsie  1036     1  0 Jan12 ?        00:00:00 /usr/bin/whoopsie -f
+root      1038     1  0 Jan12 ?        00:01:18 /usr/sbin/sshd -D
+kernoops  1041     1  0 Jan12 ?        00:00:33 /usr/sbin/kerneloops --test
+kernoops  1044     1  0 Jan12 ?        00:00:33 /usr/sbin/kerneloops
+root      1057     1  0 Jan12 ?        00:00:39 /usr/sbin/automount --pid-file /var/run/autofs.pid
+root      1108     1  0 Jan12 ?        00:00:07 /usr/sbin/console-kit-daemon --no-daemon
+root      1458  1038  0 Feb01 ?        00:00:01 sshd: adb0301 [priv]
+root      1460  1038  0 Feb01 ?        00:00:01 sshd: adb0301 [priv]
+adb0301   1525  1458  0 Feb01 ?        00:00:01 sshd: adb0301@notty
+adb0301   1535  1460  0 Feb01 ?        00:00:01 sshd: adb0301@notty
+adb0301   1536  1525  0 Feb01 ?        00:00:00 /usr/lib/openssh/sftp-server
+adb0301   1537  1535  0 Feb01 ?        00:00:00 /usr/lib/openssh/sftp-server
+root      1581     1  0 Jan12 ?        00:00:00 /bin/bash /usr/share/xdiagnose/failsafeXServer
+root      1592  1581  0 Jan12 ?        00:00:00 xinit /usr/share/xdiagnose/failsafeXinit /etc/X11/xorg.conf.failsafe -- /usr/bin/X -br -once -config /etc/X11/xorg.conf.failsafe -logfile /var/log/Xorg.failsafe.log
+root      1593  1592  0 Jan12 tty2     00:00:00 /usr/lib/xorg/Xorg :0 -br -once -config /etc/X11/xorg.conf.failsafe -logfile /var/log/Xorg.failsafe.log
+root      1604  1592  0 Jan12 ?        00:00:00 /bin/bash /usr/share/xdiagnose/failsafeXinit /etc/X11/xorg.conf.failsafe
+root      1611  1604  0 Jan12 ?        00:00:00 zenity --warning --text <big><b>The system is running in low-graphics mode</b></big>\n\nYour screen, graphics card, and input device settings\ncould not be detected correctly.  You will need to configure these yourself.
+root      1621     1  0 Jan12 ?        00:00:00 dbus-launch --autolaunch 731673155a003ca8c7b0d82a4c75323c --binary-syntax --close-stderr
+root      1622     1  0 Jan12 ?        00:00:00 /usr/bin/dbus-daemon --syslog-only --fork --print-pid 5 --print-address 7 --session
+root      1624     1  0 Jan12 ?        00:00:00 /usr/lib/at-spi2-core/at-spi-bus-launcher
+root      1629  1624  0 Jan12 ?        00:00:00 /usr/bin/dbus-daemon --config-file=/usr/share/defaults/at-spi2/accessibility.conf --nofork --print-address 3
+root      1631     1  0 Jan12 ?        00:00:00 /usr/lib/at-spi2-core/at-spi2-registryd --use-gnome-session
+root      3137  1038  0 Jan31 ?        00:00:01 sshd: cz0056 [priv]
+cz0056    3187  3137  0 Jan31 ?        00:00:14 sshd: cz0056@notty
+cz0056    3188  3187  0 Jan31 ?        00:00:02 /usr/lib/openssh/sftp-server
+root      4335  1038  0 Jan31 ?        00:00:02 sshd: localadmin [priv]
+localad+  4379  4335  0 Jan31 ?        00:00:18 sshd: localadmin@pts/1
+root      4380  1038  0 Jan31 ?        00:00:00 sshd: localadmin [priv]
+localad+  4382  4379  0 Jan31 pts/1    00:00:00 -bash
+localad+  4451  4380  0 Jan31 ?        00:00:00 sshd: localadmin@notty
+localad+  4452  4451  0 Jan31 ?        00:00:00 /usr/lib/openssh/sftp-server
+root      5761     2  0 Feb03 ?        00:00:00 [xfsalloc]
+root      5766     2  0 Feb03 ?        00:00:00 [xfs_mru_cache]
+root      5770     2  0 Feb03 ?        00:00:00 [jfsIO]
+root      5771     2  0 Feb03 ?        00:00:00 [jfsCommit]
+root      5772     2  0 Feb03 ?        00:00:00 [jfsCommit]
+root      5773     2  0 Feb03 ?        00:00:00 [jfsCommit]
+root      5774     2  0 Feb03 ?        00:00:00 [jfsSync]
+root      5818     1  0 Jan13 ?        00:00:08 /usr/lib/packagekit/packagekitd
+root      5923     1  0 00:08 ?        00:00:00 /usr/sbin/cupsd -l
+root      5924     1  0 00:08 ?        00:00:00 /usr/sbin/cups-browsed
+root      6283     1  0 Jan26 ?        00:00:05 /usr/lib/policykit-1/polkitd --no-debug
+root      6524     2  0 00:31 ?        00:00:01 [kworker/2:0]
+root      9523     2  0 Jan13 ?        00:00:00 [nfsiod]
+root     11472     2  0 06:06 ?        00:00:01 [kworker/0:2]
+mg1069   16578     1  0 Feb04 ?        00:00:00 ssh-agent -s
+mg1069   18038     1  0 Feb05 ?        00:00:00 ssh-agent -s
+mg1069   18355     1  0 Feb05 ?        00:00:00 ssh-agent -s
+root     18718     2  0 Jan25 ?        00:00:00 [NFSv4 callback]
+root     21286  1038  0 09:59 ?        00:00:00 sshd: tam0301 [priv]
+tam0301  21325 21286  0 09:59 ?        00:00:00 sshd: tam0301@pts/0
+tam0301  21326 21325  0 09:59 pts/0    00:00:00 -bash
+root     22785     2  0 11:26 ?        00:00:00 [kworker/u6:0]
+root     22861  1038  0 11:33 ?        00:00:00 sshd: mff0033 [priv]
+mff0033  22911 22861  0 11:34 ?        00:00:00 sshd: mff0033@pts/4
+mff0033  22912 22911  0 11:34 pts/4    00:00:00 -bash
+root     23101  1038  0 11:44 ?        00:00:00 sshd: as2411 [priv]
+as2411   23152 23101  0 11:44 ?        00:00:00 sshd: as2411@notty
+as2411   23154 23152  0 11:44 ?        00:00:00 /usr/lib/openssh/sftp-server
+root     23198     2  0 11:47 ?        00:00:00 [kworker/u6:1]
+root     23199  1038  0 11:47 ?        00:00:00 sshd: as2411 [priv]
+as2411   23237 23199  0 11:47 ?        00:00:00 sshd: as2411@pts/5
+as2411   23238 23237  0 11:47 pts/5    00:00:00 -bash
+tam0301  23524 21326  0 11:58 pts/0    00:00:00 script rec03
+tam0301  23525 23524  0 11:58 pts/2    00:00:00 bash -i
+root     23572  1038  0 12:00 ?        00:00:00 sshd: mg1069 [priv]
+root     23585     2  0 12:00 ?        00:00:00 [kworker/1:2]
+root     23614     2  0 12:00 ?        00:00:00 [kworker/2:2]
+mg1069   23635 23572  0 12:00 ?        00:00:00 sshd: mg1069@notty
+mg1069   23636 23635  0 12:00 ?        00:00:00 /usr/lib/openssh/sftp-server
+root     23638  1038  0 12:01 ?        00:00:00 sshd: mg1069 [priv]
+mg1069   23676 23638  0 12:01 ?        00:00:00 sshd: mg1069@pts/3
+mg1069   23677 23676  0 12:01 pts/3    00:00:00 -bash
+root     23720  1038  0 12:02 ?        00:00:00 sshd: tpb0061 [priv]
+root     23750     2  0 12:02 ?        00:00:00 [kworker/0:1]
+tpb0061  23771 23720  0 12:02 ?        00:00:00 sshd: tpb0061@pts/6
+tpb0061  23772 23771  0 12:02 pts/6    00:00:00 -bash
+mg1069   23807 23677  0 12:02 pts/3    00:00:00 ./list
+root     23829     2  0 12:04 ?        00:00:00 [kworker/u6:2]
+root     23841     2  0 12:06 ?        00:00:00 [kworker/1:1]
+root     23896     2  0 12:09 ?        00:00:00 [kworker/0:0]
+root     23919     2  0 12:09 ?        00:00:00 [kworker/2:1]
+root     23926  1038  0 12:09 ?        00:00:00 sshd: tpb0061 [priv]
+tpb0061  23964 23926  0 12:09 ?        00:00:00 sshd: tpb0061@notty
+tpb0061  23965 23964  0 12:09 ?        00:00:00 /usr/lib/openssh/sftp-server
+root     23983  1038  0 12:10 ?        00:00:00 sshd: tpb0061 [priv]
+tpb0061  24021 23983  0 12:10 ?        00:00:00 sshd: tpb0061@notty
+tpb0061  24022 24021  0 12:11 ?        00:00:00 /usr/lib/openssh/sftp-server
+root     24066     2  0 12:12 ?        00:00:00 [kworker/1:0]
+mff0033  24074 22912  0 12:12 pts/4    00:00:00 nano Lab3B.cpp
+tam0301  24076 23525  0 12:12 pts/2    00:00:00 ps -ef
+root     24539  1038  0 Jan25 ?        00:00:02 sshd: adb0301 [priv]
+adb0301  24577 24539  0 Jan25 ?        00:00:03 sshd: adb0301@notty
+adb0301  24578 24577  0 Jan25 ?        00:00:00 /usr/lib/openssh/sftp-server
+statd    28069     1  0 Jan18 ?        00:00:00 /sbin/rpc.statd --no-notify

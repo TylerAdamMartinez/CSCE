@@ -1,0 +1,335 @@
+Script started on 2022-02-09 11:58:17-0600
+]0;tam0301@cse05: ~/CSCE/CSCE3600/Labs/Lab03[01;32mtam0301@cse05[00m:[01;34m~/CSCE/CSCE3600/Labs/Lab03[00m$ ls -a[K; [K[Kl > sedfilex.[K[K.txt
+]0;tam0301@cse05: ~/CSCE/CSCE3600/Labs/Lab03[01;32mtam0301@cse05[00m:[01;34m~/CSCE/CSCE3600/Labs/Lab03[00m$ sed -i :[K"s/^-/R/g" sedfile.txxt 
+]0;tam0301@cse05: ~/CSCE/CSCE3600/Labs/Lab03[01;32mtam0301@cse05[00m:[01;34m~/CSCE/CSCE3600/Labs/Lab03[00m$ sed -n 1, [K10p sedfile.txt 
+total 104
+Rrw------- 1 tam0301 tam0301 1909 Feb  9 09:44 bad-habits-by-ed-sheeran.txt
+Rrw------- 1 tam0301 tam0301 1262 Feb  9 09:42 blinding-lights-by-the-weeknd.txt
+Rrw------- 1 tam0301 tam0301 5090 Feb  9 10:18 BodySignals.m
+Rrw------- 1 tam0301 tam0301 2576 Feb  9 10:17 BodySignals.py
+Rrw------- 1 tam0301 tam0301 2101 Feb  9 09:22 butter-by-bts.txt
+Rrw------- 1 tam0301 tam0301 7044 Feb  9 10:14 dashboard.py
+Rrw------- 1 tam0301 tam0301  981 Feb  9 10:19 DCMotor.ino
+Rrw------- 1 tam0301 tam0301 1951 Feb  9 09:50 deja-vu-.initial-d.-by-Tsuko-G.txt
+Rrw------- 1 tam0301 tam0301 2221 Feb  9 10:05 get_photos.rs
+]0;tam0301@cse05: ~/CSCE/CSCE3600/Labs/Lab03[01;32mtam0301@cse05[00m:[01;34m~/CSCE/CSCE3600/Labs/Lab03[00m$ sed -n 1d sedfile.txt
+]0;tam0301@cse05: ~/CSCE/CSCE3600/Labs/Lab03[01;32mtam0301@cse05[00m:[01;34m~/CSCE/CSCE3600/Labs/Lab03[00m$ vim sedfile.txt 
+[?2004h[?1049h[22;0;0t[?1h=[?2004h[1;52r[?12h[?12l[27m[23m[29m[m[H[2J[?25l[52;1H"sedfile.txt" 24L, 1442C[2;1H▽[6n[2;1H  [1;1H[>c]10;?]11;?[1;1Htotal 104
+Rrw------- 1 tam0301 tam0301 1909 Feb  9 09:44 bad-habits-by-ed-sheerr[3;1Han.txt
+Rrw------- 1 tam0301 tam0301 1262 Feb  9 09:42 blinding-lights-by-thee[5;1H-weeknd.txt
+Rrw------- 1 tam0301 tam0301 5090 Feb  9 10:18 BodySignals.m
+Rrw------- 1 tam0301 tam0301 2576 Feb  9 10:17 BodySignals.py
+Rrw------- 1 tam0301 tam0301 2101 Feb  9 09:22 butter-by-bts.txt
+Rrw------- 1 tam0301 tam0301 7044 Feb  9 10:14 dashboard.py
+Rrw------- 1 tam0301 tam0301  981 Feb  9 10:19 DCMotor.ino
+Rrw------- 1 tam0301 tam0301 1951 Feb  9 09:50 deja-vu-.initial-d.-byy[12;1H-Tsuko-G.txt
+Rrw------- 1 tam0301 tam0301 2221 Feb  9 10:05 get_photos.rs
+Rrw------- 1 tam0301 tam0301 4954 Feb  9 10:16 graphing.py
+Rrw------- 1 tam0301 tam0301  727 Feb  9 10:07 header.ejs
+Rrw------- 1 tam0301 tam0301 4469 Feb  9 10:06 index.ejs
+Rrw------- 1 tam0301 tam0301  243 Feb  9 09:59 index.html
+Rrw------- 1 tam0301 tam0301  992 Feb  9 10:15 Market_Data.py
+Rrw------- 1 tam0301 tam0301 5815 Feb  9 10:16 plotting.py
+Rrw------- 1 tam0301 tam0301 3864 Feb  9 10:03 README.md
+Rrw------- 1 tam0301 tam0301  683 Feb  9 10:10 rec01.rs
+Rrw------- 1 tam0301 tam0301 1207 Feb  9 10:12 rec02.rs
+Rrw------- 1 tam0301 tam0301    0 Feb  9 11:58 rec03
+Rrw------- 1 tam0301 tam0301    0 Feb  9 11:58 sedfile.txt
+Rrw------- 1 tam0301 tam0301 1389 Feb  9 10:19 ServoMotor.ino
+Rrw------- 1 tam0301 tam0301 1688 Feb  9 10:20 StepperMotor.ino
+Rrw------- 1 tam0301 tam0301 2741 Feb  9 09:46 up-by-cardi-b.txt
+[94m~                                                                    [29;1H~                                                                    [30;1H~                                                                    [31;1H~                                                                    [32;1H~                                                                    [33;1H~                                                                    [34;1H~                                                                    [35;1H~                                                                    [36;1H~                                                                    [37;1H~                                                                    [38;1H~                                                                    [39;1H~                                                                    [40;1H~                                                                    [41;1H~                                                                    [42;1H~                                                                    [43;1H~                                                                    [44;1H~                                                                    [45;1H~                                                                    [46;1H~                                                                    [47;1H~                                                                    [48;1H~                                                                    [49;1H~                                                                    [50;1H~                                                                    [51;1H~                                                                    [m[52;52H20,1[10CAll[23;1H[?25hP+q436f\P+q6b75\P+q6b64\P+q6b72\P+q6b6c\P+q2332\P+q2334\P+q2569\P+q2a37\P+q6b31\[27m[23m[29m[m[H[2J[?25l[1;1Htotal 104
+Rrw------- 1 tam0301 tam0301 1909 Feb  9 09:44 bad-habits-by-ed-sheerr[3;1Han.txt
+Rrw------- 1 tam0301 tam0301 1262 Feb  9 09:42 blinding-lights-by-thee[5;1H-weeknd.txt
+Rrw------- 1 tam0301 tam0301 5090 Feb  9 10:18 BodySignals.m
+Rrw------- 1 tam0301 tam0301 2576 Feb  9 10:17 BodySignals.py
+Rrw------- 1 tam0301 tam0301 2101 Feb  9 09:22 butter-by-bts.txt
+Rrw------- 1 tam0301 tam0301 7044 Feb  9 10:14 dashboard.py
+Rrw------- 1 tam0301 tam0301  981 Feb  9 10:19 DCMotor.ino
+Rrw------- 1 tam0301 tam0301 1951 Feb  9 09:50 deja-vu-.initial-d.-byy[12;1H-Tsuko-G.txt
+Rrw------- 1 tam0301 tam0301 2221 Feb  9 10:05 get_photos.rs
+Rrw------- 1 tam0301 tam0301 4954 Feb  9 10:16 graphing.py
+Rrw------- 1 tam0301 tam0301  727 Feb  9 10:07 header.ejs
+Rrw------- 1 tam0301 tam0301 4469 Feb  9 10:06 index.ejs
+Rrw------- 1 tam0301 tam0301  243 Feb  9 09:59 index.html
+Rrw------- 1 tam0301 tam0301  992 Feb  9 10:15 Market_Data.py
+Rrw------- 1 tam0301 tam0301 5815 Feb  9 10:16 plotting.py
+Rrw------- 1 tam0301 tam0301 3864 Feb  9 10:03 README.md
+Rrw------- 1 tam0301 tam0301  683 Feb  9 10:10 rec01.rs
+Rrw------- 1 tam0301 tam0301 1207 Feb  9 10:12 rec02.rs
+Rrw------- 1 tam0301 tam0301    0 Feb  9 11:58 rec03
+Rrw------- 1 tam0301 tam0301    0 Feb  9 11:58 sedfile.txt
+Rrw------- 1 tam0301 tam0301 1389 Feb  9 10:19 ServoMotor.ino
+Rrw------- 1 tam0301 tam0301 1688 Feb  9 10:20 StepperMotor.ino
+Rrw------- 1 tam0301 tam0301 2741 Feb  9 09:46 up-by-cardi-b.txt
+[94m~                                                                    [29;1H~                                                                    [30;1H~                                                                    [31;1H~                                                                    [32;1H~                                                                    [33;1H~                                                                    [34;1H~                                                                    [35;1H~                                                                    [36;1H~                                                                    [37;1H~                                                                    [38;1H~                                                                    [39;1H~                                                                    [40;1H~                                                                    [41;1H~                                                                    [42;1H~                                                                    [43;1H~                                                                    [44;1H~                                                                    [45;1H~                                                                    [46;1H~                                                                    [47;1H~                                                                    [48;1H~                                                                    [49;1H~                                                                    [50;1H~                                                                    [51;1H~                                                                    [m[52;52H20,1[10CAll"sedfile.txt" 24L, 1442C[23;1H[?25h[?25l[52;42H:[23;1H[52;1H[K[52;1H:[?2004h[?25hs[?25l[?25he[?25l[?25ht[?25l[?25h[?25l [?25hn[?25l[?25hu[?25l[?25hm[?25l[?25hb[?25l[?25he[?25l[?25hr[?25l[?25h[?25l[23;5H[1;1H[93m  1 [mtotal 104
+[93m  2 [mRrw------- 1 tam0301 tam0301 1909 Feb  9 09:44 bad-habits-by-ed-ss[3;1H[93m    [mheeran.txt
+[93m  3 [mRrw------- 1 tam0301 tam0301 1262 Feb  9 09:42 blinding-lights-byy[5;1H[93m    [m-the-weeknd.txt
+[93m  4 [mRrw------- 1 tam0301 tam0301 5090 Feb  9 10:18 BodySignals.m
+[93m  5 [mRrw------- 1 tam0301 tam0301 2576 Feb  9 10:17 BodySignals.py
+[93m  6 [mRrw------- 1 tam0301 tam0301 2101 Feb  9 09:22 butter-by-bts.txt
+[93m  7 [mRrw------- 1 tam0301 tam0301 7044 Feb  9 10:14 dashboard.py
+[93m  8 [mRrw------- 1 tam0301 tam0301  981 Feb  9 10:19 DCMotor.ino
+[93m  9 [mRrw------- 1 tam0301 tam0301 1951 Feb  9 09:50 deja-vu-.initial-dd[12;1H[93m    [m.-by-Tsuko-G.txt
+[93m 10 [mRrw------- 1 tam0301 tam0301 2221 Feb  9 10:05 get_photos.rs
+[93m 11 [mRrw------- 1 tam0301 tam0301 4954 Feb  9 10:16 graphing.py
+[93m 12 [mRrw------- 1 tam0301 tam0301  727 Feb  9 10:07 header.ejs
+[93m 13 [mRrw------- 1 tam0301 tam0301 4469 Feb  9 10:06 index.ejs
+[93m 14 [mRrw------- 1 tam0301 tam0301  243 Feb  9 09:59 index.html
+[93m 15 [mRrw------- 1 tam0301 tam0301  992 Feb  9 10:15 Market_Data.py
+[93m 16 [mRrw------- 1 tam0301 tam0301 5815 Feb  9 10:16 plotting.py
+[93m 17 [mRrw------- 1 tam0301 tam0301 3864 Feb  9 10:03 README.md
+[93m 18 [mRrw------- 1 tam0301 tam0301  683 Feb  9 10:10 rec01.rs
+[93m 19 [mRrw------- 1 tam0301 tam0301 1207 Feb  9 10:12 rec02.rs
+[93m 20 [mRrw------- 1 tam0301 tam0301    0 Feb  9 11:58 rec03
+[93m 21 [mRrw------- 1 tam0301 tam0301    0 Feb  9 11:58 sedfile.txt
+[93m 22 [mRrw------- 1 tam0301 tam0301 1389 Feb  9 10:19 ServoMotor.ino
+[93m 23 [mRrw------- 1 tam0301 tam0301 1688 Feb  9 10:20 StepperMotor.ino
+[93m 24 [mRrw------- 1 tam0301 tam0301 2741 Feb  9 09:46 up-by-cardi-b.txt[52;52H20,1[10CAll[23;5H[?25h[?25l[52;42Hk[23;5H[52;42H [22;5H[52;52H19[22;5H[?25h[?25l[52;42Hk[22;5H[52;42H [21;5H[52;53H8[21;5H[?25h[?25l[52;42Hk[21;5H[52;42H [20;5H[52;53H7[20;5H[?25h[?25l[52;42Hk[20;5H[52;42H [19;5H[52;53H6[19;5H[?25h[?25l[52;42Hk[19;5H[52;42H [18;5H[52;53H5[18;5H[?25h[?25l[52;42Hk[18;5H[52;42H [17;5H[52;53H4[17;5H[?25h[?25l[52;42Hk[17;5H[52;42H [16;5H[52;53H3[16;5H[?25h[?25l[52;42Hk[16;5H[52;42H [15;5H[52;53H2[15;5H[?25h[?25l[52;42Hk[15;5H[52;42H [14;5H[52;53H1[14;5H[?25h[?25l[52;42Hk[14;5H[52;42H [13;5H[52;53H0[13;5H[?25h[?25l[52;42Hk[13;5H[52;42H [11;5H[52;52H9,1 [11;5H[?25h[?25l[52;42Hk[11;5H[52;42H [10;5H[52;52H8[10;5H[?25h[?25l[52;42Hk[10;5H[52;42H [9;5H[52;52H7[9;5H[?25h[?25l[52;42Hk[9;5H[52;42H [8;5H[52;52H6[8;5H[?25h[?25l[52;42Hk[8;5H[52;42H [7;5H[52;52H5[7;5H[?25h[?25l[52;42Hk[7;5H[52;42H [6;5H[52;52H4[6;5H[?25h[?25l[52;42Hj[6;5H[52;42H [7;5H[52;52H5[7;5H[?25h[?25l[52;42Hl[7;5H[52;42H [7;6H[52;54H2[7;6H[?25h[?25l[52;42Hl[7;6H[52;42H [7;7H[52;54H3[7;7H[?25h[?25l[52;42Hl[7;7H[52;42H [7;8H[52;54H4[7;8H[?25h[?25l[52;42Hl[7;8H[52;42H [7;9H[52;54H5[7;9H[?25h[?25l[52;42Hl[7;9H[52;42H [7;10H[52;54H6[7;10H[?25h[?25l[52;42Hl[7;10H[52;42H [7;11H[52;54H7[7;11H[?25h[?25l[52;42Hl[7;11H[52;42H [7;12H[52;54H8[7;12H[?25h[?25l[52;42Hl[7;12H[52;42H [7;13H[52;54H9[7;13H[?25h[?25l[52;42Hl[7;13H[52;42H [7;14H[52;54H10[7;14H[?25h[?25l[52;42Hl[7;14H[52;42H [7;15H[52;55H1[7;15H[?25h[?25l[52;42Hl[7;15H[52;42H [7;16H[52;55H2[7;16H[?25h[?25l[52;42Hl[7;16H[52;42H [7;17H[52;55H3[7;17H[?25h[?25l[52;42Hl[7;17H[52;42H [7;18H[52;55H4[7;18H[?25h[?25l[52;42Hl[7;18H[52;42H [7;19H[52;55H5[7;19H[?25h[?25l[52;42Hl[7;19H[52;42H [7;20H[52;55H6[7;20H[?25h[?25l[52;42Hl[7;20H[52;42H [7;21H[52;55H7[7;21H[?25h[?25l[52;42Hl[7;21H[52;42H [7;22H[52;55H8[7;22H[?25h[?25l[52;42Hl[7;22H[52;42H [7;23H[52;55H9[7;23H[?25h[?25l[52;42Hl[7;23H[52;42H [7;24H[52;54H20[7;24H[?25h[?25l[52;42Hl[7;24H[52;42H [7;25H[52;55H1[7;25H[?25h[?25l[52;42Hl[7;25H[52;42H [7;26H[52;55H2[7;26H[?25h[?25l[52;42Hl[7;26H[52;42H [7;27H[52;55H3[7;27H[?25h[?25l[52;42Hl[7;27H[52;42H [7;28H[52;55H4[7;28H[?25h[?25l[52;42Hl[7;28H[52;42H [7;29H[52;55H5[7;29H[?25h[?25l[52;42Hl[7;29H[52;42H [7;30H[52;55H6[7;30H[?25h[?25l[52;42Hl[7;30H[52;42H [7;31H[52;55H7[7;31H[?25h[?25l[52;42Hl[7;31H[52;42H [7;32H[52;55H8[7;32H[?25h[?25l[52;42Hl[7;32H[52;42H [7;33H[52;55H9[7;33H[?25h[?25l[52;42Hl[7;33H[52;42H [7;34H[52;54H30[7;34H[?25h[?25l[52;42Hl[7;34H[52;42H [7;35H[52;55H1[7;35H[?25h[?25l[52;42Hl[7;35H[52;42H [7;36H[52;55H2[7;36H[?25h[?25l[52;42Hl[7;36H[52;42H [7;37H[52;55H3[7;37H[?25h[?25l[52;42Hl[7;37H[52;42H [7;38H[52;55H4[7;38H[?25h[?25l[52;42Hl[7;38H[52;42H [7;39H[52;55H5[7;39H[?25h[?25l[52;42Hl[7;39H[52;42H [7;40H[52;55H6[7;40H[?25h[?25l[52;42Hl[7;40H[52;42H [7;41H[52;55H7[7;41H[?25h[?25l[52;42Hl[7;41H[52;42H [7;42H[52;55H8[7;42H[?25h[?25l[52;42Hl[7;42H[52;42H [7;43H[52;55H9[7;43H[?25h[?25l[52;42Hl[7;43H[52;42H [7;44H[52;54H40[7;44H[?25h[?25l[52;42Hl[7;44H[52;42H [7;45H[52;55H1[7;45H[?25h[?25l[52;42Hl[7;45H[52;42H [7;46H[52;55H2[7;46H[?25h[?25l[52;42Hl[7;46H[52;42H [7;47H[52;55H3[7;47H[?25h[?25l[52;42Hl[7;47H[52;42H [7;48H[52;55H4[7;48H[?25h[?25l[52;42Hl[7;48H[52;42H [7;49H[52;55H5[7;49H[?25h[?25l[52;42Hl[7;49H[52;42H [7;50H[52;55H6[7;50H[?25h[?25l[52;42Hl[7;50H[52;42H [7;51H[52;55H7[7;51H[?25h[?25l[52;42Hl[7;51H[52;42H [7;52H[52;55H8[7;52H[?25h[?25l[52;42Hl[7;52H[52;42H [7;53H[52;55H9[7;53H[?25h[?25l[52;42Hl[7;53H[52;42H [7;54H[52;54H50[7;54H[?25h[?25l[52;42Hj[7;54H[52;42H [8;54H[52;52H6[8;54H[?25h[?25l[52;42Hk[8;54H[52;42H [7;54H[52;52H5[7;54H[?25h[?25l[52;42Hh[7;54H[52;42H [7;53H[52;54H49[7;53H[?25h[?25l[52;42Hh[7;53H[52;42H [7;52H[52;55H8[7;52H[?25h[?25l[52;42H:[7;52H[52;1H[K[52;1H:[?2004h[?25hw[?25l[?25h[?25l[52;2H[K[52;2H[?25hq[?25l[?25h[?25l[?2004l[52;1H[K[52;1H[?2004l[?1l>[?25h[?1049l[23;0;0t]0;tam0301@cse05: ~/CSCE/CSCE3600/Labs/Lab03[01;32mtam0301@cse05[00m:[01;34m~/CSCE/CSCE3600/Labs/Lab03[00m$ sed ;[K-i '/BodySignals.py/a t his[K[K[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Ct his is a new line' sedfile.txt 
+]0;tam0301@cse05: ~/CSCE/CSCE3600/Labs/Lab03[01;32mtam0301@cse05[00m:[01;34m~/CSCE/CSCE3600/Labs/Lab03[00m$ sed -n 1,10p sedfile.txt 
+total 104
+Rrw------- 1 tam0301 tam0301 1909 Feb  9 09:44 bad-habits-by-ed-sheeran.txt
+Rrw------- 1 tam0301 tam0301 1262 Feb  9 09:42 blinding-lights-by-the-weeknd.txt
+Rrw------- 1 tam0301 tam0301 5090 Feb  9 10:18 BodySignals.m
+Rrw------- 1 tam0301 tam0301 2576 Feb  9 10:17 BodySignals.py
+this is a new line
+Rrw------- 1 tam0301 tam0301 2101 Feb  9 09:22 butter-by-bts.txt
+Rrw------- 1 tam0301 tam0301 7044 Feb  9 10:14 dashboard.py
+Rrw------- 1 tam0301 tam0301  981 Feb  9 10:19 DCMotor.ino
+Rrw------- 1 tam0301 tam0301 1951 Feb  9 09:50 deja-vu-.initial-d.-by-Tsuko-G.txt
+]0;tam0301@cse05: ~/CSCE/CSCE3600/Labs/Lab03[01;32mtam0301@cse05[00m:[01;34m~/CSCE/CSCE3600/Labs/Lab03[00m$ ps -ef > gawkfile.txt
+]0;tam0301@cse05: ~/CSCE/CSCE3600/Labs/Lab03[01;32mtam0301@cse05[00m:[01;34m~/CSCE/CSCE3600/Labs/Lab03[00m$ gawk 'NR <= 10' gawkfile.tx t
+UID        PID  PPID  C STIME TTY          TIME CMD
+root         1     0  0 Jan12 ?        00:00:29 /sbin/init splash
+root         2     0  0 Jan12 ?        00:00:00 [kthreadd]
+root         4     2  0 Jan12 ?        00:00:00 [kworker/0:0H]
+root         6     2  0 Jan12 ?        00:00:00 [mm_percpu_wq]
+root         7     2  0 Jan12 ?        00:00:01 [ksoftirqd/0]
+root         8     2  0 Jan12 ?        00:03:05 [rcu_sched]
+root         9     2  0 Jan12 ?        00:00:00 [rcu_bh]
+root        10     2  0 Jan12 ?        00:00:00 [migration/0]
+root        11     2  0 Jan12 ?        00:00:03 [watchdog/0]
+]0;tam0301@cse05: ~/CSCE/CSCE3600/Labs/Lab03[01;32mtam0301@cse05[00m:[01;34m~/CSCE/CSCE3600/Labs/Lab03[00m$ gawk 'END *([K[K(print NR)' gawkfiile.txt 
+gawk: cmd. line:1: END (print NR)
+gawk: cmd. line:1:     ^ syntax error
+gawk: cmd. line:2: END (print NR)
+gawk: cmd. line:2:               ^ unexpected newline or end of string
+]0;tam0301@cse05: ~/CSCE/CSCE3600/Labs/Lab03[01;32mtam0301@cse05[00m:[01;34m~/CSCE/CSCE3600/Labs/Lab03[00m$ gawk '/tam0301/{print NR, $ 0}' gawkfile.txt 
+140 root     21286  1038  0 09:59 ?        00:00:00 sshd: tam0301 [priv]
+141 tam0301  21325 21286  0 09:59 ?        00:00:00 sshd: tam0301@pts/0
+142 tam0301  21326 21325  0 09:59 pts/0    00:00:00 -bash
+154 tam0301  23524 21326  0 11:58 pts/0    00:00:00 script rec03
+155 tam0301  23525 23524  0 11:58 pts/2    00:00:00 bash -i
+181 tam0301  24076 23525  0 12:12 pts/2    00:00:00 ps -ef
+]0;tam0301@cse05: ~/CSCE/CSCE3600/Labs/Lab03[01;32mtam0301@cse05[00m:[01;34m~/CSCE/CSCE3600/Labs/Lab03[00m$ gawk 'NF > 0 {print NR, NF} ' gawkfile.txt 
+1 8
+2 9
+3 8
+4 8
+5 8
+6 8
+7 8
+8 8
+9 8
+10 8
+11 8
+12 8
+13 8
+14 8
+15 8
+16 8
+17 8
+18 8
+19 8
+20 8
+21 8
+22 8
+23 8
+24 8
+25 8
+26 8
+27 8
+28 8
+29 8
+30 8
+31 8
+32 8
+33 8
+34 8
+35 8
+36 8
+37 8
+38 8
+39 8
+40 8
+41 8
+42 8
+43 8
+44 8
+45 8
+46 8
+47 8
+48 8
+49 8
+50 8
+51 8
+52 8
+53 8
+54 8
+55 8
+56 8
+57 8
+58 8
+59 8
+60 8
+61 8
+62 8
+63 8
+64 8
+65 8
+66 8
+67 11
+68 10
+69 8
+70 8
+71 8
+72 8
+73 8
+74 8
+75 8
+76 9
+77 9
+78 8
+79 9
+80 14
+81 12
+82 9
+83 10
+84 9
+85 9
+86 12
+87 10
+88 15
+89 10
+90 10
+91 9
+92 9
+93 9
+94 8
+95 10
+96 9
+97 10
+98 10
+99 9
+100 9
+101 8
+102 8
+103 9
+104 18
+105 15
+106 10
+107 35
+108 12
+109 15
+110 8
+111 12
+112 9
+113 10
+114 9
+115 8
+116 10
+117 9
+118 10
+119 8
+120 9
+121 8
+122 8
+123 8
+124 8
+125 8
+126 8
+127 8
+128 8
+129 8
+130 9
+131 8
+132 9
+133 8
+134 8
+135 8
+136 9
+137 9
+138 9
+139 9
+140 10
+141 9
+142 8
+143 8
+144 10
+145 9
+146 8
+147 10
+148 9
+149 8
+150 8
+151 10
+152 9
+153 8
+154 9
+155 9
+156 10
+157 8
+158 8
+159 9
+160 8
+161 10
+162 9
+163 8
+164 10
+165 8
+166 9
+167 8
+168 8
+169 8
+170 8
+171 8
+172 8
+173 10
+174 9
+175 8
+176 10
+177 9
+178 8
+179 8
+180 9
+181 9
+182 10
+183 9
+184 8
+185 9
+]0;tam0301@cse05: ~/CSCE/CSCE3600/Labs/Lab03[01;32mtam0301@cse05[00m:[01;34m~/CSCE/CSCE3600/Labs/Lab03[00m$ gawk 'NF > 0[K8 (for( [Ki = 9; i  <= NF; i++) print NR, NF, $i)' gawkfile.txt 
+gawk: cmd. line:1: NF > 8 (for(i = 9; i <= NF; i++) print NR, NF, $i)
+gawk: cmd. line:1:         ^ syntax error
+gawk: cmd. line:1: NF > 8 (for(i = 9; i <= NF; i++) print NR, NF, $i)
+gawk: cmd. line:1:                  ^ syntax error
+gawk: cmd. line:1: NF > 8 (for(i = 9; i <= NF; i++) print NR, NF, $i)
+gawk: cmd. line:1:                           ^ syntax error
+gawk: cmd. line:1: NF > 8 (for(i = 9; i <= NF; i++) print NR, NF, $i)
+gawk: cmd. line:1:                                  ^ syntax error
+gawk: cmd. line:2: NF > 8 (for(i = 9; i <= NF; i++) print NR, NF, $i)
+gawk: cmd. line:2:                                                   ^ unexpected newline or end of string
+]0;tam0301@cse05: ~/CSCE/CSCE3600/Labs/Lab03[01;32mtam0301@cse05[00m:[01;34m~/CSCE/CSCE3600/Labs/Lab03[00m$ gawk 'BEGIn[KN (OFS = "\t"); p rint[K[K[K[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C( print $1, $2, [K[K[K3, $2, $4, $5, $6, $7, $8}[K)' gawkfile.txt
+gawk: cmd. line:1: BEGIN (OFS = "\t"); (print $1, $3, $2, $4, $5, $6, $7, $8)
+gawk: cmd. line:1:       ^ syntax error
+gawk: cmd. line:1: BEGIN (OFS = "\t"); (print $1, $3, $2, $4, $5, $6, $7, $8)
+gawk: cmd. line:1:                      ^ syntax error
+gawk: cmd. line:2: BEGIN (OFS = "\t"); (print $1, $3, $2, $4, $5, $6, $7, $8)
+gawk: cmd. line:2:                                                           ^ unexpected newline or end of string
+]0;tam0301@cse05: ~/CSCE/CSCE3600/Labs/Lab03[01;32mtam0301@cse05[00m:[01;34m~/CSCE/CSCE3600/Labs/Lab03[00m$ gawk 'BEGIN (OFS = "\t"); (pprint $1, $3, $2, $4, $5, $6, $7, $8)' gawkfile.txt[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CNF > 8 (for(i = 9; i <[7P= NF; i++) print NR, NF, $i)' gawkfile.txt [A[C[C[C[C[C[C[C[C[C0 {print NR, NF}' gawkfile.txt [K[A]0;tam0301@cse05: ~/CSCE/CSCE3600/Labs/Lab03[01;32mtam0301@cse05[00m:[01;34m~/CSCE/CSCE3600/Labs/Lab03[00m$ [C[C[C[C[C[C/tam0301/{print NR, $0[2@}'[C[C[C[C[C[C[C[C[C[C[C[C[C[C[A]0;tam0301@cse05: ~/CSCE/CSCE3600/Labs/Lab03[01;32mtam0301@cse05[00m:[01;34m~/CSCE/CSCE3600/Labs/Lab03[00m$ [C[C[C[C[C[CEND (print NR)' gawkfi[9P[C[C[C[C[C[C[C[A]0;tam0301@cse05: ~/CSCE/CSCE3600/Labs/Lab03[01;32mtam0301@cse05[00m:[01;34m~/CSCE/CSCE3600/Labs/Lab03[00m$ [C[C[C[C[C[CNR <= 10' gawkfile.txt[K[A]0;tam0301@cse05: ~/CSCE/CSCE3600/Labs/Lab03[01;32mtam0301@cse05[00m:[01;34m~/CSCE/CSCE3600/Labs/Lab03[00m$ [6Pps -ef > gawkfile.txt
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Csed -n 1,10p sedfile.txt [4Pps -ef > gawkfile.txtgawk 'NR <= 10' gawkfile.txtt[A]0;tam0301@cse05: ~/CSCE/CSCE3600/Labs/Lab03[01;32mtam0301@cse05[00m:[01;34m~/CSCE/CSCE3600/Labs/Lab03[00m$ [C[C[C[C[C[CEND (print NR)' gawkfile.txt [A]0;tam0301@cse05: ~/CSCE/CSCE3600/Labs/Lab03[01;32mtam0301@cse05[00m:[01;34m~/CSCE/CSCE3600/Labs/Lab03[00m$ [C[C[C[C[C[C/tam0301/{print NR, $0[9@}' gawkfi[C[C[C[C[C[C[C[A]0;tam0301@cse05: ~/CSCE/CSCE3600/Labs/Lab03[01;32mtam0301@cse05[00m:[01;34m~/CSCE/CSCE3600/Labs/Lab03[00m$ [C[C[C[C[C[CNF > 0 {print NR, NF}'[2P[C[C[C[C[C[C[C[C[C[C[C[C[C[C[A]0;tam0301@cse05: ~/CSCE/CSCE3600/Labs/Lab03[01;32mtam0301@cse05[00m:[01;34m~/CSCE/CSCE3600/Labs/Lab03[00m$ [C[C[C[C[C[C[C[C[C[C[C8 (for(i = 9; i <[29@= NF; i++) print NR, NF, $i)'[C[C[C[C[C[C[C[C[C[C[C[C[C[C[A[C[C[C[CBEGIN (OFS = "\t"); (print $1, $3, $2, $4, $5, $6, $7, $8)' gawkfile.txt[A[K
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cexit
+exit
+
+Script done on 2022-02-09 12:25:09-0600
